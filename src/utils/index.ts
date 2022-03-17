@@ -1,4 +1,4 @@
-import { Toast } from 'vant'
+// import { Toast } from 'vant'
 
 /**
  * 判断是否微信
@@ -40,8 +40,6 @@ export const debounce = (func: (val: string) => void, wait: number, immediate: b
   }
 }
 
-
-
 /**
  * 验证手机
  * @param { string } value
@@ -68,11 +66,8 @@ export const preloadImg = (url: string): void => {
  * 多张图片预加载
  * @param { string } url
  */
- export const preloadAllImg = (): void => {
-  const imgList: string[] = [
-    'https://nba75th.ihyx.net/newyearbox/images/home_bg.jpg',
-    'https://nba75th.ihyx.net/newyearbox/images/hu.png',
-  ]
+export const preloadAllImg = (): void => {
+  const imgList: string[] = ['https://nba75th.ihyx.net/newyearbox/images/home_bg.jpg', 'https://nba75th.ihyx.net/newyearbox/images/hu.png']
   const promiseAll = imgList.map((item: string) => {
     return new Promise(function (resolve) {
       const img = new Image()
@@ -85,6 +80,7 @@ export const preloadImg = (url: string): void => {
   })
   Promise.all(promiseAll)
 }
+
 /**
  *  20位随机英文数字
  * @returns string

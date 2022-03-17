@@ -15,7 +15,7 @@ module.exports = {
   extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   rules: {
     '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/explicit-function-return-type': 1,
+    '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/no-explicit-any': 1,
     '@typescript-eslint/no-var-requires': 1,
     '@typescript-eslint/no-empty-function': 2,

@@ -1,10 +1,11 @@
 <template>
-  <div class="container">
-    kakkas
-  </div>
+  <div class="container">{{ text }}</div>
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
+
+const text = ref('111')
 </script>
 <style lang="scss" scoped>
 .container {
@@ -12,5 +13,4 @@
   position: relative;
   overflow: hidden;
 }
-
 </style>
