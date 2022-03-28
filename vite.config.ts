@@ -1,5 +1,5 @@
 import type { ConfigEnv, UserConfigExport } from 'vite'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import'
 import viteCompression from 'vite-plugin-compression'
@@ -11,8 +11,7 @@ const resolve = (name: string): string => path.resolve(__dirname, name)
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   return defineConfig({
-    // base: loadEnv(mode, process.cwd()).VITE_APP_PATH,
-    base: '/newyear/',
+    base: loadEnv(mode, process.cwd()).VITE_APP_PATH,
     plugins: [
       vue(),
       styleImport({

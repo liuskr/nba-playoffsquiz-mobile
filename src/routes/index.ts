@@ -1,6 +1,6 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-const history = createWebHashHistory()
+const history = createWebHistory()
 
 const routes: RouteRecordRaw[] = [
   {
@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
     name: 'Home',
     component: (): Promise<typeof import('*.vue')> => import('@pages/home/index.vue'),
     meta: { title: '首页', keepAlive: true }
-  },
+  }
 ]
 //
 const router = createRouter({
