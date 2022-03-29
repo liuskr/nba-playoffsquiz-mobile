@@ -72,7 +72,6 @@ export default defineComponent({
     top: 50px;
     width: 140px;
     height: 40px;
-    // background-color: pink;
   }
   .center {
     height: 100%;
@@ -84,8 +83,8 @@ export default defineComponent({
       flex-wrap: wrap;
       margin-top: 220px;
       &-item {
-        width: 340px;
-        height: 520px;
+        width: 336px;
+        height: 510px;
         margin-top: 10px;
         // vertical-align: middle;
         img {
@@ -107,7 +106,6 @@ export default defineComponent({
         flex: 1;
         width: 100px;
         height: 100px;
-        background-color: pink;
         border-radius: 50%;
         border: 5px solid #6bab39;
         box-sizing: border-box;
@@ -120,25 +118,28 @@ export default defineComponent({
       height: 110px;
       line-height: 120px;
       font-size: 26px;
-      font-weight: 700;
+      color: #4f4f4f;
+      font-family: $font-zhengdao;
     }
 
     .ranking {
       flex: 1;
       height: 120px;
       text-align: center;
-      font-size: 32px;
+      font-size: 44px;
       line-height: 154px;
       color: #6bab39;
+      font-family: $font-nba;
     }
     .points {
       flex: 1;
       height: 120px;
       text-align: center;
-      font-size: 32px;
+      font-size: 44px;
       line-height: 154px;
       margin-left: 18px;
       color: #6bab39;
+      font-family: $font-nba;
     }
 
     // position: absolute;
