@@ -12,13 +12,37 @@
 
 <script lang="ts">
 import { defineComponent, ref, provide, onMounted } from 'vue'
+declare const WeixinJSBridge: any
+declare const window: Window & { attachEvent: any }
 
 export default defineComponent({
   name: 'App',
   setup() {
     const audio = ref(null)
+
+    const handleFontSize = () => {
+      WeixinJSBridge.invoke('setFontSizeCallback', { fontSize: 0 })
+      WeixinJSBridge.on('menu:setfont', function () {
+        WeixinJSBridge.invoke('setFontSizeCallback', { fontSize: 0 })
+      })
+    }
+
+    // 禁止微信缩放字体
+    const init = () => {
+      if (typeof WeixinJSBridge === 'object' && typeof WeixinJSBridge.invoke === 'function') {
+        handleFontSize()
+      } else {
+        if (window.addEventListener) {
+          window.addEventListener('WeixinJSBridgeReady', handleFontSize, false)
+        } else if (window.attachEvent) {
+          window.attachEvent('onWeixinJSBridgeReady', handleFontSize)
+        }
+      }
+    }
+
     onMounted(() => {
       provide('audio', audio)
+      init()
     })
     return {
       audio

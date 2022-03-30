@@ -18,7 +18,7 @@ const router = createRouter({
 })
 
 router.beforeEach(() => {
-  document.title = '领NBA微信红包封面'
+  document.title = 'NBA2022季后赛竞猜'
 })
 
 export default router
