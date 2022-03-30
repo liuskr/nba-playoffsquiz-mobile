@@ -1,3 +1,12 @@
+<script lang="ts" setup>
+import { ref } from 'vue'
+import useMusicControl from './music'
+
+const { isPlayMusic, onSwitch } = useMusicControl()
+
+const show = ref(false)
+</script>
+
 <template>
   <div class="container">
     <div class="rulse" @click="show = true"></div>
@@ -56,50 +65,9 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref, inject, onMounted, onBeforeUnmount, onUnmounted } from 'vue'
-const show = ref(false)
-const audio = inject<any>('audio')
-const isPlayMusic = ref(true)
-
-// 触摸播放音乐
-const onTouchStartPlay = () => {
-  audio.value.play()
-}
-
-const onSwitch = () => {
-  // 如果已经开始播放,
-  if (isPlayMusic.value) {
-    audio.value.pause()
-    window.removeEventListener('touchstart', onTouchStartPlay, true)
-    isPlayMusic.value = false
-    return
-  }
-  onTouchStartPlay()
-  isPlayMusic.value = true
-}
-
-onMounted(() => {
-  window.addEventListener('touchstart', onTouchStartPlay, true)
-  getWechatShare(() => {
-    onTouchStartPlay()
-  })
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('touchstart', onTouchStartPlay, true)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('touchstart', onTouchStartPlay, true)
-})
-</script>
-
 <script lang="ts">
-import { getWechatShare } from '@utils/wx'
 import { Image as VanImage, Overlay } from 'vant'
 import { defineComponent } from 'vue'
-
 export default defineComponent({
   name: 'LoginPopup',
   components: {
