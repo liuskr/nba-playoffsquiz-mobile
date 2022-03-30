@@ -1,4 +1,5 @@
 <template>
+  <audio ref="audio" src="https://nba75th.ihyx.net/video/music.mp3" class="audio" autoplay preload="auto" loop></audio>
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="in-out">
       <keep-alive v-if="$route.meta.keepAlive">
@@ -10,10 +11,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, provide, onMounted } from 'vue'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
+  setup() {
+    const audio = ref(null)
+    onMounted(() => {
+      provide('audio', audio)
+    })
+    return {
+      audio
+    }
+  }
 })
 </script>
 
