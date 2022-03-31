@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import useMusicControl from './music'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
-
 const show = ref(false)
 </script>
 
@@ -17,13 +16,13 @@ const show = ref(false)
           <img src="@assets/images/home_1.png" alt="" />
         </div>
         <div class="mainbody-item">
-          <img src="@assets/images/home_2.jpg" alt="" />
+          <img src="@assets/images/home_2.png" alt="" />
         </div>
         <div class="mainbody-item">
           <img src="@assets/images/home_3.png" alt="" />
         </div>
         <div class="mainbody-item">
-          <img src="@assets/images/home_4.jpg" alt="" />
+          <img src="@assets/images/home_4.png" alt="" />
         </div>
       </div>
     </main>
