@@ -30,8 +30,8 @@
 import { defineComponent, reactive, toRefs } from 'vue'
 import { Overlay, Field, Toast, Icon, Checkbox } from 'vant'
 import { isMPStrict } from '@utils'
-import activeIcon from '@assets/images/checkbox.png'
-import inactiveIcon from '@assets/images/selected.png'
+import activeIcon from '@assets/images/activeIcon.png'
+import inactiveIcon from '@assets/images/inactiveIcon.png'
 //
 // import { getVerificationCode, updateUseLogin } from '@apis'
 // import { localStorageSet } from '@utils/auth'
