@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import Login from '@components/Login/index.vue'
 import useMusicControl from './music'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
@@ -61,12 +62,14 @@ const show = ref(false)
         </div>
       </div>
     </van-overlay>
+    <Login />
   </div>
 </template>
 
 <script lang="ts">
 import { Image as VanImage, Overlay } from 'vant'
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   name: 'LoginPopup',
   components: {
