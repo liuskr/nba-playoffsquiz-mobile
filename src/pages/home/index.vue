@@ -5,28 +5,33 @@ import useMusicControl from './music'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
 const show = ref(false)
+const prizeShow = ref(false)
+const guideShow = ref(false)
 </script>
 
 <template>
   <div class="container">
     <div class="rulse" @click="show = true"></div>
+    <!-- 音乐 -->
     <div class="misic" :class="{ musicAnimation: isPlayMusic }" @click="onSwitch"></div>
+    <!-- 内容 -->
     <main class="center">
       <div class="mainbody">
-        <div class="mainbody-item">
+        <router-link to="/" replace class="mainbody-item">
           <img src="@assets/images/home_1.png" alt="" />
-        </div>
-        <div class="mainbody-item">
+        </router-link>
+        <router-link to="/rankinglist" replace class="mainbody-item">
           <img src="@assets/images/home_2.png" alt="" />
-        </div>
-        <div class="mainbody-item">
+        </router-link>
+        <div class="mainbody-item" @click="guideShow = true">
           <img src="@assets/images/home_3.png" alt="" />
         </div>
-        <div class="mainbody-item">
+        <div class="mainbody-item" @click="prizeShow = true">
           <img src="@assets/images/home_4.png" alt="" />
         </div>
       </div>
     </main>
+    <!--  -->
     <!-- 用户信息 -->
     <footer class="footer">
       <div class="user">
@@ -38,7 +43,7 @@ const show = ref(false)
       <div class="ranking">1232</div>
       <div class="points">1223</div>
     </footer>
-    <!-- // 规则 -->
+    <!-- 规则 -->
     <van-overlay :show="show" @click="show = false">
       <div class="wrapper" @click.stop>
         <div class="block">
@@ -59,6 +64,33 @@ const show = ref(false)
             <p>6.该积分仅限用于竞猜比分使用，且用户所获得的竞猜奖励积分也仅限于竞猜活动积分排名。</p>
           </div>
           <div class="close" @click="show = false"></div>
+        </div>
+      </div>
+    </van-overlay>
+    <!-- 奖品 -->
+    <van-overlay :show="prizeShow" @click="show = false">
+      <div class="wrapper" @click.stop>
+        <div class="wrapper-prize">
+          <img src="@assets/images/prize.png" alt="" />
+          <div class="close prize-close" @click="prizeShow = false"></div>
+        </div>
+      </div>
+    </van-overlay>
+    <!-- 活动指南 -->
+    <van-overlay :show="guideShow" :lock-scroll="false" @click="show = false">
+      <div class="wrapper" @click.stop>
+        <div class="wrapper-guide">
+          <h3 class="guide-title">竞猜指南</h3>
+          <div class="guide-center">
+            <img src="@assets/images/guide/1.png" alt="" />
+            <img src="@assets/images/guide/2.png" alt="" />
+            <img src="@assets/images/guide/3.png" alt="" />
+            <img src="@assets/images/guide/4.png" alt="" />
+            <img src="@assets/images/guide/5.png" alt="" />
+            <img src="@assets/images/guide/6.png" alt="" />
+            <img src="@assets/images/guide/7.png" alt="" />
+          </div>
+          <div class="close guide-close" @click="guideShow = false"></div>
         </div>
       </div>
     </van-overlay>
