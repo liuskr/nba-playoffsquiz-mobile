@@ -102,4 +102,45 @@
       }
     }
   }
+  .footer-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 156px;
+    width: 750px;
+    background: url('@assets/images/fiexd.png') no-repeat;
+    background-size: cover;
+    &-info {
+      height: 156px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px 0 70px;
+      font-family: $font-zhengdao;
+      &-points {
+        flex: 1;
+        font-size: 50px;
+        font-weight: 400;
+        color: #49b705;
+        margin-top: 46px;
+      }
+      &-ranking {
+        flex: 1;
+        font-size: 50px;
+        font-weight: 400;
+        color: #49b705;
+        margin-top: 46px;
+        // margin-right: 10px;
+      }
+      &-btn {
+        flex: 1;
+        font-size: 67px;
+        font-weight: 400;
+        font-style: italic;
+        color: #efefef;
+        text-shadow: 3px 4px 18px rgba(54, 176, 0, 0.53);
+        margin-right: 16px;
+        margin-top: 6px;
+      }
+    }
+  }
 }

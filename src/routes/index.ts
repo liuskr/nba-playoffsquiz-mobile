@@ -14,6 +14,12 @@ const routes: RouteRecordRaw[] = [
     name: 'RankingList',
     component: (): Promise<typeof import('*.vue')> => import('@pages/list/index.vue'),
     meta: { title: '积分排行', keepAlive: false }
+  },
+  {
+    path: '/guessing',
+    name: 'Guessing',
+    component: (): Promise<typeof import('*.vue')> => import('@pages/guessing/index.vue'),
+    meta: { title: '竞猜', keepAlive: true }
   }
 ]
 //

@@ -50,6 +50,13 @@
         </div>
       </div>
     </main>
+    <footer class="footer-fixed">
+      <div class="footer-fixed-info">
+        <div class="footer-fixed-info-points">12312</div>
+        <div class="footer-fixed-info-ranking">123</div>
+        <div class="footer-fixed-info-btn">去领奖</div>
+      </div>
+    </footer>
   </div>
 </template>
 

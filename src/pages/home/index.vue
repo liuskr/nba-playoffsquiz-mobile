@@ -17,7 +17,7 @@ const guideShow = ref(false)
     <!-- 内容 -->
     <main class="center">
       <div class="mainbody">
-        <router-link to="/" replace class="mainbody-item">
+        <router-link to="/guessing" replace class="mainbody-item">
           <img src="@assets/images/home_1.png" alt="" />
         </router-link>
         <router-link to="/rankinglist" replace class="mainbody-item">
