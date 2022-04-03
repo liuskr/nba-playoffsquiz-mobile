@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import Login from '@components/Login/index.vue'
+import Guide from '@components/Guide/index.vue'
 import useMusicControl from './music'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
@@ -95,6 +96,7 @@ const guideShow = ref(false)
       </div>
     </van-overlay>
     <Login />
+    <Guide />
   </div>
 </template>
 
