@@ -3,6 +3,7 @@
   // padding: 50px 30px;
   background: url('@assets/images/guessing_bg.jpg') no-repeat;
   background-size: 100%;
+  min-height: 100%;
   // background-color: #000;
   .header {
     display: flex;
@@ -106,7 +107,8 @@
   }
 
   .team {
-    margin-top: 40px;
+    // margin-top: 40px;
+    zoom: 0.86;
   }
 
   .logo_bg {

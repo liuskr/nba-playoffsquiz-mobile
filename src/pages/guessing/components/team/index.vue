@@ -2,58 +2,58 @@
   <div class="team_container">
     <div class="team_8">
       <div class="team_8_4">
-        <PopupView>
-          <div class="team_8_4_left">
-            <div class="ranking_t">1</div>
-            <div class="team_list">
-              <div class="team_logo">
-                <img class="top_logo" src="../../../../assets/images/t_1.png" alt="" />
-                <img class="bottom_logo" src="../../../../assets/images/t_2.png" alt="" />
-              </div>
-              <div class="team_content">
-                <div class="ranks">
-                  <span>热火</span>
-                  <span class="ranking_count"> 4</span>
-                </div>
-                <div class="vs">VS</div>
-                <div class="ranks">
-                  <span>热火</span>
-                  <span class="ranking_count"> 4</span>
-                </div>
-              </div>
+        <!-- <PopupView> -->
+        <div class="team_8_4_left">
+          <div class="ranking_t">1</div>
+          <div class="team_list">
+            <div class="team_logo">
+              <img class="top_logo" src="../../../../assets/images/t_1.png" alt="" />
+              <img class="bottom_logo" src="../../../../assets/images/t_2.png" alt="" />
             </div>
-            <div class="ranking_b">8</div>
-          </div>
-        </PopupView>
-        <PopupView>
-          <div class="team_8_4_right">
-            <div class="f_r">
-              <div class="ranking_t">
-                <span>2</span>
+            <div class="team_content">
+              <div class="ranks">
+                <span>热火</span>
+                <span class="ranking_count"> 4</span>
               </div>
-            </div>
-            <div class="team_list">
-              <div class="team_content">
-                <div class="ranks">
-                  <span>热火</span>
-                  <span class="ranking_count"> 4</span>
-                </div>
-                <div class="vs">VS</div>
-                <div class="ranks">
-                  <span>热火</span>
-                  <span>7</span>
-                </div>
+              <div class="vs">VS</div>
+              <div class="ranks">
+                <span>热火</span>
+                <span class="ranking_count"> 4</span>
               </div>
-              <div class="team_logo">
-                <img class="top_logo" src="../../../../assets/images/t_3.png" alt="" />
-                <img class="bottom_logo" src="../../../../assets/images/t_4.png" alt="" />
-              </div>
-            </div>
-            <div class="f_r">
-              <div class="ranking_b">7</div>
             </div>
           </div>
-        </PopupView>
+          <div class="ranking_b">8</div>
+        </div>
+        <!-- </PopupView> -->
+        <!-- <PopupView> -->
+        <div class="team_8_4_right">
+          <div class="f_r">
+            <div class="ranking_t">
+              <span>2</span>
+            </div>
+          </div>
+          <div class="team_list">
+            <div class="team_content">
+              <div class="ranks">
+                <span>热火</span>
+                <span class="ranking_count"> 4</span>
+              </div>
+              <div class="vs">VS</div>
+              <div class="ranks">
+                <span>热火</span>
+                <span>7</span>
+              </div>
+            </div>
+            <div class="team_logo">
+              <img class="top_logo" src="../../../../assets/images/t_3.png" alt="" />
+              <img class="bottom_logo" src="../../../../assets/images/t_4.png" alt="" />
+            </div>
+          </div>
+          <div class="f_r">
+            <div class="ranking_b">7</div>
+          </div>
+        </div>
+        <!-- </PopupView> -->
       </div>
       <div class="team_8_4">
         <div class="team_8_4_left">
