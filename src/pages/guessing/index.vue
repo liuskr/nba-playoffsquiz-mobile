@@ -24,7 +24,7 @@
       <TeamView />
     </div>
     <!-- <div class="logo_bg"></div> -->
-    <div class="race"></div>
+    <!-- <div class="race"></div> -->
     <div class="submit">
       <div class="btn">
         <span>提交</span>
