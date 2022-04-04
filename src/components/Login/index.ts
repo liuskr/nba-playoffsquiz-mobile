@@ -11,6 +11,7 @@ export default {
     //2.将挂载的Node添加到body中
     document.body.appendChild(instance.$el)
 
+    app.config.compilerOptions.isCustomElement = (tag: string | string[]) => tag.includes('login')
     //3、定义全局
     app.config.globalProperties.$login = instance
   }

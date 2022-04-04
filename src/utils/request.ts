@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import { localStorageGet, localStorageRemove } from './auth'
 import { Toast } from 'vant'
-import { getCurrentInstance } from 'vue'
 
 const codeMessage: Record<number, string> = {
   400: '请求错误',
@@ -16,7 +15,6 @@ const codeMessage: Record<number, string> = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。'
 }
-// @ts-ignore
 
 const { VITE_APP_BASE_API, DEV } = import.meta.env
 
@@ -64,8 +62,7 @@ service.interceptors.response.use(
       const errorText = codeMessage[status] || statusText
       if (response.status === 401 || response.status === 403) {
         localStorageRemove('token')
-        const { proxy } = getCurrentInstance()
-        proxy?.$login?.show()
+        window.location.href = '/'
       }
       Toast(errorText)
     } else if (!response) {

@@ -1,23 +1,27 @@
 <script lang="ts" setup>
-import { ref, getCurrentInstance } from 'vue'
+import { ref, reactive } from 'vue'
 import Login from '@components/Login/index.vue'
 import Guide from '@components/Guide/index.vue'
 import useMusicControl from './music'
 import { useRouter } from 'vue-router'
 import { localStorageGet } from '@utils/auth'
+
 const { isPlayMusic, onSwitch } = useMusicControl()
 const router = useRouter()
-// @ts-ignore
-const { proxy } = getCurrentInstance()
-const show = ref(false)
-const prizeShow = ref(false)
-const guideShow = ref(false)
+
+const status = reactive({
+  show: false,
+  prizeShow: false,
+  guideShow: false
+})
+
+const isLogin = ref(false)
 
 const onJump = (idx: number) => {
   const routerList: string[] = ['/guessing', '/rankinglist']
 
   if (!localStorageGet('token')) {
-    proxy?.$login?.show()
+    isLogin.value = true
     return
   }
 
@@ -27,7 +31,7 @@ const onJump = (idx: number) => {
 
 <template>
   <div class="container">
-    <div class="rulse" @click="show = true"></div>
+    <div class="rulse" @click="status.show = true"></div>
     <!-- 音乐 -->
     <div class="misic" :class="{ musicAnimation: isPlayMusic }" @click="onSwitch"></div>
     <!-- 内容 -->
@@ -39,17 +43,17 @@ const onJump = (idx: number) => {
         <div replace class="mainbody-item" @click="onJump(1)">
           <img src="/images/home_2.png" alt="" />
         </div>
-        <div class="mainbody-item" @click="guideShow = true">
+        <div class="mainbody-item" @click="status.guideShow = true">
           <img src="/images/home_3.png" alt="" />
         </div>
-        <div class="mainbody-item" @click="prizeShow = true">
+        <div class="mainbody-item" @click="status.prizeShow = true">
           <img src="/images/home_4.png" alt="" />
         </div>
       </div>
     </main>
     <!--  -->
     <!-- 用户信息 -->
-    <footer class="footer" @click="test">
+    <footer class="footer">
       <div class="user">
         <div class="user-avatar">
           <van-image round width="1.21rem" height="1.22rem" src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
@@ -60,7 +64,7 @@ const onJump = (idx: number) => {
       <div class="points">1223</div>
     </footer>
     <!-- 规则 -->
-    <van-overlay :show="show" @click="show = false">
+    <van-overlay :show="status.show" @click="status.show = false">
       <div class="wrapper" @click.stop>
         <div class="block">
           <h3 class="block-title">活动规则</h3>
@@ -79,21 +83,21 @@ const onJump = (idx: number) => {
             </div>
             <p>6.该积分仅限用于竞猜比分使用，且用户所获得的竞猜奖励积分也仅限于竞猜活动积分排名。</p>
           </div>
-          <div class="close" @click="show = false"></div>
+          <div class="close" @click="status.show = false"></div>
         </div>
       </div>
     </van-overlay>
     <!-- 奖品 -->
-    <van-overlay :show="prizeShow" @click="show = false">
+    <van-overlay :show="status.prizeShow" @click="status.show = false">
       <div class="wrapper" @click.stop>
         <div class="wrapper-prize">
           <img src="/images/prize.png" alt="" />
-          <div class="close prize-close" @click="prizeShow = false"></div>
+          <div class="close prize-close" @click="status.prizeShow = false"></div>
         </div>
       </div>
     </van-overlay>
     <!-- 活动指南 -->
-    <van-overlay :show="guideShow" :lock-scroll="false" @click="show = false">
+    <van-overlay :show="status.guideShow" :lock-scroll="false" @click="status.show = false">
       <div class="wrapper" @click.stop>
         <div class="wrapper-guide">
           <h3 class="guide-title">竞猜指南</h3>
@@ -106,11 +110,11 @@ const onJump = (idx: number) => {
             <img src="/images/guide_6.png" alt="" />
             <img src="/images/guide_7.png" alt="" />
           </div>
-          <div class="close guide-close" @click="guideShow = false"></div>
+          <div class="close guide-close" @click="status.guideShow = false"></div>
         </div>
       </div>
     </van-overlay>
-    <Login />
+    <Login v-model:is-login="isLogin" />
     <Guide />
   </div>
 </template>

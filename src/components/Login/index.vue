@@ -18,7 +18,7 @@
             <template #icon="props">
               <img class="img-icon" :src="!props.checked ? activeIcon : inactiveIcon" />
             </template>
-            <router-link class="agreement" to="/useragreement">用户须知</router-link>
+            <router-link class="agreement" to="/">用户须知</router-link>
           </van-checkbox>
           <div class="login-btn" @click="onLogin">登录</div>
         </div>
@@ -40,7 +40,6 @@ interface stateType {
   timmer: number
   showTimmer: boolean
   checked: boolean
-  isLogin: boolean
 }
 export default defineComponent({
   name: 'LoginPopup',
@@ -50,20 +49,21 @@ export default defineComponent({
     [Icon.name]: Icon,
     [Checkbox.name]: Checkbox
   },
-
-  setup() {
+  props: {
+    isLogin: {
+      type: Boolean,
+      default: true
+    }
+  },
+  emits: ['update:isLogin'],
+  setup(props, { emit }) {
     const state = reactive<stateType>({
       phone: '', //手机号
       code: '', //验证码
       timmer: 60, //倒计时时间
       showTimmer: false, //是否展示倒计时
-      checked: false,
-      isLogin: false
+      checked: false
     })
-
-    const show = () => {
-      state.isLogin = true
-    }
 
     // 倒计时
     const countDown = (): void => {
@@ -114,11 +114,11 @@ export default defineComponent({
       const { data } = await updateUseLogin({ phone: state.phone, code: state.code })
       localStorageSet('token', data?.token)
       Toast.success({ message: '登录成功', duration: 1500 })
-      state.isLogin = false
+      emit('update:isLogin', false)
     }
 
     const onClose = (): void => {
-      state.isLogin = false
+      emit('update:isLogin', false)
     }
 
     return {
@@ -127,8 +127,7 @@ export default defineComponent({
       inactiveIcon,
       onSendCode,
       onLogin,
-      onClose,
-      show
+      onClose
     }
   }
 })
