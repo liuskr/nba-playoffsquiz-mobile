@@ -1,5 +1,3 @@
-// import { Toast } from 'vant'
-
 /**
  * 判断是否微信
  * @returns true or false
@@ -14,6 +12,32 @@ export const isWeiXin = (): boolean => {
     return true
   }
   return false
+}
+/**
+ *  是否在webview打开
+ * @returns Boolean
+ */
+
+export const openInWebview = (): boolean => {
+  const ua = navigator.userAgent.toLowerCase()
+  // @ts-ignore
+  if (ua.match(/MicroMessenger/i) === 'micromessenger') {
+    // 微信浏览器判断
+    return false
+    // @ts-ignore
+  } else if (ua.match(/QQ/i) === 'qq') {
+    // QQ浏览器判断
+    return false
+    // @ts-ignore
+  } else if (ua.match(/WeiBo/i) === 'weibo') {
+    return false
+  }
+  if (ua.match(/Android/i) !== null) {
+    return ua.match(/browser/i) === null
+  } else if (ua.match(/iPhone/i) !== null) {
+    return ua.match(/safari/i) === null
+  }
+  return ua.match(/macintosh/i) === null && ua.match(/windows/i) === null
 }
 
 /**

@@ -26,3 +26,27 @@ export const localStorageSetExpire = (key: string, value: any, expire: number): 
     localStorage.removeItem(key)
   }, expire)
 }
+
+declare const window: Window & { WebViewJavascriptBridge: any; WVJBCallbacks: any }
+
+/**
+ * 获取app方法
+ * @param callback 回调函数
+ */
+export function setupWebViewJavascriptBridge(callback: () => void): void {
+  if (window.WebViewJavascriptBridge) {
+    // @ts-ignore
+    return callback(WebViewJavascriptBridge)
+  }
+  if (window.WVJBCallbacks) {
+    return window.WVJBCallbacks.push(callback)
+  }
+  window.WVJBCallbacks = [callback]
+  const WVJBIframe = document.createElement('iframe')
+  WVJBIframe.style.display = 'none'
+  WVJBIframe.src = 'https://__bridge_loaded__'
+  document.documentElement.appendChild(WVJBIframe)
+  setTimeout(function () {
+    document.documentElement.removeChild(WVJBIframe)
+  }, 0)
+}

@@ -106,7 +106,6 @@ export default defineComponent({
 
     // 登录
     const onLogin = async (): Promise<void> => {
-      console.log(state.checked)
       if (!getIsPhone()) return
       if (state.code === '') {
         Toast({ message: '请输入验证码', duration: 1500 })
