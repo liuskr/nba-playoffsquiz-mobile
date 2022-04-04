@@ -16,7 +16,7 @@
           </div>
           <van-checkbox v-model="checked" icon-size="14px" shape="square" checked-color="#C73E30">
             <template #icon="props">
-              <img class="img-icon" :src="props.checked ? activeIcon : inactiveIcon" />
+              <img class="img-icon" :src="!props.checked ? activeIcon : inactiveIcon" />
             </template>
             <router-link class="agreement" to="/useragreement">用户须知</router-link>
           </van-checkbox>
@@ -32,9 +32,8 @@ import { Overlay, Field, Toast, Icon, Checkbox } from 'vant'
 import { isMPStrict } from '@utils'
 import activeIcon from '@assets/images/activeIcon.png'
 import inactiveIcon from '@assets/images/inactiveIcon.png'
-//
-// import { getVerificationCode, updateUseLogin } from '@apis'
-// import { localStorageSet } from '@utils/auth'
+import { getVerificationCode, updateUseLogin } from '@apis'
+import { localStorageSet } from '@utils/auth'
 interface stateType {
   phone: string
   code: string
@@ -53,7 +52,7 @@ export default defineComponent({
   props: {
     isLogin: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   emits: ['update:isLogin'],
@@ -63,7 +62,7 @@ export default defineComponent({
       code: '', //验证码
       timmer: 60, //倒计时时间
       showTimmer: false, //是否展示倒计时
-      checked: true
+      checked: false
     })
 
     // 倒计时
@@ -93,12 +92,13 @@ export default defineComponent({
 
     // 获取验证码
     const onSendCode = async (): Promise<void> => {
+      if (state.showTimmer) return
       if (!getIsPhone()) return
       if (!state.checked) {
-        Toast({ message: '请勾选用户隐私协议', duration: 1500 })
+        Toast({ message: '请勾选用户须知', duration: 1500 })
         return
       }
-      // await getVerificationCode({ phone: state.phone })
+      await getVerificationCode({ phone: state.phone })
       state.showTimmer = true
       countDown()
       Toast.success({ message: '发送成功', duration: 1500 })
@@ -106,13 +106,14 @@ export default defineComponent({
 
     // 登录
     const onLogin = async (): Promise<void> => {
+      console.log(state.checked)
       if (!getIsPhone()) return
       if (state.code === '') {
         Toast({ message: '请输入验证码', duration: 1500 })
         return
       }
-      // const { data } = await updateUseLogin({ phone: state.phone, code: state.code })
-      // localStorageSet('token', data?.token)
+      const { data } = await updateUseLogin({ phone: state.phone, code: state.code })
+      localStorageSet('token', data?.token)
       Toast.success({ message: '登录成功', duration: 1500 })
       emit('update:isLogin', false)
     }
