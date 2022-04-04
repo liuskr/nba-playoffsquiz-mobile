@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, provide, onMounted } from 'vue'
+import { preloadAllImg } from '@utils'
 declare const WeixinJSBridge: any
 declare const window: Window & { attachEvent: any }
 
@@ -43,6 +44,7 @@ export default defineComponent({
     onMounted(() => {
       provide('audio', audio)
       init()
+      preloadAllImg()
     })
     return {
       audio

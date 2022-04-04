@@ -67,7 +67,37 @@ export const preloadImg = (url: string): void => {
  * @param { string } url
  */
 export const preloadAllImg = (): void => {
-  const imgList: string[] = ['https://nba75th.ihyx.net/newyearbox/images/home_bg.jpg', 'https://nba75th.ihyx.net/newyearbox/images/hu.png']
+  const imgList: string[] = [
+    '/images/fiexd.png',
+    '/images/guessing_bg.jpg',
+    '/images/guide_1.png',
+    '/images/guide_2.png',
+    '/images/guide_3.png',
+    '/images/guide_4.png',
+    '/images/guide_5.png',
+    '/images/guide_6.png',
+    '/images/guide_7.png',
+    '/images/home_1.png',
+    '/images/home_2.png',
+    '/images/home_3.png',
+    '/images/home_4.png',
+    '/images/home_bg.jpg',
+    '/images/rules.png',
+    '/images/prize.png',
+    '/images/timi.png',
+    '/images/list_title.jpg',
+    '/images/1.png',
+    '/images/2.png',
+    '/images/3.png',
+    '/images/4.png',
+    '/images/5.png',
+    '/images/6.png',
+    '/images/7.png',
+    '/images/8.png',
+    '/images/9.png',
+    '/images/hand.png',
+    '/images/point.png'
+  ]
   const promiseAll = imgList.map((item: string) => {
     return new Promise(function (resolve) {
       const img = new Image()

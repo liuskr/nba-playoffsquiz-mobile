@@ -19,16 +19,16 @@ const guideShow = ref(false)
     <main class="center">
       <div class="mainbody">
         <router-link to="/guessing" replace class="mainbody-item">
-          <img src="@assets/images/home_1.png" alt="" />
+          <img src="/images/home_1.png" alt="" />
         </router-link>
         <router-link to="/rankinglist" replace class="mainbody-item">
-          <img src="@assets/images/home_2.png" alt="" />
+          <img src="/images/home_2.png" alt="" />
         </router-link>
         <div class="mainbody-item" @click="guideShow = true">
-          <img src="@assets/images/home_3.png" alt="" />
+          <img src="/images/home_3.png" alt="" />
         </div>
         <div class="mainbody-item" @click="prizeShow = true">
-          <img src="@assets/images/home_4.png" alt="" />
+          <img src="/images/home_4.png" alt="" />
         </div>
       </div>
     </main>
@@ -72,7 +72,7 @@ const guideShow = ref(false)
     <van-overlay :show="prizeShow" @click="show = false">
       <div class="wrapper" @click.stop>
         <div class="wrapper-prize">
-          <img src="@assets/images/prize.png" alt="" />
+          <img src="/images/prize.png" alt="" />
           <div class="close prize-close" @click="prizeShow = false"></div>
         </div>
       </div>
@@ -83,13 +83,13 @@ const guideShow = ref(false)
         <div class="wrapper-guide">
           <h3 class="guide-title">竞猜指南</h3>
           <div class="guide-center">
-            <img src="@assets/images/guide/1.png" alt="" />
-            <img src="@assets/images/guide/2.png" alt="" />
-            <img src="@assets/images/guide/3.png" alt="" />
-            <img src="@assets/images/guide/4.png" alt="" />
-            <img src="@assets/images/guide/5.png" alt="" />
-            <img src="@assets/images/guide/6.png" alt="" />
-            <img src="@assets/images/guide/7.png" alt="" />
+            <img src="/images/guide_1.png" alt="" />
+            <img src="/images/guide/guide_2.png" alt="" />
+            <img src="/images/guide/guide_3.png" alt="" />
+            <img src="/images/guide/guide_4.png" alt="" />
+            <img src="/images/guide/guide_5.png" alt="" />
+            <img src="/images/guide/guide_6.png" alt="" />
+            <img src="/images/guide/guide_7.png" alt="" />
           </div>
           <div class="close guide-close" @click="guideShow = false"></div>
         </div>

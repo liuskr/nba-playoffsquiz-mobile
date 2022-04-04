@@ -1,7 +1,7 @@
 .container {
   position: relative;
   min-height: 100vh;
-  background: url('@assets/images/home_bg.jpg') no-repeat;
+  background: url('/images/home_bg.jpg') no-repeat;
   background-size: 100%;
   overflow: hidden;
 
@@ -122,7 +122,7 @@
     height: 100%;
     .block {
       width: 650px;
-      background-image: url(@assets/images/rules.png);
+      background-image: url('/images/rules.png');
       background-repeat: no-repeat;
       background-size: 99%;
       &-title {
@@ -184,7 +184,7 @@
     &-guide {
       width: 650px;
       height: 1180px;
-      background-image: url(@assets/images/rules.png);
+      background-image: url('/images/rules.png');
       background-repeat: no-repeat;
       background-size: 99%;
       .guide-title {
