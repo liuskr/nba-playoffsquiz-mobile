@@ -143,4 +143,33 @@
       }
     }
   }
+  .address {
+    width: 100vw;
+    &-title {
+      padding: 30px 40px;
+      font-size: 40px;
+      font-family: $font-zhengdao;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    &-btn {
+      width: 360px;
+      height: 66px;
+      background: url('@assets/images/list_btn.png') no-repeat;
+      background-size: cover;
+      margin: 0 auto;
+    }
+  }
+}
+
+:deep(.van-cell-group--inset) {
+  margin: 0;
+  padding: 0;
+  .van-cell {
+    padding: 20px 40px;
+    border-bottom: none;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .van-cell:nth-last-child(1) {
+    border-bottom: none;
+  }
 }
