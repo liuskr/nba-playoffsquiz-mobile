@@ -20,7 +20,7 @@
               fill="freeze"
               values="5 120 120;-15 120 120;5 120 120"
             ></animateTransform>
-            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="./images/hand.png" data-v-7ccec332=""></image></g>
+            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="/images/hand.png" data-v-7ccec332=""></image></g>
           </g>
         </g>
       </g>
@@ -40,7 +40,7 @@
               fill="freeze"
               values="5 120 120;-15 120 120;5 120 120"
             ></animateTransform>
-            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="./images/hand.png" data-v-7ccec332=""></image></g>
+            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="/images/hand.png" data-v-7ccec332=""></image></g>
           </g>
         </g>
       </g>
@@ -80,7 +80,7 @@
               fill="freeze"
               values="5 120 120;-15 120 120;5 120 120"
             ></animateTransform>
-            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="./images/hand.png" data-v-7ccec332=""></image></g>
+            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="/images/hand.png" data-v-7ccec332=""></image></g>
           </g>
         </g>
       </g>
@@ -100,7 +100,7 @@
               fill="freeze"
               values="5 120 120;-15 120 120;5 120 120"
             ></animateTransform>
-            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="./images/hand.png" data-v-7ccec332=""></image></g>
+            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="/images/hand.png" data-v-7ccec332=""></image></g>
           </g>
         </g>
       </g>
@@ -120,7 +120,7 @@
               fill="freeze"
               values="5 120 120;-15 120 120;5 120 120"
             ></animateTransform>
-            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="./images/hand.png" data-v-7ccec332=""></image></g>
+            <g transform="translate(40 0)"><image overflow="visible" width="170" height="142" xlink:href="/images/hand.png" data-v-7ccec332=""></image></g>
           </g>
         </g>
       </g>

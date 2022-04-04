@@ -84,12 +84,12 @@ const guideShow = ref(false)
           <h3 class="guide-title">竞猜指南</h3>
           <div class="guide-center">
             <img src="/images/guide_1.png" alt="" />
-            <img src="/images/guide/guide_2.png" alt="" />
-            <img src="/images/guide/guide_3.png" alt="" />
-            <img src="/images/guide/guide_4.png" alt="" />
-            <img src="/images/guide/guide_5.png" alt="" />
-            <img src="/images/guide/guide_6.png" alt="" />
-            <img src="/images/guide/guide_7.png" alt="" />
+            <img src="/images/guide_2.png" alt="" />
+            <img src="/images/guide_3.png" alt="" />
+            <img src="/images/guide_4.png" alt="" />
+            <img src="/images/guide_5.png" alt="" />
+            <img src="/images/guide_6.png" alt="" />
+            <img src="/images/guide_7.png" alt="" />
           </div>
           <div class="close guide-close" @click="guideShow = false"></div>
         </div>

@@ -2,7 +2,7 @@
   <div class="container">
     <main class="list">
       <div>
-        <img src="@assets/images/list_title.jpg" alt="" />
+        <img src="/images/list_title.jpg" alt="" />
       </div>
       <div class="list-group">
         <div class="list-group-title">
