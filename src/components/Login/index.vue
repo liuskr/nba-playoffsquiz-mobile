@@ -40,6 +40,7 @@ interface stateType {
   timmer: number
   showTimmer: boolean
   checked: boolean
+  isLogin: boolean
 }
 export default defineComponent({
   name: 'LoginPopup',
@@ -49,21 +50,20 @@ export default defineComponent({
     [Icon.name]: Icon,
     [Checkbox.name]: Checkbox
   },
-  props: {
-    isLogin: {
-      type: Boolean,
-      default: true
-    }
-  },
-  emits: ['update:isLogin'],
-  setup(props, { emit }) {
+
+  setup() {
     const state = reactive<stateType>({
       phone: '', //手机号
       code: '', //验证码
       timmer: 60, //倒计时时间
       showTimmer: false, //是否展示倒计时
-      checked: false
+      checked: false,
+      isLogin: false
     })
+
+    const show = () => {
+      state.isLogin = true
+    }
 
     // 倒计时
     const countDown = (): void => {
@@ -114,11 +114,11 @@ export default defineComponent({
       const { data } = await updateUseLogin({ phone: state.phone, code: state.code })
       localStorageSet('token', data?.token)
       Toast.success({ message: '登录成功', duration: 1500 })
-      emit('update:isLogin', false)
+      state.isLogin = false
     }
 
     const onClose = (): void => {
-      emit('update:isLogin', false)
+      state.isLogin = false
     }
 
     return {
@@ -127,7 +127,8 @@ export default defineComponent({
       inactiveIcon,
       onSendCode,
       onLogin,
-      onClose
+      onClose,
+      show
     }
   }
 })

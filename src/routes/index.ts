@@ -1,7 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-
+import { createRouter, createWebHistory, RouteRecordRaw, _RouteLocationBase } from 'vue-router'
+import { localStorageGet } from '@utils/auth'
 const history = createWebHistory()
-
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -29,8 +28,15 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach(() => {
+router.beforeEach(async (to: _RouteLocationBase, from: unknown, next) => {
   document.title = 'NBA2022季后赛竞猜'
+  const hasToken = localStorageGet('token')
+  const whiteList: string[] = ['/']
+  if (whiteList.indexOf(to.path) !== -1) {
+    next()
+  } else {
+    hasToken ? next() : next('/')
+  }
 })
 
 export default router

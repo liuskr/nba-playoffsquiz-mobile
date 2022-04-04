@@ -1,13 +1,28 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, getCurrentInstance } from 'vue'
 import Login from '@components/Login/index.vue'
 import Guide from '@components/Guide/index.vue'
 import useMusicControl from './music'
-
+import { useRouter } from 'vue-router'
+import { localStorageGet } from '@utils/auth'
 const { isPlayMusic, onSwitch } = useMusicControl()
+const router = useRouter()
+// @ts-ignore
+const { proxy } = getCurrentInstance()
 const show = ref(false)
 const prizeShow = ref(false)
 const guideShow = ref(false)
+
+const onJump = (idx: number) => {
+  const routerList: string[] = ['/guessing', '/rankinglist']
+
+  if (!localStorageGet('token')) {
+    proxy?.$login?.show()
+    return
+  }
+
+  router.replace(routerList[idx])
+}
 </script>
 
 <template>
@@ -18,12 +33,12 @@ const guideShow = ref(false)
     <!-- 内容 -->
     <main class="center">
       <div class="mainbody">
-        <router-link to="/guessing" replace class="mainbody-item">
+        <div class="mainbody-item" @click="onJump(0)">
           <img src="/images/home_1.png" alt="" />
-        </router-link>
-        <router-link to="/rankinglist" replace class="mainbody-item">
+        </div>
+        <div replace class="mainbody-item" @click="onJump(1)">
           <img src="/images/home_2.png" alt="" />
-        </router-link>
+        </div>
         <div class="mainbody-item" @click="guideShow = true">
           <img src="/images/home_3.png" alt="" />
         </div>
@@ -34,7 +49,7 @@ const guideShow = ref(false)
     </main>
     <!--  -->
     <!-- 用户信息 -->
-    <footer class="footer">
+    <footer class="footer" @click="test">
       <div class="user">
         <div class="user-avatar">
           <van-image round width="1.21rem" height="1.22rem" src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg" />

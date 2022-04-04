@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 import { localStorageGet, localStorageRemove } from './auth'
 import { Toast } from 'vant'
+import { getCurrentInstance } from 'vue'
+
 const codeMessage: Record<number, string> = {
   400: '请求错误',
   401: '用户没有权限。',
@@ -14,6 +16,7 @@ const codeMessage: Record<number, string> = {
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。'
 }
+// @ts-ignore
 
 const { VITE_APP_BASE_API, DEV } = import.meta.env
 
@@ -29,8 +32,7 @@ service.interceptors.request.use(
     const token = localStorageGet('token')
     config.headers = {
       'Content-Type': 'application/json;charset=utf-8',
-      Authorization: `Bearer ${token}`,
-      Origin: 'nba75th.ihyx.net'
+      Authorization: `Bearer ${token}`
     }
     return config
   },
@@ -43,14 +45,12 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const { status } = response
-    console.log(response)
-    // console.log(response.data)
     const { message } = response.data
     if (status !== 200) {
       if (status === 401 || status === 403) {
         // 登录过期，清除token,跳转至对应登录页
         localStorageRemove('token')
-        window.location.reload()
+        window.location.href = '/'
       }
       Toast(message)
       return Promise.reject(new Error(message || 'Error'))
@@ -62,6 +62,11 @@ service.interceptors.response.use(
     if (response && response.status) {
       const { status, statusText } = response
       const errorText = codeMessage[status] || statusText
+      if (response.status === 401 || response.status === 403) {
+        localStorageRemove('token')
+        const { proxy } = getCurrentInstance()
+        proxy?.$login?.show()
+      }
       Toast(errorText)
     } else if (!response) {
       Toast('您的网络发生异常，无法连接服务器')
