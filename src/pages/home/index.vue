@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import Login from '@components/Login/index.vue'
 import Guide from '@components/Guide/index.vue'
+import Loading from '@components/Loading/index.vue'
 import useMusicControl from './music'
 import { useRouter } from 'vue-router'
 import { localStorageGet } from '@utils/auth'
@@ -16,7 +17,7 @@ const status = reactive({
 })
 
 const isLogin = ref(false)
-
+const isLoading = ref(false)
 const onJump = (idx: number) => {
   const routerList: string[] = ['/guessing', '/rankinglist']
 
@@ -27,6 +28,12 @@ const onJump = (idx: number) => {
 
   router.replace(routerList[idx])
 }
+
+onMounted(async () => {
+  if (!sessionStorage.getItem('loading')) {
+    isLoading.value = true
+  }
+})
 </script>
 
 <template>
@@ -37,16 +44,16 @@ const onJump = (idx: number) => {
     <!-- 内容 -->
     <main class="center">
       <div class="mainbody">
-        <div class="mainbody-item" @click="onJump(0)">
+        <div class="mainbody-item" :class="{ delayanimat: isLoading }" @click="onJump(0)">
           <img src="/images/home_1.png" alt="" />
         </div>
-        <div replace class="mainbody-item" @click="onJump(1)">
+        <div replace class="mainbody-item" :class="{ delayanimat: isLoading }" @click="onJump(1)">
           <img src="/images/home_2.png" alt="" />
         </div>
-        <div class="mainbody-item" @click="status.guideShow = true">
+        <div class="mainbody-item" :class="{ delayanimat: isLoading }" @click="status.guideShow = true">
           <img src="/images/home_3.png" alt="" />
         </div>
-        <div class="mainbody-item" @click="status.prizeShow = true">
+        <div class="mainbody-item" :class="{ delayanimat: isLoading }" @click="status.prizeShow = true">
           <img src="/images/home_4.png" alt="" />
         </div>
       </div>
@@ -116,6 +123,7 @@ const onJump = (idx: number) => {
     </van-overlay>
     <Login v-model:is-login="isLogin" />
     <Guide />
+    <Loading />
   </div>
 </template>
 
@@ -131,7 +139,7 @@ export default defineComponent({
   }
 })
 </script>
-
+c
 <style lang="scss" scoped>
 @import './index.scss';
 </style>

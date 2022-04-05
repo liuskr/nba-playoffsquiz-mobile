@@ -92,6 +92,7 @@ export const preloadImg = (url: string): void => {
  */
 export const preloadAllImg = (): void => {
   const imgList: string[] = [
+    '/images/loading_bg.jpg',
     '/images/fiexd.png',
     '/images/guessing_bg.jpg',
     '/images/guide_1.png',

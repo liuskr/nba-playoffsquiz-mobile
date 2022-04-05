@@ -1,13 +1,12 @@
 <template>
-  <van-config-provider :theme-vars="{ overlayBackgroundColor: 'rgba(200, 16, 46, 1)' }">
+  <van-config-provider :theme-vars="{ overlayBackgroundColor: '#333' }">
     <van-overlay :show="show" style="z-index: 99">
       <div class="loading_bg">
         <div class="center">
-          <div class="logo">
-            <img src="https://nba75th.ihyx.net/loading/loading_logo.png" alt="" />
+          <div class="center-text">loading...</div>
+          <div class="percentage">
+            <div class="line" :style="{ width: progressTime + '%' }"></div>
           </div>
-          <Lottie class="progress" path="/progress.json" autoplay width="260" height="60" />
-          <div class="percentage">{{ progressTime }}%</div>
         </div>
       </div>
     </van-overlay>
@@ -15,20 +14,17 @@
 </template>
 
 <script lang="ts">
-import { preloadImg } from '@utils'
 import { Overlay, ConfigProvider } from 'vant'
 import { defineComponent, ref, onMounted } from 'vue'
-import Lottie from '../Lottie/index.vue'
 export default defineComponent({
-  name: 'LoginPopup',
+  name: 'LoadingPopup',
   components: {
     [Overlay.name]: Overlay,
-    [ConfigProvider.name]: ConfigProvider,
-    Lottie
+    [ConfigProvider.name]: ConfigProvider
   },
   setup() {
     const show = ref(false)
-    const progressTime = ref(0)
+    const progressTime = ref(8)
 
     const onProgressTime = (): void => {
       const clearInt = setInterval(() => {
@@ -36,20 +32,18 @@ export default defineComponent({
         if (progressTime.value === 100) {
           clearInterval(clearInt)
         }
-      }, 45)
+      }, 55)
     }
     onMounted(() => {
       onProgressTime()
-
       if (!sessionStorage.getItem('loading')) {
-        preloadImg('https://nba75th.ihyx.net/loading/loading_logo.png')
         show.value = true
       }
 
       setTimeout(() => {
         show.value = false
         sessionStorage.setItem('loading', '1')
-      }, 6300)
+      }, 6500)
     })
 
     return { show, progressTime }
@@ -59,63 +53,53 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .loading_bg {
-  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.1);
-  // &::before {
-  //   content: '';
-  //   position: absolute;
-  //   top: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   right: 0;
-  //   filter: blur(4px);
-  //   z-index: -1;
-  //   background: url('https://nba75th-1307342770.cos.ap-guangzhou.myqcloud.com/loading/home_loading_bg.jpg') 0 / cover fixed;
-  //   transform: scale(1);
-  //   -webkit-transform: scale(1);
-  // }
+  background: url('/images/loading_bg.jpg') no-repeat;
+  background-size: 100%;
   .center {
-    position: relative;
-    .logo {
-      width: 200px;
-      height: 200px;
-      margin: 0 auto;
-      img {
-        animation: logoOpacity 2s ease-in-out alternate infinite;
+    position: absolute;
+    top: 1040px;
+    left: 22%;
+    .percentage {
+      width: 418px;
+      height: 34px;
+      border: 2px solid #45d400;
+      border-radius: 17px;
+      .line {
+        position: relative;
+        height: 100%;
+        border-radius: 20px;
+        background: linear-gradient(270deg, #45d400 0%, rgba(69, 212, 0, 0.25) 100%);
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: 2px;
+          width: 30px;
+          height: 30px;
+          background: #45d400;
+          box-shadow: -1px 2px 17px 1px rgba(0, 0, 0, 0.32);
+          border-radius: 13px;
+        }
       }
     }
-    // .progress {
-    //   position: absolute;
-    //   top: 160px;
-    //   left: -80%;
-    // }
-    .percentage {
-      position: absolute;
-      top: 200px;
-      left: 44%;
-      font-size: 26px;
+    &-text {
+      font-size: 30px;
+      font-family: $font-nba;
+      font-weight: bold;
+      color: #45d400;
+      text-align: center;
+      margin: 10px 0;
     }
   }
+  // background: rgba(255, 255, 255, 0.1);
 }
-
-// @keyframes mymove {
-//   0% {
-//     opacity: 0.9;
-//   }
-//   33% {
-//     opacity: 0.7;
-//   }
-//   75% {
-//     opacity: 0.2;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }
 
 @keyframes logoOpacity {
   0% {
