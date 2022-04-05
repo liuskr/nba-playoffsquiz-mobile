@@ -1,41 +1,3 @@
-<script lang="ts" setup>
-import { ref, reactive, onMounted } from 'vue'
-import Login from '@components/Login/index.vue'
-import Guide from '@components/Guide/index.vue'
-import Loading from '@components/Loading/index.vue'
-import useMusicControl from './music'
-import { useRouter } from 'vue-router'
-import { localStorageGet } from '@utils/auth'
-
-const { isPlayMusic, onSwitch } = useMusicControl()
-const router = useRouter()
-
-const status = reactive({
-  show: false,
-  prizeShow: false,
-  guideShow: false
-})
-
-const isLogin = ref(false)
-const isLoading = ref(false)
-const onJump = (idx: number) => {
-  const routerList: string[] = ['/guessing', '/rankinglist']
-
-  if (!localStorageGet('token')) {
-    isLogin.value = true
-    return
-  }
-
-  router.replace(routerList[idx])
-}
-
-onMounted(async () => {
-  if (!sessionStorage.getItem('loading')) {
-    isLoading.value = true
-  }
-})
-</script>
-
 <template>
   <div class="container">
     <div class="rulse" @click="status.show = true"></div>
@@ -127,6 +89,43 @@ onMounted(async () => {
   </div>
 </template>
 
+<script lang="ts" setup>
+import { ref, reactive, onMounted } from 'vue'
+import Login from './components/Login/index.vue'
+import Guide from '@components/Guide/index.vue'
+import Loading from '@components/Loading/index.vue'
+import useMusicControl from './music'
+import { useRouter } from 'vue-router'
+import { localStorageGet } from '@utils/auth'
+
+const { isPlayMusic, onSwitch } = useMusicControl()
+const router = useRouter()
+
+const status = reactive({
+  show: false,
+  prizeShow: false,
+  guideShow: false
+})
+
+const isLogin = ref(false)
+const isLoading = ref(false)
+const onJump = (idx: number) => {
+  const routerList: string[] = ['/guessing', '/rankinglist']
+
+  if (!localStorageGet('token')) {
+    isLogin.value = true
+    return
+  }
+
+  router.replace(routerList[idx])
+}
+
+onMounted(async () => {
+  if (!sessionStorage.getItem('loading')) {
+    isLoading.value = true
+  }
+})
+</script>
 <script lang="ts">
 import { Image as VanImage, Overlay } from 'vant'
 import { defineComponent } from 'vue'

@@ -4,40 +4,33 @@
   justify-content: center;
   height: 100%;
   .login-content {
-    width: 530px;
-    height: 406px;
+    width: 7.06667rem;
+    height: 5.41333rem;
     background: url('@assets/images/login_bg.jpg') no-repeat;
     background-size: cover;
-    padding-top: 24px;
-    margin-left: 4px;
+    padding-top: 0.32rem;
     position: relative;
     &_close {
       position: absolute;
-      top: -80px;
+      top: -1.06667rem;
       right: 0;
     }
-    .logo {
-      width: 114px;
-      height: 80px;
-      margin: 0 auto;
-      margin-top: 90px;
-    }
     .login_input_box {
-      width: 410px;
+      width: 5.46667rem;
       margin: 0 auto;
       .login-label {
-        font-size: 28px;
+        font-size: 0.37333rem;
         font-family: $font-zhengdao;
         font-weight: 400;
         color: #878787;
-        margin-top: 26px;
+        margin-top: 0.34667rem;
       }
       .code {
-        width: 410px;
+        width: 5.46667rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 24px;
+        font-size: 0.32rem;
         font-weight: 500;
         color: #aa2a1c;
         text-align: center;
@@ -47,11 +40,11 @@
         &-btn {
           align-items: center;
           text-align: center;
-          height: 64px;
-          line-height: 64px;
+          height: 0.85333rem;
+          line-height: 0.85333rem;
           width: 34%;
-          margin-top: 8px;
-          font-size: 26px;
+          margin-top: 0.10667rem;
+          font-size: 0.34667rem;
           font-family: $font-zhengdao;
           font-weight: 400;
           color: #ffffff;
@@ -59,15 +52,15 @@
         }
       }
       .login-btn {
-        width: 130px;
-        height: 56px;
-        line-height: 56px;
+        width: 1.73333rem;
+        height: 0.74667rem;
+        line-height: 0.74667rem;
         text-align: center;
-        font-size: 32px;
+        font-size: 0.42667rem;
         font-family: $font-zhengdao;
         font-weight: 400;
         color: #fafafa;
-        margin-left: 278px;
+        margin-left: 3.70667rem;
         background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIIAAAA4CAYAAAAxUiDuAAACdklEQVR4nO3cy0tUYRjH8e+M04VaSFcQIgkcwsXgxggyiMgiopJaBAm1CGLATbR10aKVG9u4EIyIFhEkRUVEQUZEULYYiFy0kCIL7EYQYcHQdOK8nAERx7mcgTrv8/v8AXqeZ76Mx/cMkzo/cJEm2Ae0NuMHyT9RyDTht54FLuj1S7SBdMyrPw0MG1+iF+KE0A+MAinrS/RBoyH0AVeAFusL9EUjIewFrgPNuL+Q/0S9IewEbgHL9QL6pZ4QuoG7wCrrS/NRrSHkgHs6K/BXLSF0AA+ADdaX5bNqIWwCHgJt1hflu6VC2Ag8AtqtL8mCSiGsjd4JstYXZMViIbRGN4Y568uxZGEI4b+Gt4Ht1hdjzfwQwkOiG8Au60uxqBxC+MzgGrDf+kKsSkdPDy8DR60vw7IwhJPACeuLsC6tZwdCzA+miEcUgjgKQRyFII5CEEchiKMQxFEI4igEcRSCOApBHIUgjkIQRyGIoxDEUQgSChSCvAo/r6oQbJsBDgDfFYJdX4A9wAd0j2DWT+AQMF1egEKwpwgcBibnT64QbAmAU8DEwqkVgi1ngKuLTawQ7BgCRipNqxBsuAQMLjWpQvDfHSAf3R9UpBD89hQ4DpSqTakQ/BUeHR+MzgyqUgh+elc+Oq51OoXgn/DouLd8dFyrzIvdm3fMZNdYX54X1n+cK/Xcf9s3nu+a7h8p1DVS5k9LKlNcoW/bT7rVP4pBZ+HTsfF817NGRtGfBg8sK5bITc4OThzJ3mx0GoWQcKkgYOvLz2PPe9uH4kyiEBJuy+tvj6e2teXjTpFZ+ev3WMfU11nrC02idCmY637y/tybznXxLh/4C5veYBzWG0PHAAAAAElFTkSuQmCC')
           no-repeat;
         background-size: cover;
@@ -76,38 +69,36 @@
 
     .agreement {
       display: block;
-      padding-top: 6px;
-      font-size: 20px;
+      padding-top: 0.08rem;
+      font-size: 0.26667rem;
       font-family: $font-zhengdao;
       font-weight: 400;
     }
   }
 }
 :deep(.van-cell) {
-  padding: 8px 16px;
-  margin-top: 8px;
+  padding: 0.10667rem 0.21333rem;
+  margin-top: 0.10667rem;
   background-color: #bdbdbd;
 }
 :deep(.van-field__control) {
   font-family: $font-zhengdao;
-  font-size: 30px;
+  font-size: 0.4rem;
   font-weight: 400;
   color: #444444;
 }
 :deep(.van-checkbox__label) {
-  margin-left: 8px;
-  font-size: 22px;
+  margin-left: 0.10667rem;
+  font-size: 0.29333rem;
   font-weight: 400;
-  line-height: 36px;
+  line-height: 0.48rem;
   color: #666666;
 }
-:deep(.van-checkbox__icon .van-icon) {
-  border: 1px solid #c73e30;
-}
+
 :deep(.van-checkbox) {
-  margin: 6px 0;
+  margin: 0.08rem 0;
 }
 :deep(.img-icon) {
-  width: 26px;
-  height: 26px;
+  width: 0.34667rem;
+  height: 0.34667rem;
 }

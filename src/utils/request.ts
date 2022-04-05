@@ -30,7 +30,8 @@ service.interceptors.request.use(
     const token = localStorageGet('token')
     config.headers = {
       'Content-Type': 'application/json;charset=utf-8',
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
+      Origin: 'nba75th2.ihyx.net'
     }
     return config
   },
