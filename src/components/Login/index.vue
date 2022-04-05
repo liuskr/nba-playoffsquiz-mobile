@@ -1,14 +1,12 @@
 <template>
   <van-overlay :show="isLogin">
-    <div class="wrapper" @click.stop>
-      <div class="content">
-        <van-icon class="content_close" name="close" color="#fff" size="24" @click.stop="onClose" />
-
+    <div class="login-wrapper" @click.stop>
+      <div class="login-content">
+        <van-icon class="login-content_close" name="close" color="#fff" size="24" @click.stop="onClose" />
         <div class="login_input_box">
           <div class="login-label">手机号</div>
           <van-field v-model="phone" type="tel" size="large" label-width="4px" label="" />
           <div class="login-label">验证码</div>
-
           <div class="code">
             <van-field v-model="code" maxlength="4" type="digit" label-width="4px" label="" class="code-input"> </van-field>
             <div v-if="!showTimmer" class="code-btn" @click="onSendCode">验证码</div>
