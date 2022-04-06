@@ -254,22 +254,25 @@
 
       .team_2_content {
         flex: 1;
-
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 30px;
-
         padding: 0 10px;
-
         background: url('../../../../assets/images/bg2.png');
-
         background-size: 100% 100%;
-
+        position: relative;
         .team_2_content_item {
           .name {
             margin-right: 5px;
           }
+        }
+        .trophy {
+          position: absolute;
+          top: -44px;
+          left: 118px;
+          width: 140px;
+          height: 140px;
         }
       }
 

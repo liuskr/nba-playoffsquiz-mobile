@@ -184,6 +184,9 @@
             <span class="name">76人</span>
             <span>4</span>
           </div>
+          <div class="trophy">
+            <img src="@assets/images/jiangbei.png" alt="" />
+          </div>
           <div class="team_2_content_item">
             <span class="name">勇士</span>
             <span>4</span>
