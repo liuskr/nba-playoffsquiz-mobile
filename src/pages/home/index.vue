@@ -30,7 +30,7 @@
       </div>
       <div class="name">{{ state.userInfo.Nickname || '未登录' }}</div>
       <div class="ranking">{{ state.userInfo.ranking || '???' }}</div>
-      <div class="points">{{ state.userInfo.Score || '???' }}</div>
+      <div class="points">{{ state.userInfo.Nickname ? state.userInfo.Score : '???' }}</div>
     </footer>
     <!-- 规则 -->
     <van-overlay :show="status.show" @click="status.show = false">
@@ -162,7 +162,7 @@ export default defineComponent({
   }
 })
 </script>
-c
+
 <style lang="scss" scoped>
 @import './index.scss';
 </style>
