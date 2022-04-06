@@ -29,7 +29,7 @@
         <div class="team_8_4_right">
           <div class="f_r">
             <div class="ranking_t">
-              <span>2</span>
+              <span>4</span>
             </div>
           </div>
           <div class="team_list">
@@ -50,14 +50,14 @@
             </div>
           </div>
           <div class="f_r">
-            <div class="ranking_b">7</div>
+            <div class="ranking_b">5</div>
           </div>
         </div>
         <!-- </PopupView> -->
       </div>
       <div class="team_8_4">
         <div class="team_8_4_left">
-          <div class="ranking_t">1</div>
+          <div class="ranking_t">3</div>
           <div class="team_list">
             <div class="team_logo">
               <img class="top_logo" src="../../../../assets/images/t_1.png" alt="" />
@@ -75,7 +75,7 @@
               </div>
             </div>
           </div>
-          <div class="ranking_b">8</div>
+          <div class="ranking_b">6</div>
         </div>
         <div class="team_8_4_right">
           <div class="f_r">
@@ -291,7 +291,7 @@
         <div class="team_8_4_right">
           <div class="f_r">
             <div class="ranking_t">
-              <span>2</span>
+              <span>4</span>
             </div>
           </div>
           <div class="team_list">
@@ -312,13 +312,13 @@
             </div>
           </div>
           <div class="f_r">
-            <div class="ranking_b">7</div>
+            <div class="ranking_b">5</div>
           </div>
         </div>
       </div>
       <div class="team_8_4">
         <div class="team_8_4_left">
-          <div class="ranking_t">1</div>
+          <div class="ranking_t">3</div>
           <div class="team_list">
             <div class="team_logo">
               <img class="top_logo" src="../../../../assets/images/t_1.png" alt="" />
@@ -332,11 +332,11 @@
               <div class="vs">VS</div>
               <div class="ranks">
                 <span>热火</span>
-                <span class="ranking_count">4</span>
+                <span class="ranking_count">2</span>
               </div>
             </div>
           </div>
-          <div class="ranking_b">8</div>
+          <div class="ranking_b">6</div>
         </div>
         <div class="team_8_4_right">
           <div class="f_r">
@@ -369,6 +369,17 @@
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import { getUserGuess } from '@apis'
+
+onMounted(() => {
+  getUserGuess().then((res) => {
+    console.log(res)
+  })
+})
+</script>
 
 <script lang="ts">
 import { defineComponent } from 'vue'

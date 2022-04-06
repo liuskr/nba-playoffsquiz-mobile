@@ -30,9 +30,15 @@ export const getWeChatShare = async (params: { url: string }): Promise<HttpRespo
     params
   })
 }
-
+// 获取用户信息
 export const getUserInfo = async (): Promise<HttpResponse> => {
   return request('api/me/info', {
+    method: 'get'
+  })
+}
+
+export const getUserGuess = async (): Promise<HttpResponse> => {
+  return request('api/guess', {
     method: 'get'
   })
 }
