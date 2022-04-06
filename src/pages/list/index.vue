@@ -12,7 +12,7 @@
         </div>
         <div class="list-group-item">
           <!-- 前三 -->
-          <div class="list-group-item-firstthree">
+          <!-- <div class="list-group-item-firstthree">
             <div class="firstthree-item">
               <div class="firstthree-item-ranking">1</div>
               <div class="firstthree-item-name">18823345405</div>
@@ -28,9 +28,9 @@
               <div class="firstthree-item-name">18823345405</div>
               <div class="firstthree-item-score">积分19999</div>
             </div>
-          </div>
+          </div> -->
           <!-- 后面的排名 -->
-          <div class="list-group-item-row">
+          <!-- <div class="list-group-item-row">
             <div class="row-item">
               <div class="row-item-ranking">4</div>
               <div class="row-item-name">18823345405</div>
@@ -45,20 +45,21 @@
               <div class="row-item-ranking">6</div>
               <div class="row-item-name">18823345405</div>
               <div class="row-item-score">积分19999</div>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> -->
+          <van-empty class="custom-image" image="https://cdn.jsdelivr.net/npm/@vant/assets/custom-empty-image.png" description="暂无排名" />
         </div>
       </div>
     </main>
     <footer class="footer-fixed">
       <div class="footer-fixed-info">
-        <div class="footer-fixed-info-points">12312</div>
-        <div class="footer-fixed-info-ranking">123</div>
+        <div class="footer-fixed-info-points">???</div>
+        <div class="footer-fixed-info-ranking">???</div>
         <div class="footer-fixed-info-btn" @click="addressShow = true">去领奖</div>
       </div>
     </footer>
 
-    <van-popup v-model:show="addressShow" position="bottom" :style="{ height: '43%' }">
+    <van-popup v-model:show="addressShow" position="bottom" :style="{ height: '50%' }">
       <div class="address">
         <div class="address-title">完善物流信息</div>
         <van-cell-group inset :border="false">
@@ -92,7 +93,7 @@ const onConfirm = (areaValues: any[]) => {
 </script>
 
 <script lang="ts">
-import { Popup, Field, CellGroup, Area } from 'vant'
+import { Popup, Field, CellGroup, Area, Empty } from 'vant'
 import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'RankingList',
@@ -100,7 +101,8 @@ export default defineComponent({
     [Field.name]: Field,
     [CellGroup.name]: CellGroup,
     [Popup.name]: Popup,
-    [Area.name]: Area
+    [Area.name]: Area,
+    [Empty.name]: Empty
   }
 })
 </script>

@@ -25,12 +25,12 @@
     <footer class="footer">
       <div class="user">
         <div class="user-avatar">
-          <van-image round width="1.21rem" height="1.22rem" src="https://cdn.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+          <van-image round width="1.21rem" height="1.22rem" src="https://nba75th.ihyx.net/assets/my_avatar.08bff5b0.png" />
         </div>
       </div>
-      <div class="name">哈哈哈哈哈</div>
-      <div class="ranking">1232</div>
-      <div class="points">1223</div>
+      <div class="name">未登录</div>
+      <div class="ranking">???</div>
+      <div class="points">???</div>
     </footer>
     <!-- 规则 -->
     <van-overlay :show="status.show" @click="status.show = false">

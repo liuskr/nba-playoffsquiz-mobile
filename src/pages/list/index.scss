@@ -50,9 +50,9 @@
             box-shadow: 0 0 20px #929292;
             &-ranking {
               width: 28%;
-              font-size: 80px;
-              font-family: $font-nba;
-              font-weight: 400;
+              font-size: 100px;
+              font-family: $font-zhengdao;
+              font-weight: 700;
               color: #49df00;
             }
             &-name {
@@ -165,11 +165,17 @@
   margin: 0;
   padding: 0;
   .van-cell {
-    padding: 20px 40px;
+    padding: 30px 40px;
     border-bottom: none;
     border-bottom: 1px solid #e5e5e5;
   }
   .van-cell:nth-last-child(1) {
     border-bottom: none;
   }
+}
+
+:deep(.van-field__label) {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: $font-nba;
 }
