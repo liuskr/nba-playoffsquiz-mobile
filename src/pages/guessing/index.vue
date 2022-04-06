@@ -16,19 +16,12 @@
               </div>
             </template>
           </van-count-down>
-          <!-- <div class="day_1">13</div>
-          <div class="time_1">
-            
-            <span>23</span>
-            <span>14</span>
-            <span>32</span>
-          </div> -->
         </div>
         <div class="desc">距离竞猜结束</div>
       </div>
       <div class="date">
-        <div class="day">2022.4.26</div>
-        <div class="time">3:26</div>
+        <div class="day">{{ getDate() }}</div>
+        <div class="time">{{ getTime() }}</div>
       </div>
     </header>
     <div class="team">
@@ -48,6 +41,21 @@
 import TeamView from './components/team/index.vue'
 import { ref } from 'vue'
 const time = ref(30 * 60 * 60 * 1000)
+// 年月日
+const getDate = () => {
+  const date = new Date()
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${year}.${month}.${day}`
+}
+// 时分秒
+const getTime = () => {
+  const date = new Date()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  return `${hour}:${minute < 10 ? `0${minute}` : minute}`
+}
 </script>
 
 <script lang="ts">
