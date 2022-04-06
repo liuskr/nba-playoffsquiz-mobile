@@ -83,6 +83,7 @@ import { areaList } from '@vant/area-data'
 const addressShow = ref(false)
 const showArea = ref(false)
 const result = ref('')
+
 const onConfirm = (areaValues: any[]) => {
   showArea.value = false
   result.value = areaValues

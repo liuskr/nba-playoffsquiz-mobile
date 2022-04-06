@@ -30,3 +30,9 @@ export const getWeChatShare = async (params: { url: string }): Promise<HttpRespo
     params
   })
 }
+
+export const getUserInfo = async (): Promise<HttpResponse> => {
+  return request('api/me/info', {
+    method: 'get'
+  })
+}

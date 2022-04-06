@@ -16,10 +16,10 @@ const codeMessage: Record<number, string> = {
   504: '网关超时。'
 }
 
-const { VITE_APP_BASE_API, DEV } = import.meta.env
-
+const { VITE_APP_BASE_API } = import.meta.env
+// DEV ? '/dev/' :
 const service = axios.create({
-  baseURL: DEV ? '/dev/' : VITE_APP_BASE_API,
+  baseURL: VITE_APP_BASE_API,
   // withCredentials: true,
   timeout: 12000
 })
@@ -63,9 +63,11 @@ service.interceptors.response.use(
       const errorText = codeMessage[status] || statusText
       if (response.status === 401 || response.status === 403) {
         localStorageRemove('token')
-        window.location.href = '/'
+        if (window.location.pathname !== '/') {
+          window.location.href = '/'
+          Toast(errorText)
+        }
       }
-      Toast(errorText)
     } else if (!response) {
       Toast('您的网络发生异常，无法连接服务器')
     }

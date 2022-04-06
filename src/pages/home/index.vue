@@ -97,6 +97,7 @@ import Loading from '@components/Loading/index.vue'
 import useMusicControl from './music'
 import { useRouter } from 'vue-router'
 import { localStorageGet } from '@utils/auth'
+import { getUserInfo } from '@apis'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
 const router = useRouter()
@@ -109,6 +110,7 @@ const status = reactive({
 
 const isLogin = ref(false)
 const isLoading = ref(false)
+
 const onJump = (idx: number) => {
   const routerList: string[] = ['/guessing', '/rankinglist']
 
@@ -124,6 +126,10 @@ onMounted(async () => {
   if (!sessionStorage.getItem('loading')) {
     isLoading.value = true
   }
+
+  getUserInfo().then((res: any) => {
+    console.log(res)
+  })
 })
 </script>
 <script lang="ts">

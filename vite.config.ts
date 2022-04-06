@@ -88,14 +88,14 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     },
     server: {
       open: true,
-      port: 7000,
-      proxy: {
-        '/dev': {
-          target: 'https://nba.ihyx.net/',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/dev/, '')
-        }
-      }
+      port: 7000
+      // proxy: {
+      //   '/dev': {
+      //     target: 'https://nba.ihyx.net/',
+      //     changeOrigin: true,
+      //     rewrite: (path) => path.replace(/^\/dev/, '')
+      //   }
+      // }
     }
   })
 }

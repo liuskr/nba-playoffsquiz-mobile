@@ -19,6 +19,12 @@ const routes: RouteRecordRaw[] = [
     name: 'Guessing',
     component: (): Promise<typeof import('*.vue')> => import('@pages/guessing/index.vue'),
     meta: { title: '竞猜', keepAlive: true }
+  },
+  {
+    path: '/useragreement',
+    name: 'userAgreement',
+    component: (): Promise<typeof import('*.vue')> => import('@pages/userAgreement/index.vue'),
+    meta: { title: '用户协议', keepAlive: false }
   }
 ]
 //
@@ -31,7 +37,7 @@ const router = createRouter({
 router.beforeEach(async (to: _RouteLocationBase, from: unknown, next) => {
   document.title = 'NBA2022季后赛竞猜'
   const hasToken = localStorageGet('token')
-  const whiteList: string[] = ['/']
+  const whiteList: string[] = ['/', '/useragreement']
   if (whiteList.indexOf(to.path) !== -1) {
     next()
   } else {

@@ -16,7 +16,7 @@
             <template #icon="props">
               <img class="img-icon" :src="!props.checked ? activeIcon : inactiveIcon" />
             </template>
-            <router-link class="agreement" to="/">用户须知</router-link>
+            <router-link class="agreement" to="/useragreement">我已阅读并同意用户须知</router-link>
           </van-checkbox>
           <div class="login-btn" @click="onLogin">登录</div>
         </div>
