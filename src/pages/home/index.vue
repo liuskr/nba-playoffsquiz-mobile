@@ -28,9 +28,9 @@
           <van-image round width="1.21rem" height="1.22rem" src="https://nba75th.ihyx.net/assets/my_avatar.08bff5b0.png" />
         </div>
       </div>
-      <div class="name">未登录</div>
-      <div class="ranking">???</div>
-      <div class="points">???</div>
+      <div class="name">{{ state.userInfo.Nickname || '未登录' }}</div>
+      <div class="ranking">{{ state.userInfo.ranking || '???' }}</div>
+      <div class="points">{{ state.userInfo.Score || '???' }}</div>
     </footer>
     <!-- 规则 -->
     <van-overlay :show="status.show" @click="status.show = false">
@@ -122,14 +122,22 @@ const onJump = (idx: number) => {
   router.replace(routerList[idx])
 }
 
+const state = reactive({
+  userInfo: {}
+})
+
 onMounted(async () => {
   if (!sessionStorage.getItem('loading')) {
     isLoading.value = true
   }
 
-  getUserInfo().then((res: any) => {
-    console.log(res)
-  })
+  getUserInfo()
+    .then(({ data }) => {
+      state.userInfo = data.User
+    })
+    .catch(() => {
+      state.userInfo = {}
+    })
 })
 </script>
 <script lang="ts">
