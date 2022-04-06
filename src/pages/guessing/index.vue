@@ -30,6 +30,9 @@
         <span>提交</span>
       </div>
     </div>
+    <div class="trophy">
+      <img src="@assets/images/jiangbei.png" alt="" />
+    </div>
   </div>
 </template>
 

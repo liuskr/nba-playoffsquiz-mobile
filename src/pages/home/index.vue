@@ -123,20 +123,30 @@ const onJump = (idx: number) => {
 }
 
 const state = reactive({
-  userInfo: {}
+  userInfo: {
+    Nickname: null,
+    ranking: null,
+    Score: 0
+  }
 })
 
 onMounted(async () => {
+  // 是否第一次进入
   if (!sessionStorage.getItem('loading')) {
     isLoading.value = true
   }
 
+  // 获取用户信息
   getUserInfo()
     .then(({ data }) => {
       state.userInfo = data.User
     })
     .catch(() => {
-      state.userInfo = {}
+      state.userInfo = {
+        Nickname: null,
+        ranking: null,
+        Score: 0
+      }
     })
 })
 </script>
