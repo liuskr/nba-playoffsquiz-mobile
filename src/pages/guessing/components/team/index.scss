@@ -23,19 +23,17 @@
       .team_8_4_right {
         min-width: 47%;
         .ranking_t {
-          background: url('../../../../assets/images/ranking_top_right.png') no-repeat;
+          background: url('@assets/images/ranking_top_right.png') no-repeat;
         }
         .ranking_b {
-          background: url('../../../../assets/images/ranking_bottom_right.png') no-repeat;
+          background: url('@assets/images/ranking_bottom_right.png') no-repeat;
         }
         .ranking_t,
         .ranking_b {
           width: 50px;
           margin-left: 18px;
-
           font-family: $font-zhengdao;
           text-align: center;
-
           background-size: 100% 100%;
         }
 
