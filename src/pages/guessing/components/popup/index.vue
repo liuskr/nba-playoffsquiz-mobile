@@ -27,14 +27,14 @@
         </div>
         <div class="team_score">
           <div class="num">
-            <div @click="showListCount = true">{{ ScoreA || showInfo.ScoreA }}</div>
+            <div @click="showListCount = true">{{ ScoreA }}</div>
             <ul v-if="showListCount" class="num_list">
               <li v-for="n in list" :key="n" @click="selectScore(n, 'ScoreA')">{{ n }}</li>
             </ul>
           </div>
           <div class="line">-</div>
           <div class="num">
-            <div @click="showListCount = true">{{ ScoreB || showInfo.ScoreB }}</div>
+            <div @click="showListCount = true">{{ ScoreB }}</div>
             <ul v-if="showListCount" class="num_list">
               <li v-for="n in list" :key="n" @click="selectScore(n, 'ScoreB')">{{ n }}</li>
             </ul>
@@ -50,7 +50,7 @@
 </template>
 //
 <script lang="ts" setup>
-import { ref, defineProps, computed } from 'vue'
+import { ref, defineProps, computed, onMounted } from 'vue'
 
 const props = defineProps({ info: Object })
 
@@ -110,6 +110,13 @@ const clsoe = () => {
   selectScoreB.value = null
   show.value = false
 }
+
+onMounted(() => {
+  if (props.info) {
+    ScoreA.value = props.info.ScoreA
+    ScoreB.value = props.info.ScoreB
+  }
+})
 </script>
 
 <script lang="ts">
