@@ -17,7 +17,7 @@
                 </div>
                 <div class="vs">VS</div>
                 <div class="ranks">
-                  <span :class="{ special: item.nameBlength }"> 凯尔</span>
+                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
                   <span class="ranking_count"> {{ item.ScoreB }}</span>
                 </div>
               </div>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="vs">VS</div>
                 <div class="ranks">
-                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
+                  <span :class="{ special: item.nameBlength }"> 凯尔</span>
                   <span class="ranking_count"> {{ item.ScoreB }}</span>
                 </div>
               </div>
@@ -124,33 +124,33 @@
       <div class="team_4">
         <div class="team_4_2">
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
         </div>
         <div class="team_4_2">
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
         </div>
@@ -159,17 +159,17 @@
         <div class="line_l"></div>
         <div class="team_4_2">
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
         </div>
@@ -177,40 +177,40 @@
       </div>
       <div class="team_2_inline">
         <div class="team_l">
-          <img src="../../../../assets/images/t_1.png" alt="" />
+          <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
         </div>
         <div class="team_2_content">
           <div class="team_2_content_item">
-            <span class="name">76人</span>
-            <span>4</span>
+            <span class="name">?</span>
+            <!-- <span>4</span> -->
           </div>
           <div class="trophy">
             <img src="@assets/images/jiangbei.png" alt="" />
           </div>
           <div class="team_2_content_item">
-            <span class="name">勇士</span>
-            <span>4</span>
+            <span class="name">?</span>
+            <!-- <span>4</span> -->
           </div>
         </div>
         <div class="team_r">
-          <img src="../../../../assets/images/t_5.png" alt="" />
+          <img class="team_logo" src="@assets/images/card/2-kong.png" alt="" />
         </div>
       </div>
       <div class="team_2_block team_2_block_bottom">
         <div class="line_l"></div>
         <div class="team_4_2">
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
         </div>
@@ -219,33 +219,33 @@
       <div class="team_4">
         <div class="team_4_2">
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
         </div>
         <div class="team_4_2">
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
           <div class="team_item">
-            <img class="team_logo" src="../../../../assets/images/t_1.png" alt="" />
+            <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
             <div class="team_name">
-              <span class="text">热火</span>
-              <span>4</span>
+              <span class="text">?</span>
+              <!-- <span>4</span> -->
             </div>
           </div>
         </div>
@@ -282,7 +282,7 @@
                 </div>
                 <div class="vs">VS</div>
                 <div class="ranks">
-                  <span :class="{ special: item.nameBlength }"> 凯尔 </span>
+                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
                   <span class="ranking_count"> {{ item.ScoreB }}</span>
                 </div>
               </div>
@@ -422,6 +422,7 @@ onMounted(() => {
         item.nameBlength = item.TeamBData.Name.length > 3
         return item
       })
+      console.log(teamList.value)
     }
   })
 })
