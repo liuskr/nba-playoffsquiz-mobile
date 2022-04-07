@@ -13,11 +13,17 @@
         <div class="team_content" v-if="showInfo">
           <div class="item">
             <img :src="showInfo.TeamAData.popimgUrl" alt="" />
-            <span>{{ showInfo.TeamAData.Name }} </span>
+            <span>
+              {{ showInfo.TeamAData.Name.length >= 4 ? showInfo.TeamAData.Name.slice(0, 2) : showInfo.TeamAData.Name }}
+              <div v-if="showInfo.TeamAData.Name.length >= 4">{{ showInfo.TeamAData.Name.slice(2, 4) }}</div>
+            </span>
           </div>
           <div class="vs">VS</div>
           <div class="item">
-            <span>{{ showInfo.TeamBData.Name }}</span>
+            <span>
+              {{ showInfo.TeamBData.Name.length >= 4 ? showInfo.TeamBData.Name.slice(0, 2) : showInfo.TeamBData.Name }}
+              <div v-if="showInfo.TeamBData.Name.length >= 4">{{ showInfo.TeamBData.Name.slice(2, 4) }}</div>
+            </span>
             <img :src="showInfo.TeamBData.popimgUrl" alt="" />
           </div>
         </div>
