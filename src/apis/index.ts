@@ -37,6 +37,7 @@ export const getUserInfo = async (): Promise<HttpResponse> => {
   })
 }
 
+// 获取用户竞猜
 export const getUserGuess = async (): Promise<HttpResponse> => {
   return request('api/guess', {
     method: 'get'

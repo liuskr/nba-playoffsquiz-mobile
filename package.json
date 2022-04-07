@@ -7,6 +7,10 @@
     "buildDev": "cross-env NODE_ENV=development vite build --mode development",
     "buildTest": "cross-env vite build --mode test",
     "buildPub": "cross-env NODE_ENV=production vite build",
+    "lint:eslint": "eslint src --fix --ext .ts,.tsx,.vue ",
+    "lint:prettier": "prettier --write  \"src/**/*.{js,json,ts,tsx,css,less,scss,vue,html,md}\"",
+    "lint:stylelint": "stylelint src/styles/**/*.scss src/pages/**/*.scss --fix",
+    "prepare": "husky install",
     "serve": "vite preview"
   },
   "dependencies": {

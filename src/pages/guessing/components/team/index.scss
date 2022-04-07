@@ -21,7 +21,7 @@
       width: 48.5%;
       .team_8_4_left,
       .team_8_4_right {
-        width: 47%;
+        min-width: 47%;
         .ranking_t {
           background: url('../../../../assets/images/ranking_top_right.png') no-repeat;
         }

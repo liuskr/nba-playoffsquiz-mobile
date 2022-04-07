@@ -1,6 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-PATH=$PATH:/usr/local/bin:/usr/local/sbin
-[ -n "$CI" ] && exit 0
-
-npm run lint:lint-staged
