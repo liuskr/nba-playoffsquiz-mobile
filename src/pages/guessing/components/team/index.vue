@@ -2,112 +2,112 @@
   <div class="team_container">
     <div class="team_8">
       <div class="team_8_4">
-        <slot v-for="(item, key) in easternTeam" :key="key">
-          <PopupView :info="item" v-if="key < 2">
-            <div class="team_8_4_left" v-if="key == 0">
-              <div class="ranking_t">1</div>
-              <div class="team_list">
-                <div class="team_logo">
-                  <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
-                  <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
-                </div>
-                <div class="team_content">
-                  <div class="ranks">
-                    <span>{{ item.TeamAData.Name }}</span>
-                    <span class="ranking_count">{{ item.ScoreA }}</span>
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="ranks">
-                    <span>{{ item.TeamBData.Name }}</span>
-                    <span class="ranking_count"> {{ item.ScoreB }}</span>
-                  </div>
-                </div>
+        <template v-for="(item, key) in easternTeam" :key="key">
+          <!-- <PopupView :info="item" v-if="key < 2"> -->
+          <div class="team_8_4_left" v-if="key == 0">
+            <div class="ranking_t">1</div>
+            <div class="team_list">
+              <div class="team_logo">
+                <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
+                <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
               </div>
-              <div class="ranking_b">8</div>
-            </div>
-            <div class="team_8_4_right" v-if="key == 1">
-              <div class="f_r">
-                <div class="ranking_t">
-                  <span>4</span>
+              <div class="team_content">
+                <div class="ranks">
+                  <span :class="{ special: item.nameAlength }">{{ item.TeamAData.Name }}</span>
+                  <span class="ranking_count">{{ item.ScoreA }}</span>
                 </div>
-              </div>
-              <div class="team_list">
-                <div class="team_content">
-                  <div class="ranks">
-                    <span>{{ item.TeamAData.Name }}</span>
-                    <span class="ranking_count"> {{ item.ScoreA }}</span>
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="ranks">
-                    <span>{{ item.TeamBData.Name }}</span>
-                    <span>{{ item.ScoreB }}</span>
-                  </div>
+                <div class="vs">VS</div>
+                <div class="ranks">
+                  <span :class="{ special: item.nameBlength }"> 凯尔</span>
+                  <span class="ranking_count"> {{ item.ScoreB }}</span>
                 </div>
-                <div class="team_logo">
-                  <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
-                  <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
-                </div>
-              </div>
-              <div class="f_r">
-                <div class="ranking_b">5</div>
               </div>
             </div>
-          </PopupView>
-        </slot>
+            <div class="ranking_b">8</div>
+          </div>
+          <div class="team_8_4_right" v-if="key == 1">
+            <div class="f_r">
+              <div class="ranking_t">
+                <span>4</span>
+              </div>
+            </div>
+            <div class="team_list">
+              <div class="team_content">
+                <div class="ranks">
+                  <span :class="{ special: item.nameAlength }">{{ item.TeamAData.Name }}</span>
+                  <span class="ranking_count">{{ item.ScoreA }}</span>
+                </div>
+                <div class="vs">VS</div>
+                <div class="ranks">
+                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
+                  <span class="ranking_count"> {{ item.ScoreB }}</span>
+                </div>
+              </div>
+              <div class="team_logo">
+                <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
+                <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
+              </div>
+            </div>
+            <div class="f_r">
+              <div class="ranking_b">5</div>
+            </div>
+          </div>
+          <!-- </PopupView> -->
+        </template>
       </div>
       <div class="team_8_4">
-        <slot v-for="(item, key) in easternTeam" :key="key">
-          <PopupView :info="item" v-if="key > 1">
-            <div class="team_8_4_left" v-if="key == 2">
-              <div class="ranking_t">3</div>
-              <div class="team_list">
-                <div class="team_logo">
-                  <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
-                  <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
-                </div>
-                <div class="team_content">
-                  <div class="ranks">
-                    <span>{{ item.TeamAData.Name }}</span>
-                    <span class="ranking_count">{{ item.ScoreA }}</span>
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="ranks">
-                    <span>{{ item.TeamBData.Name }}</span>
-                    <span class="ranking_count"> {{ item.ScoreB }}</span>
-                  </div>
-                </div>
+        <template v-for="(item, key) in easternTeam" :key="key">
+          <!-- <PopupView :info="item" v-if="key > 1"> -->
+          <div class="team_8_4_left" v-if="key == 2">
+            <div class="ranking_t">3</div>
+            <div class="team_list">
+              <div class="team_logo">
+                <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
+                <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
               </div>
-              <div class="ranking_b">6</div>
-            </div>
-            <div class="team_8_4_right" v-if="key == 3">
-              <div class="f_r">
-                <div class="ranking_t">
-                  <span>2</span>
+              <div class="team_content">
+                <div class="ranks">
+                  <span :class="{ special: item.nameAlength }">{{ item.TeamAData.Name }}</span>
+                  <span class="ranking_count">{{ item.ScoreA }}</span>
                 </div>
-              </div>
-              <div class="team_list">
-                <div class="team_content">
-                  <div class="ranks">
-                    <span>{{ item.TeamAData.Name }}</span>
-                    <span class="ranking_count"> {{ item.ScoreA }}</span>
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="ranks">
-                    <span>{{ item.TeamBData.Name }}</span>
-                    <span>{{ item.ScoreB }}</span>
-                  </div>
+                <div class="vs">VS</div>
+                <div class="ranks">
+                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
+                  <span class="ranking_count"> {{ item.ScoreB }}</span>
                 </div>
-                <div class="team_logo">
-                  <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
-                  <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
-                </div>
-              </div>
-              <div class="f_r">
-                <div class="ranking_b">7</div>
               </div>
             </div>
-          </PopupView>
-        </slot>
+            <div class="ranking_b">6</div>
+          </div>
+          <div class="team_8_4_right" v-if="key == 3">
+            <div class="f_r">
+              <div class="ranking_t">
+                <span>2</span>
+              </div>
+            </div>
+            <div class="team_list">
+              <div class="team_content">
+                <div class="ranks">
+                  <span :class="{ special: item.nameAlength }">{{ item.TeamAData.Name }}</span>
+                  <span class="ranking_count">{{ item.ScoreA }}</span>
+                </div>
+                <div class="vs">VS</div>
+                <div class="ranks">
+                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
+                  <span class="ranking_count"> {{ item.ScoreB }}</span>
+                </div>
+              </div>
+              <div class="team_logo">
+                <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
+                <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
+              </div>
+            </div>
+            <div class="f_r">
+              <div class="ranking_b">7</div>
+            </div>
+          </div>
+          <!-- </PopupView> -->
+        </template>
       </div>
     </div>
     <div class="section">
@@ -271,111 +271,111 @@
     </div>
     <div class="team_8">
       <div class="team_8_4">
-        <slot v-for="(item, key) in westernTeam" :key="key">
-          <PopupView v-if="key < 2" :info="item">
-            <div class="team_8_4_left" v-if="key == 0">
-              <div class="ranking_t">1</div>
-              <div class="team_list">
-                <div class="team_logo">
-                  <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
-                  <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
-                </div>
-                <div class="team_content">
-                  <div class="ranks">
-                    <span>{{ item.TeamAData.Name }}</span>
-                    <span class="ranking_count">{{ item.ScoreA }}</span>
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="ranks">
-                    <span>{{ item.TeamBData.Name }}</span>
-                    <span class="ranking_count"> {{ item.ScoreB }}</span>
-                  </div>
-                </div>
+        <template v-for="(item, key) in westernTeam" :key="key">
+          <!-- <PopupView v-if="key < 2" :info="item"> -->
+          <div class="team_8_4_left" v-if="key == 0">
+            <div class="ranking_t">1</div>
+            <div class="team_list">
+              <div class="team_logo">
+                <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
+                <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
               </div>
-              <div class="ranking_b">8</div>
-            </div>
-            <div class="team_8_4_right" v-if="key == 1">
-              <div class="f_r">
-                <div class="ranking_t">
-                  <span>4</span>
+              <div class="team_content">
+                <div class="ranks">
+                  <span :class="{ special: item.nameAlength }">{{ item.TeamAData.Name }}</span>
+                  <span class="ranking_count">{{ item.ScoreA }}</span>
                 </div>
-              </div>
-              <div class="team_list">
-                <div class="team_content">
-                  <div class="ranks">
-                    <span>{{ item.TeamAData.Name }}</span>
-                    <span class="ranking_count"> {{ item.ScoreA }}</span>
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="ranks">
-                    <span>{{ item.TeamBData.Name }}</span>
-                    <span>{{ item.ScoreB }}</span>
-                  </div>
+                <div class="vs">VS</div>
+                <div class="ranks">
+                  <span :class="{ special: item.nameBlength }"> 凯尔 </span>
+                  <span class="ranking_count"> {{ item.ScoreB }}</span>
                 </div>
-                <div class="team_logo">
-                  <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
-                  <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
-                </div>
-              </div>
-              <div class="f_r">
-                <div class="ranking_b">5</div>
               </div>
             </div>
-          </PopupView>
-        </slot>
+            <div class="ranking_b">8</div>
+          </div>
+          <div class="team_8_4_right" v-if="key == 1">
+            <div class="f_r">
+              <div class="ranking_t">
+                <span>4</span>
+              </div>
+            </div>
+            <div class="team_list">
+              <div class="team_content">
+                <div class="ranks">
+                  <span :class="{ special: item.nameAlength }">{{ item.TeamAData.Name }}</span>
+                  <span class="ranking_count">{{ item.ScoreA }}</span>
+                </div>
+                <div class="vs">VS</div>
+                <div class="ranks">
+                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
+                  <span class="ranking_count"> {{ item.ScoreB }}</span>
+                </div>
+              </div>
+              <div class="team_logo">
+                <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
+                <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
+              </div>
+            </div>
+            <div class="f_r">
+              <div class="ranking_b">5</div>
+            </div>
+          </div>
+          <!-- </PopupView> -->
+        </template>
       </div>
       <div class="team_8_4">
         <slot v-for="(item, key) in westernTeam" :key="key">
-          <PopupView :info="item" v-if="key > 1">
-            <div class="team_8_4_left" v-if="key == 2">
-              <div class="ranking_t">3</div>
-              <div class="team_list">
-                <div class="team_logo">
-                  <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
-                  <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
-                </div>
-                <div class="team_content">
-                  <div class="ranks">
-                    <span>{{ item.TeamAData.Name }}</span>
-                    <span class="ranking_count">{{ item.ScoreA }}</span>
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="ranks">
-                    <span>{{ item.TeamBData.Name }}</span>
-                    <span class="ranking_count"> {{ item.ScoreB }}</span>
-                  </div>
-                </div>
+          <!-- <PopupView :info="item" v-if="key > 1"> -->
+          <div class="team_8_4_left" v-if="key == 2">
+            <div class="ranking_t">3</div>
+            <div class="team_list">
+              <div class="team_logo">
+                <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
+                <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
               </div>
-              <div class="ranking_b">6</div>
-            </div>
-            <div class="team_8_4_right" v-if="key == 3">
-              <div class="f_r">
-                <div class="ranking_t">
-                  <span>2</span>
+              <div class="team_content">
+                <div class="ranks">
+                  <span :class="{ special: item.nameAlength }">{{ item.TeamAData.Name }}</span>
+                  <span class="ranking_count">{{ item.ScoreA }}</span>
                 </div>
-              </div>
-              <div class="team_list">
-                <div class="team_content">
-                  <div class="ranks">
-                    <span>{{ item.TeamAData.Name }}</span>
-                    <span class="ranking_count"> {{ item.ScoreA }}</span>
-                  </div>
-                  <div class="vs">VS</div>
-                  <div class="ranks">
-                    <span>{{ item.TeamBData.Name }}</span>
-                    <span>{{ item.ScoreB }}</span>
-                  </div>
+                <div class="vs">VS</div>
+                <div class="ranks">
+                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
+                  <span class="ranking_count"> {{ item.ScoreB }}</span>
                 </div>
-                <div class="team_logo">
-                  <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
-                  <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
-                </div>
-              </div>
-              <div class="f_r">
-                <div class="ranking_b">7</div>
               </div>
             </div>
-          </PopupView>
+            <div class="ranking_b">6</div>
+          </div>
+          <div class="team_8_4_right" v-if="key == 3">
+            <div class="f_r">
+              <div class="ranking_t">
+                <span>2</span>
+              </div>
+            </div>
+            <div class="team_list">
+              <div class="team_content">
+                <div class="ranks">
+                  <span :class="{ special: item.nameAlength }">{{ item.TeamAData.Name }}</span>
+                  <span class="ranking_count">{{ item.ScoreA }}</span>
+                </div>
+                <div class="vs">VS</div>
+                <div class="ranks">
+                  <span :class="{ special: item.nameBlength }"> {{ item.TeamBData.Name }}</span>
+                  <span class="ranking_count"> {{ item.ScoreB }}</span>
+                </div>
+              </div>
+              <div class="team_logo">
+                <img class="top_logo" :src="item.TeamAData.imgUrl" alt="" />
+                <img class="bottom_logo" :src="item.TeamBData.imgUrl" alt="" />
+              </div>
+            </div>
+            <div class="f_r">
+              <div class="ranking_b">7</div>
+            </div>
+          </div>
+          <!-- </PopupView> -->
         </slot>
       </div>
     </div>
@@ -385,24 +385,24 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getUserGuess } from '@apis'
-
+// import PopupView from '../popup/index.vue'
 const easternTeam = ref([]) // 东部战队
 const westernTeam = ref([]) // 西部战队
 
 onMounted(() => {
-  getUserGuess().then((res) => {
-    if (res.status == 200 && res.data.Data.Games.length) {
-      console.log(res.data.Data.Games)
-
-      res.data.Data.Games.map((item) => {
+  getUserGuess().then(({ data }) => {
+    if (data.Data.Games.length) {
+      const dataList = data.Data.Games.map((item: any) => {
         item.TeamAData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamAData.Name}.png`, import.meta.url).href
         item.TeamBData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamBData.Name}.png`, import.meta.url).href
         item.TeamAData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamAData.Name}.png`, import.meta.url).href
         item.TeamBData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamBData.Name}.png`, import.meta.url).href
+        item.nameAlength = item.TeamAData.Name.length > 3
+        item.nameBlength = item.TeamBData.Name.length > 3
         return item
       })
-      easternTeam.value = res.data.Data.Games.filter((item) => item.Type == 1)
-      westernTeam.value = res.data.Data.Games.filter((item) => item.Type == 2)
+      easternTeam.value = dataList.filter((item: any) => item.Type == 1)
+      westernTeam.value = dataList.filter((item: any) => item.Type == 1)
     }
   })
 })
@@ -410,13 +410,9 @@ onMounted(() => {
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Popup from '../popup/index.vue'
 
 export default defineComponent({
-  name: 'TeamView',
-  components: {
-    [Popup.name]: Popup
-  }
+  name: 'TeamView'
 })
 </script>
 
