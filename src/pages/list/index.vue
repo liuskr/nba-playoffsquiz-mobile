@@ -3,7 +3,7 @@
     <main class="list">
       <div>
         <img src="/images/list_title.jpg" alt="" />
-        <img class="share" src="@assets/images/share.png" alt="" @click="show = true" />
+        <div class="share" @click="show = true" />
       </div>
       <div class="list-group">
         <div class="list-group-title">
