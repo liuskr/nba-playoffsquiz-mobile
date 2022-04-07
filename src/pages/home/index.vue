@@ -60,6 +60,7 @@
     <van-overlay :show="status.prizeShow" @click="status.show = false">
       <div class="wrapper" @click.stop>
         <div class="wrapper-prize">
+          <img class="wrapper-prize-share" src="@assets/images/share.png" alt="" @click="status.posterShow = true" />
           <img src="/images/prize.png" alt="" />
           <div class="close prize-close" @click="status.prizeShow = false"></div>
         </div>
@@ -86,6 +87,7 @@
     <Login v-model:is-login="isLogin" />
     <Guide />
     <Loading />
+    <Poster v-model:isShowPoster="status.posterShow" />
   </div>
 </template>
 
@@ -98,6 +100,7 @@ import useMusicControl from './music'
 import { useRouter } from 'vue-router'
 import { localStorageGet } from '@utils/auth'
 import { getUserInfo } from '@apis'
+import Poster from '@components/Poster/index.vue'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
 const router = useRouter()
@@ -105,7 +108,8 @@ const router = useRouter()
 const status = reactive({
   show: false,
   prizeShow: false,
-  guideShow: false
+  guideShow: false,
+  posterShow: false
 })
 
 const isLogin = ref(false)

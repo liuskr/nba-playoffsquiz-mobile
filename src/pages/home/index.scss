@@ -180,8 +180,16 @@
     &-prize {
       width: 608px;
       height: 980px;
+      position: relative;
       .prize-close {
         margin-top: 40px;
+      }
+      &-share{
+        position: absolute;
+        top: 0;
+        right: 0;
+         width: 40px;
+         height: 40px;
       }
     }
     &-guide {

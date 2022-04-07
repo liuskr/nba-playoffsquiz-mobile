@@ -3,6 +3,7 @@
     <main class="list">
       <div>
         <img src="/images/list_title.jpg" alt="" />
+        <img class="share" src="@assets/images/share.png" alt="" @click="show = true" />
       </div>
       <div class="list-group">
         <div class="list-group-title">
@@ -47,7 +48,12 @@
               <div class="row-item-score">积分19999</div>
             </div> -->
           <!-- </div> -->
-          <van-empty class="custom-image" image="https://cdn.jsdelivr.net/npm/@vant/assets/custom-empty-image.png" description="暂无排名" />
+          <van-empty
+            class="custom-image"
+            @click="show = true"
+            image="https://cdn.jsdelivr.net/npm/@vant/assets/custom-empty-image.png"
+            description="暂无排名"
+          />
         </div>
       </div>
     </main>
@@ -58,7 +64,7 @@
         <div class="footer-fixed-info-btn" @click="addressShow = true">去领奖</div>
       </div>
     </footer>
-
+    <Poster v-model:is-show-poster="show" />
     <van-popup v-model:show="addressShow" position="bottom" :style="{ height: '50%' }">
       <div class="address">
         <div class="address-title">完善物流信息</div>
@@ -80,8 +86,11 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { areaList } from '@vant/area-data'
+import Poster from '@components/Poster/index.vue'
+
 const addressShow = ref(false)
 const showArea = ref(false)
+const show = ref(false)
 const result = ref('')
 
 const onConfirm = (areaValues: any[]) => {

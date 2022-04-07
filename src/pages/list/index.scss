@@ -3,6 +3,13 @@
   background-color: #0a0b40;
   padding-bottom: 110px;
   box-sizing: border-box;
+  .share{
+    position: absolute;
+    top: 130px;
+    right: 50px;
+    width: 40px;
+    height: 40px;
+  }
   .list {
     &-group {
       min-height: 80vh;
