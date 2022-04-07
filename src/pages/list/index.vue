@@ -48,12 +48,7 @@
               <div class="row-item-score">积分19999</div>
             </div> -->
           <!-- </div> -->
-          <van-empty
-            class="custom-image"
-            @click="show = true"
-            image="https://cdn.jsdelivr.net/npm/@vant/assets/custom-empty-image.png"
-            description="暂无排名"
-          />
+          <van-empty class="custom-image" image="https://cdn.jsdelivr.net/npm/@vant/assets/custom-empty-image.png" description="暂无排名" />
         </div>
       </div>
     </main>
