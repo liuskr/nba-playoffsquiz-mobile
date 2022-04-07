@@ -1,10 +1,7 @@
 <template>
   <div class="popup">
-    <div @click="showPopup">
-      <slot></slot>
-    </div>
     <van-popup
-      v-model:show="show"
+      v-model:show="props.show"
       :close-on-click-overlay="false"
       :style="{
         width: '75%',
@@ -48,40 +45,27 @@
     </van-popup>
   </div>
 </template>
-//
+
 <script lang="ts" setup>
-import { ref, defineProps, computed, onMounted } from 'vue'
+import { ref, defineProps, defineEmits, computed, onMounted } from 'vue'
 
-const props = defineProps({ info: Object })
+const props = defineProps({ info: Object, show: Boolean })
 
-const show = ref(false)
 const showListCount = ref(false)
 const list = ref([4, 3, 2, 1, 0])
 
 const ScoreA = ref(null)
 const ScoreB = ref(null)
-const selectScoreA = ref(null)
-const selectScoreB = ref(null)
+
+const emit = defineEmits<{
+  (e: 'click', ScoreA?: Number, ScoreB?: Number): void
+}>()
 
 // 计算当前显示的值  输入预测后
 const showInfo = computed(() => {
   const data = props.info
-  if (selectScoreA.value !== null) {
-    data.ScoreA = selectScoreA.value
-    data.ScoreB = selectScoreB.value
-    return data
-  }
-
   return props.info
 })
-
-// 显示预测输入弹框
-const showPopup = () => {
-  if (props.info.State == 2) {
-    return
-  }
-  show.value = true
-}
 
 // 选择预测比分
 const selectScore = (num, type) => {
@@ -98,17 +82,13 @@ const selectScore = (num, type) => {
 
 // 确认选择比分
 const confirm = () => {
-  selectScoreA.value = ScoreA.value
-  selectScoreB.value = ScoreB.value
-  show.value = false
+  emit('click', ScoreA.value, ScoreB.value)
 }
 
 const clsoe = () => {
   ScoreA.value = null
   ScoreB.value = null
-  selectScoreA.value = null
-  selectScoreB.value = null
-  show.value = false
+  emit('click')
 }
 
 onMounted(() => {

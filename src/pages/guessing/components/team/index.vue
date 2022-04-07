@@ -2,9 +2,8 @@
   <div class="team_container">
     <div class="team_8">
       <div class="team_8_4">
-        <template v-for="(item, key) in easternTeam" :key="key">
-          <!-- <PopupView :info="item" v-if="key < 2"> -->
-          <div class="team_8_4_left" v-if="key == 0">
+        <template v-for="(item, key) in teamList" :key="key">
+          <div class="team_8_4_left" v-if="key == 0" @click="showPopup(item)">
             <div class="ranking_t">1</div>
             <div class="team_list">
               <div class="team_logo">
@@ -25,7 +24,7 @@
             </div>
             <div class="ranking_b">8</div>
           </div>
-          <div class="team_8_4_right" v-if="key == 1">
+          <div class="team_8_4_right" v-if="key == 1" @click="showPopup(item)">
             <div class="f_r">
               <div class="ranking_t">
                 <span>4</span>
@@ -52,13 +51,11 @@
               <div class="ranking_b">5</div>
             </div>
           </div>
-          <!-- </PopupView> -->
         </template>
       </div>
       <div class="team_8_4">
-        <template v-for="(item, key) in easternTeam" :key="key">
-          <!-- <PopupView :info="item" v-if="key > 1"> -->
-          <div class="team_8_4_left" v-if="key == 2">
+        <template v-for="(item, key) in teamList" :key="key">
+          <div class="team_8_4_left" v-if="key == 2" @click="showPopup(item)">
             <div class="ranking_t">3</div>
             <div class="team_list">
               <div class="team_logo">
@@ -79,7 +76,7 @@
             </div>
             <div class="ranking_b">6</div>
           </div>
-          <div class="team_8_4_right" v-if="key == 3">
+          <div class="team_8_4_right" v-if="key == 3" @click="showPopup(item)">
             <div class="f_r">
               <div class="ranking_t">
                 <span>2</span>
@@ -106,7 +103,6 @@
               <div class="ranking_b">7</div>
             </div>
           </div>
-          <!-- </PopupView> -->
         </template>
       </div>
     </div>
@@ -271,9 +267,8 @@
     </div>
     <div class="team_8">
       <div class="team_8_4">
-        <template v-for="(item, key) in westernTeam" :key="key">
-          <!-- <PopupView v-if="key < 2" :info="item"> -->
-          <div class="team_8_4_left" v-if="key == 0">
+        <template v-for="(item, key) in teamList" :key="key">
+          <div class="team_8_4_left" v-if="key == 4" @click="showPopup(item)">
             <div class="ranking_t">1</div>
             <div class="team_list">
               <div class="team_logo">
@@ -294,7 +289,7 @@
             </div>
             <div class="ranking_b">8</div>
           </div>
-          <div class="team_8_4_right" v-if="key == 1">
+          <div class="team_8_4_right" v-if="key == 5" @click="showPopup(item)">
             <div class="f_r">
               <div class="ranking_t">
                 <span>4</span>
@@ -321,13 +316,11 @@
               <div class="ranking_b">5</div>
             </div>
           </div>
-          <!-- </PopupView> -->
         </template>
       </div>
       <div class="team_8_4">
-        <slot v-for="(item, key) in westernTeam" :key="key">
-          <!-- <PopupView :info="item" v-if="key > 1"> -->
-          <div class="team_8_4_left" v-if="key == 2">
+        <slot v-for="(item, key) in teamList" :key="key">
+          <div class="team_8_4_left" v-if="key == 6" @click="showPopup(item)">
             <div class="ranking_t">3</div>
             <div class="team_list">
               <div class="team_logo">
@@ -348,7 +341,7 @@
             </div>
             <div class="ranking_b">6</div>
           </div>
-          <div class="team_8_4_right" v-if="key == 3">
+          <div class="team_8_4_right" v-if="key == 7" @click="showPopup(item)">
             <div class="f_r">
               <div class="ranking_t">
                 <span>2</span>
@@ -375,24 +368,52 @@
               <div class="ranking_b">7</div>
             </div>
           </div>
-          <!-- </PopupView> -->
         </slot>
       </div>
     </div>
+
+    <PopupView :show="showPop" :info="popInfo" @click="close" v-if="showPop" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getUserGuess } from '@apis'
-// import PopupView from '../popup/index.vue'
-const easternTeam = ref([]) // 东部战队
-const westernTeam = ref([]) // 西部战队
+import PopupView from '../popup/index.vue'
+
+const teamList = ref([]) // 战队
+const showPop = ref(false)
+const popInfo = ref({})
+
+// 显示预测输入弹框
+const showPopup = (item) => {
+  if (item.State == 2) {
+    return
+  }
+  console.log(item)
+  popInfo.value = item
+  showPop.value = true
+}
+
+// 关闭弹框 更新数据
+const close = (ScoreA, ScoreB) => {
+  if (ScoreA !== undefined) {
+    teamList.value.forEach((item) => {
+      if (item.ID == popInfo.value.ID) {
+        item.ScoreA = ScoreA
+        item.ScoreB = ScoreB
+        return item
+      }
+    })
+  }
+  popInfo.value = {}
+  showPop.value = false
+}
 
 onMounted(() => {
   getUserGuess().then(({ data }) => {
     if (data.Data.Games.length) {
-      const dataList = data.Data.Games.map((item: any) => {
+      teamList.value = data.Data.Games.map((item: any) => {
         item.TeamAData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamAData.Name}.png`, import.meta.url).href
         item.TeamBData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamBData.Name}.png`, import.meta.url).href
         item.TeamAData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamAData.Name}.png`, import.meta.url).href
@@ -401,8 +422,6 @@ onMounted(() => {
         item.nameBlength = item.TeamBData.Name.length > 3
         return item
       })
-      easternTeam.value = dataList.filter((item: any) => item.Type == 1)
-      westernTeam.value = dataList.filter((item: any) => item.Type == 1)
     }
   })
 })
