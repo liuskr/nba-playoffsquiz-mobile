@@ -90,7 +90,11 @@
                 </div>
                 <div class="vs">VS</div>
                 <div class="ranks">
-                  <span :class="{ special: item.nameBlength }"> 凯尔</span>
+                  <span :class="{ special: item.nameBlength }">
+                    {{ item.TeamBData.Name.length >= 4 ? item.TeamBData.Name.slice(0, 2) : item.TeamBData.Name }}
+                    <!-- 凯尔 -->
+                    <div v-if="item.TeamBData.Name.length >= 4">{{ item.TeamBData.Name.slice(2, 4) }}</div>
+                  </span>
                   <span class="ranking_count"> {{ item.ScoreB }}</span>
                 </div>
               </div>
@@ -418,8 +422,8 @@ onMounted(() => {
         item.TeamBData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamBData.Name}.png`, import.meta.url).href
         item.TeamAData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamAData.Name}.png`, import.meta.url).href
         item.TeamBData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamBData.Name}.png`, import.meta.url).href
-        item.nameAlength = item.TeamAData.Name.length > 3
-        item.nameBlength = item.TeamBData.Name.length > 3
+        item.nameAlength = item.TeamAData.Name.length > 2
+        item.nameBlength = item.TeamBData.Name.length > 2
         return item
       })
       console.log(teamList.value)
