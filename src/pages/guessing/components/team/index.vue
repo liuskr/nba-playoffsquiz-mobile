@@ -179,7 +179,7 @@
         <div class="team_2_content">
           <div class="team_2_content_item">
             <span v-if="FinalsTeam.TeamAData" :class="{ special: FinalsTeam.TeamAData.namelength }"
-              >{{ FinalsTeam.TeamAData.Name }} {{ Number(FinalsTeam.ScoreA)}}</span
+              >{{ FinalsTeam.TeamAData.Name }} {{ Number(FinalsTeam.ScoreA) }}</span
             >
             <span class="text" v-else>?</span>
           </div>
@@ -206,7 +206,7 @@
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
               <span v-if="thirdWestTeam.TeamAData" :class="{ special: thirdWestTeam.TeamAData.namelength }"
-                >{{ thirdWestTeam.TeamAData.Name }} {{ Number(thirdWestTeam.ScoreA)}}</span
+                >{{ thirdWestTeam.TeamAData.Name }} {{ Number(thirdWestTeam.ScoreA) }}</span
               >
               <span class="text" v-else>?</span>
             </div>
@@ -216,7 +216,7 @@
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
               <span v-if="thirdWestTeam.TeamBData" :class="{ special: thirdWestTeam.TeamBData.namelength }"
-                >{{ thirdWestTeam.TeamBData.Name }} {{ Number(thirdWestTeam.ScoreB)}}</span
+                >{{ thirdWestTeam.TeamBData.Name }} {{ Number(thirdWestTeam.ScoreB) }}</span
               >
               <span class="text" v-else>?</span>
             </div>
@@ -230,9 +230,7 @@
             <img class="team_logo" :src="item.TeamAData.imgUrl" alt="" v-if="item.TeamAData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }"
-                >{{ item.TeamAData.Name }} {{ Number(item.ScoreA )}}</span
-              >
+              <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }">{{ item.TeamAData.Name }} {{ Number(item.ScoreA) }}</span>
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -240,9 +238,7 @@
             <img class="team_logo" :src="item.TeamBData.imgUrl" alt="" v-if="item.TeamBData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamBData" :class="{ special: item.TeamBData.namelength }"
-                >{{ item.TeamBData.Name }} {{ Number(item.ScoreB)}}</span
-              >
+              <span v-if="item.TeamBData" :class="{ special: item.TeamBData.namelength }">{{ item.TeamBData.Name }} {{ Number(item.ScoreB) }}</span>
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -595,16 +591,18 @@ defineExpose({
 
     // 东西部 16强
     teamList.value.map((item) => {
-      guess_data.push({
-        name_a: item.TeamAData.Name,
-        name_b: item.TeamBData.Name,
-        team_a: item.TeamAData.ID,
-        team_b: item.TeamBData.ID,
-        score_a: item.ScoreA,
-        score_b: item.ScoreB,
-        top: 16,
-        type: item.Type
-      })
+      if (item.TeamAData) {
+        guess_data.push({
+          name_a: item.TeamAData.Name,
+          name_b: item.TeamBData.Name,
+          team_a: item.TeamAData.ID,
+          team_b: item.TeamBData.ID,
+          score_a: item.ScoreA,
+          score_b: item.ScoreB,
+          top: 16,
+          type: item.Type
+        })
+      }
     })
     // 东部 8强
     secondEastTeam.value.map((item) => {
