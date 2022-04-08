@@ -2,7 +2,7 @@
   <div class="container">
     <header class="header">
       <div class="go_back">
-        <div>返回</div>
+        <div @click="$router.replace('/')">返回</div>
       </div>
       <div class="countdown">
         <div class="end_time">
@@ -25,13 +25,13 @@
       </div>
     </header>
     <div class="team">
-      <TeamView />
+      <TeamView ref="teamView" />
     </div>
     <!-- <div class="logo_bg"></div> -->
     <div class="race"></div>
     <div class="submit">
       <div class="btn">
-        <span>提交</span>
+        <span @click="submit">提交</span>
       </div>
     </div>
   </div>
@@ -56,11 +56,19 @@ const getTime = () => {
   const minute = date.getMinutes()
   return `${hour}:${minute < 10 ? `0${minute}` : minute}`
 }
+
+const teamView = ref(null)
+const submit = () => {
+  teamView.value.submit() // 获取子组件对外暴露的属性
+}
+
+
 </script>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { CountDown } from 'vant'
+
 export default defineComponent({
   name: 'GuessingView',
   components: {

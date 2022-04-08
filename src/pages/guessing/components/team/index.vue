@@ -186,9 +186,8 @@
           </div>
         </div>
         <div class="team_r">
-           <img class="team_logo" :src="FinalsTeam.TeamBData.imgUrl" alt="" v-if="FinalsTeam.TeamBData" />
-          <img class="team_logo" src="@assets/images/card/2-kong.png" alt="" v-else/>
-
+          <img class="team_logo" :src="FinalsTeam.TeamBData.imgUrl" alt="" v-if="FinalsTeam.TeamBData" />
+          <img class="team_logo" src="@assets/images/card/2-kong.png" alt="" v-else />
         </div>
       </div>
       <div class="team_2_block team_2_block_bottom">
@@ -360,7 +359,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, defineExpose } from 'vue'
 import { getUserGuess } from '@apis'
 import PopupView from '../popup/index.vue'
 
@@ -550,6 +549,27 @@ const calculationLast = () => {
   }
 }
 
+// // 提交比分
+// const submit = () => {
+//   console.log('东西部', teamList.value)
+//   console.log('东部2', secondEastTeam.value)
+//   console.log('西部2', secondWestTeam.value)
+//   console.log('东部3', thirdEastTeam.value)
+//   console.log('西部3', thirdWestTeam.value)
+//   console.log('总决赛', FinalsTeam.value)
+// }
+
+defineExpose({
+  submit() {
+    console.log('东西部', teamList.value)
+    console.log('东部2', secondEastTeam.value)
+    console.log('西部2', secondWestTeam.value)
+    console.log('东部3', thirdEastTeam.value)
+    console.log('西部3', thirdWestTeam.value)
+    console.log('总决赛', FinalsTeam.value)
+  }
+})
+
 onMounted(() => {
   getUserGuess().then(({ data }) => {
     if (data.Data.Games.length) {
@@ -564,10 +584,12 @@ onMounted(() => {
         return item
       })
 
-      // 计算第二轮晋级队伍
+      // 计算晋级队伍
       calculationEast()
 
       calculationthird()
+
+      calculationLast()
     }
   })
 })
