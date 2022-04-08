@@ -131,7 +131,7 @@
             <img class="team_logo" :src="item.TeamAData.imgUrl" alt="" v-if="item.TeamAData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamAData">{{ item.TeamAData.Name }} {{ item.ScoreA == null ? '?' : item.ScoreA }}</span>
+              <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }">{{ item.TeamAData.Name }} {{ Number(item.ScoreA) }}</span>
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -139,7 +139,7 @@
             <img class="team_logo" :src="item.TeamBData.imgUrl" alt="" v-if="item.TeamBData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamBData">{{ item.TeamBData.Name }} {{ item.ScoreB == null ? '?' : item.ScoreB }}</span>
+              <span v-if="item.TeamBData" :class="{ special: item.TeamBData.namelength }">{{ item.TeamBData.Name }} {{ Number(item.ScoreB) }}</span>
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -152,7 +152,9 @@
             <img class="team_logo" :src="thirdEastTeam.TeamAData.imgUrl" alt="" v-if="thirdEastTeam.TeamAData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="thirdEastTeam.TeamAData">{{ thirdEastTeam.TeamAData.Name }} {{ thirdEastTeam.ScoreA == null ? '?' : thirdEastTeam.ScoreA }}</span>
+              <span v-if="thirdEastTeam.TeamAData" :class="{ special: thirdEastTeam.TeamAData.namelength }"
+                >{{ thirdEastTeam.TeamAData.Name }} {{ Number(thirdEastTeam.ScoreA) }}</span
+              >
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -160,7 +162,9 @@
             <img class="team_logo" :src="thirdEastTeam.TeamBData.imgUrl" alt="" v-if="thirdEastTeam.TeamBData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="thirdEastTeam.TeamBData">{{ thirdEastTeam.TeamBData.Name }} {{ thirdEastTeam.ScoreB == null ? '?' : thirdEastTeam.ScoreB }}</span>
+              <span v-if="thirdEastTeam.TeamBData" :class="{ special: thirdEastTeam.TeamBData.namelength }"
+                >{{ thirdEastTeam.TeamBData.Name }} {{ Number(thirdEastTeam.ScoreB) }}</span
+              >
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -174,14 +178,18 @@
         </div>
         <div class="team_2_content">
           <div class="team_2_content_item">
-            <span v-if="FinalsTeam.TeamAData">{{ FinalsTeam.TeamAData.Name }} {{ FinalsTeam.ScoreA == null ? '?' : FinalsTeam.ScoreA }}</span>
+            <span v-if="FinalsTeam.TeamAData" :class="{ special: FinalsTeam.TeamAData.namelength }"
+              >{{ FinalsTeam.TeamAData.Name }} {{ Number(FinalsTeam.ScoreA)}}</span
+            >
             <span class="text" v-else>?</span>
           </div>
           <div class="trophy">
             <img src="@assets/images/jiangbei.png" alt="" />
           </div>
           <div class="team_2_content_item">
-            <span v-if="FinalsTeam.TeamBData">{{ FinalsTeam.TeamBData.Name }} {{ FinalsTeam.ScoreB == null ? '?' : FinalsTeam.ScoreB }}</span>
+            <span v-if="FinalsTeam.TeamBData" :class="{ special: FinalsTeam.TeamBData.namelength }"
+              >{{ FinalsTeam.TeamBData.Name }} {{ Number(FinalsTeam.ScoreB) }}</span
+            >
             <span class="text" v-else>?</span>
           </div>
         </div>
@@ -197,7 +205,9 @@
             <img class="team_logo" :src="thirdWestTeam.TeamAData.imgUrl" alt="" v-if="thirdWestTeam.TeamAData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="thirdWestTeam.TeamAData">{{ thirdWestTeam.TeamAData.Name }} {{ thirdWestTeam.ScoreA == null ? '?' : thirdWestTeam.ScoreA }}</span>
+              <span v-if="thirdWestTeam.TeamAData" :class="{ special: thirdWestTeam.TeamAData.namelength }"
+                >{{ thirdWestTeam.TeamAData.Name }} {{ Number(thirdWestTeam.ScoreA)}}</span
+              >
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -205,7 +215,9 @@
             <img class="team_logo" :src="thirdWestTeam.TeamBData.imgUrl" alt="" v-if="thirdWestTeam.TeamBData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="thirdWestTeam.TeamBData">{{ thirdWestTeam.TeamBData.Name }} {{ thirdWestTeam.ScoreB == null ? '?' : thirdWestTeam.ScoreB }}</span>
+              <span v-if="thirdWestTeam.TeamBData" :class="{ special: thirdWestTeam.TeamBData.namelength }"
+                >{{ thirdWestTeam.TeamBData.Name }} {{ Number(thirdWestTeam.ScoreB)}}</span
+              >
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -218,7 +230,9 @@
             <img class="team_logo" :src="item.TeamAData.imgUrl" alt="" v-if="item.TeamAData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamAData">{{ item.TeamAData.Name }} {{ item.ScoreA == null ? '?' : item.ScoreA }}</span>
+              <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }"
+                >{{ item.TeamAData.Name }} {{ Number(item.ScoreA )}}</span
+              >
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -226,7 +240,9 @@
             <img class="team_logo" :src="item.TeamBData.imgUrl" alt="" v-if="item.TeamBData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamBData">{{ item.TeamBData.Name }} {{ item.ScoreB == null ? '?' : item.ScoreB }}</span>
+              <span v-if="item.TeamBData" :class="{ special: item.TeamBData.namelength }"
+                >{{ item.TeamBData.Name }} {{ Number(item.ScoreB)}}</span
+              >
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -462,7 +478,7 @@ const calculationEast = () => {
 
   for (let index = 0; index < list.length; index++) {
     const element = list[index]
-    const obj = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second' }
+    const obj = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second', nameAlength: false, nameBlength: false }
     element.map((item, key) => {
       let data = null
       if (Number(item.ScoreA) >= 4) {
@@ -473,6 +489,7 @@ const calculationEast = () => {
       }
       if (data && data.imgUrl) {
         data.imgUrl = new URL(`../../../../assets/images/card/842/${data.Name}.png`, import.meta.url).href
+        data.namelength = data.Name.length > 2
       }
 
       if (key == 0) {
@@ -508,6 +525,7 @@ const calculationthird = () => {
     }
     if (data && data.imgUrl) {
       data.imgUrl = new URL(`../../../../assets/images/card/842/${data.Name}.png`, import.meta.url).href
+      data.nameAlength = data.Name.length > 2
     }
 
     if (i == 0) {
@@ -545,18 +563,22 @@ const calculationLast = () => {
   if (Number(thirdEastTeam.value.ScoreA) >= 4) {
     FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamAData
     FinalsTeam.value.TeamAData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamAData.Name}.png`, import.meta.url).href
+    FinalsTeam.value.TeamAData.namelength = FinalsTeam.value.TeamAData.Name.length > 2
   }
   if (Number(thirdEastTeam.value.ScoreB) >= 4) {
     FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamBData
     FinalsTeam.value.TeamAData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamAData.Name}.png`, import.meta.url).href
+    FinalsTeam.value.TeamAData.namelength = FinalsTeam.value.TeamAData.Name.length > 2
   }
   if (Number(thirdWestTeam.value.ScoreA) >= 4) {
     FinalsTeam.value.TeamBData = thirdWestTeam.value.TeamAData
     FinalsTeam.value.TeamBData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamBData.Name}.png`, import.meta.url).href
+    FinalsTeam.value.TeamBData.namelength = FinalsTeam.value.TeamBData.Name.length > 2
   }
   if (Number(thirdWestTeam.value.ScoreB) >= 4) {
     FinalsTeam.value.TeamBData = thirdWestTeam.value.TeamBData
     FinalsTeam.value.TeamBData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamBData.Name}.png`, import.meta.url).href
+    FinalsTeam.value.TeamBData.namelength = FinalsTeam.value.TeamBData.Name.length > 2
   }
 }
 
@@ -699,4 +721,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import './index.scss';
+
+.special {
+  padding-left: 4px;
+  // padding-bottom: 12px;
+  line-height: 22px;
+  font-size: 26px;
+}
 </style>
