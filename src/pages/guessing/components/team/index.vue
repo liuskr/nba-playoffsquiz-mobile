@@ -654,7 +654,7 @@ defineExpose({
       })
     }
 
-    localStorage.setItem('sign', getSignData(JSON.stringify(guess_data)))
+    localStorage.setItem('sign', getSignData(JSON.stringify({ guess_data })))
 
     setUserGuess({
       guess_data
