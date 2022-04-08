@@ -56,6 +56,12 @@ const getTime = () => {
   const minute = date.getMinutes()
   return `${hour}:${minute < 10 ? `0${minute}` : minute}`
 }
+// 当前时间减去结束时间
+const getTimeDiff = (endTime: number) => {
+  const now = new Date().getTime()
+  const diff = endTime - now
+  return diff
+}
 
 const teamView = ref(null)
 
