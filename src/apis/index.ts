@@ -43,3 +43,12 @@ export const getUserGuess = async (): Promise<HttpResponse> => {
     method: 'get'
   })
 }
+
+// 提交用户竞猜
+export const setUserGuess = async (params: { timestamp: any; sign: string, guess_data: Array<any> }): Promise<HttpResponse> => {
+  return request('api/guess', {
+    method: 'post',
+    data: params
+  })
+}
+

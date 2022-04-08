@@ -360,7 +360,9 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, defineExpose } from 'vue'
-import { getUserGuess } from '@apis'
+import { setUserGuess, getUserGuess } from '@apis'
+import { getSignData } from '@utils/crypto'
+
 import PopupView from '../popup/index.vue'
 
 const teamList = ref([]) // 战队
@@ -567,6 +569,13 @@ defineExpose({
     console.log('东部3', thirdEastTeam.value)
     console.log('西部3', thirdWestTeam.value)
     console.log('总决赛', FinalsTeam.value)
+    setUserGuess({
+      timestamp: new Date(),
+      sign: getSignData(JSON.stringify(teamList.value)),
+      guess_data:teamList.value,
+    }).then(res => {
+      console.log(res)
+    })
   }
 })
 
