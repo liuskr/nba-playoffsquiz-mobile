@@ -554,16 +554,101 @@ const calculationLast = () => {
 defineExpose({
   // 提交比分
   submit() {
+    const guess_data: Array<any> = []
     console.log('东西部', teamList.value)
     console.log('东部2', secondEastTeam.value)
     console.log('西部2', secondWestTeam.value)
     console.log('东部3', thirdEastTeam.value)
     console.log('西部3', thirdWestTeam.value)
     console.log('总决赛', FinalsTeam.value)
+
+    // 东西部 16强
+    teamList.value.map((item) => {
+      guess_data.push({
+        name_a: item.TeamAData.Name,
+        name_b: item.TeamBData.Name,
+        team_a: item.TeamAData.ID,
+        team_b: item.TeamBData.ID,
+        score_a: item.ScoreA,
+        score_b: item.ScoreB,
+        top: 16,
+        type: item.Type
+      })
+    })
+    // 东部 8强
+    secondEastTeam.value.map((item) => {
+      if (item.TeamAData) {
+        guess_data.push({
+          name_a: item.TeamAData.Name,
+          name_b: item.TeamBData.Name,
+          team_a: item.TeamAData.ID,
+          team_b: item.TeamBData.ID,
+          score_a: item.ScoreA,
+          score_b: item.ScoreB,
+          top: 8,
+          type: 1
+        })
+      }
+    })
+    // 西部 8强
+    secondWestTeam.value.map((item) => {
+      if (item.TeamAData) {
+        guess_data.push({
+          name_a: item.TeamAData.Name,
+          name_b: item.TeamBData.Name,
+          team_a: item.TeamAData.ID,
+          team_b: item.TeamBData.ID,
+          score_a: item.ScoreA,
+          score_b: item.ScoreB,
+          top: 8,
+          type: 2
+        })
+      }
+    })
+    // 东部 4强
+    if (thirdEastTeam.value.TeamAData) {
+      guess_data.push({
+        name_a: thirdEastTeam.value.TeamAData.Name,
+        name_b: thirdEastTeam.value.TeamBData.Name,
+        team_a: thirdEastTeam.value.TeamAData.ID,
+        team_b: thirdEastTeam.value.TeamBData.ID,
+        score_a: thirdEastTeam.value.ScoreA,
+        score_b: thirdEastTeam.value.ScoreB,
+        top: 4,
+        type: 1
+      })
+    }
+    // 西部 4强
+    if (thirdWestTeam.value.TeamAData) {
+      guess_data.push({
+        name_a: thirdWestTeam.value.TeamAData.Name,
+        name_b: thirdWestTeam.value.TeamBData.Name,
+        team_a: thirdWestTeam.value.TeamAData.ID,
+        team_b: thirdWestTeam.value.TeamBData.ID,
+        score_a: thirdWestTeam.value.ScoreA,
+        score_b: thirdWestTeam.value.ScoreB,
+        top: 8,
+        type: 2
+      })
+    }
+    // 决赛
+    if (FinalsTeam.value.TeamAData) {
+      guess_data.push({
+        name_a: FinalsTeam.value.TeamAData.Name,
+        name_b: FinalsTeam.value.TeamBData.Name,
+        team_a: FinalsTeam.value.TeamAData.ID,
+        team_b: FinalsTeam.value.TeamBData.ID,
+        score_a: FinalsTeam.value.ScoreA,
+        score_b: FinalsTeam.value.ScoreB,
+        top: 2,
+        type: 2
+      })
+    }
+
+    localStorage.setItem('sign', getSignData(JSON.stringify({ guess_data })))
+
     setUserGuess({
-      timestamp: new Date(),
-      sign: getSignData(JSON.stringify(teamList.value)),
-      guess_data: teamList.value
+      guess_data
     }).then((res) => {
       console.log(res)
     })

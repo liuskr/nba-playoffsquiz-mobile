@@ -31,7 +31,12 @@ service.interceptors.request.use(
     config.headers = {
       'Content-Type': 'application/json;charset=utf-8',
       Authorization: `Bearer ${token}`,
-      Origin: 'nba75th2.ihyx.net'
+      Origin: 'nba75th2.ihyx.net',
+    }
+    if(localStorageGet('sign')) {
+      config.headers.sign = localStorageGet('sign')
+      config.headers.timestamp = String(new Date().getTime()),
+      localStorageRemove('sign')
     }
     return config
   },
