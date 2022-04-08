@@ -71,4 +71,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import './index.scss';
+
+:deep(.van-overlay) {
+  height: 150%;
+}
 </style>

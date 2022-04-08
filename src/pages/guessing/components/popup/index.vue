@@ -76,10 +76,15 @@ const showInfo = computed(() => {
 const selectScore = (num, type) => {
   if (type === 'ScoreA') {
     ScoreA.value = num
-    console.log(num)
     ScoreB.value = 7 - num
+    if (7 - num > 4) {
+      ScoreB.value = 4
+    }
   } else {
     ScoreA.value = 7 - num
+    if (7 - num > 4) {
+      ScoreA.value = 4
+    }
     ScoreB.value = num
   }
   showListCount.value = false
@@ -123,4 +128,6 @@ export default defineComponent({
 :deep(.van-popup) {
   overflow-y: visible;
 }
+
+
 </style>
