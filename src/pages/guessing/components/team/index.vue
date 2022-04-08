@@ -371,7 +371,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, defineExpose } from 'vue'
+import { ref, onMounted } from 'vue'
 import { setUserGuess, getUserGuess } from '@apis'
 import { getSignData } from '@utils/crypto'
 

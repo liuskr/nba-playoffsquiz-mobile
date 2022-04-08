@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, defineEmits, computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const props = defineProps({ info: Object, show: Boolean })
 
@@ -128,6 +128,4 @@ export default defineComponent({
 :deep(.van-popup) {
   overflow-y: visible;
 }
-
-
 </style>
