@@ -58,11 +58,10 @@ const getTime = () => {
 }
 
 const teamView = ref(null)
+
 const submit = () => {
   teamView.value.submit() // 获取子组件对外暴露的属性
 }
-
-
 </script>
 
 <script lang="ts">

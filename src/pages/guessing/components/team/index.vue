@@ -477,6 +477,7 @@ const calculationEast = () => {
         obj.TeamBData = data
       }
     })
+
     // 东部
     if (index < 2) {
       secondEastTeam.value.push(obj)
@@ -485,10 +486,6 @@ const calculationEast = () => {
       secondWestTeam.value.push(obj)
     }
   }
-
-  console.log(secondEastTeam.value)
-
-  console.log(secondWestTeam.value)
 }
 
 // 计算晋级第三轮队伍
