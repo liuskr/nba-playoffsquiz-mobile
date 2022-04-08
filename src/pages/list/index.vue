@@ -4,6 +4,7 @@
       <div>
         <img src="/images/list_title.jpg" alt="" />
         <div class="share" @click="show = true" />
+        <div @click="$router.replace('/')" class="go-back"></div>
       </div>
       <div class="list-group">
         <div class="list-group-title">
