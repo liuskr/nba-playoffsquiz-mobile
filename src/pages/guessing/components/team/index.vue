@@ -147,60 +147,67 @@
       </div>
       <div class="team_2_block">
         <div class="line_l"></div>
-        <div class="team_4_2">
+        <div class="team_4_2" @click="showPopup(thirdEastTeam)">
           <div class="team_item">
-            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" />
+            <img class="team_logo" :src="thirdEastTeam.TeamAData.imgUrl" alt="" v-if="thirdEastTeam.TeamAData" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span class="text">?</span>
-              <!-- <span>4</span> -->
+              <span v-if="thirdEastTeam.TeamAData">{{ thirdEastTeam.TeamAData.Name }} {{ thirdEastTeam.ScoreA == null ? '?' : thirdEastTeam.ScoreA }}</span>
+              <span class="text" v-else>?</span>
             </div>
           </div>
           <div class="team_item">
-            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" />
+            <img class="team_logo" :src="thirdEastTeam.TeamBData.imgUrl" alt="" v-if="thirdEastTeam.TeamBData" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span class="text">?</span>
-              <!-- <span>4</span> -->
+              <span v-if="thirdEastTeam.TeamBData">{{ thirdEastTeam.TeamBData.Name }} {{ thirdEastTeam.ScoreB == null ? '?' : thirdEastTeam.ScoreB }}</span>
+              <span class="text" v-else>?</span>
             </div>
           </div>
         </div>
         <div class="line_r"></div>
       </div>
-      <div class="team_2_inline">
+      <div class="team_2_inline" @click="showPopup(FinalsTeam)">
         <div class="team_l">
-          <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
+          <img class="team_logo" :src="FinalsTeam.TeamAData.imgUrl" alt="" v-if="FinalsTeam.TeamAData" />
+          <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" v-else />
         </div>
         <div class="team_2_content">
           <div class="team_2_content_item">
-            <span class="name">?</span>
-            <!-- <span>4</span> -->
+            <span v-if="FinalsTeam.TeamAData">{{ FinalsTeam.TeamAData.Name }} {{ FinalsTeam.ScoreA == null ? '?' : FinalsTeam.ScoreA }}</span>
+            <span class="text" v-else>?</span>
           </div>
           <div class="trophy">
             <img src="@assets/images/jiangbei.png" alt="" />
           </div>
           <div class="team_2_content_item">
-            <span class="name">?</span>
-            <!-- <span>4</span> -->
+            <span v-if="FinalsTeam.TeamBData">{{ FinalsTeam.TeamBData.Name }} {{ FinalsTeam.ScoreB == null ? '?' : FinalsTeam.ScoreB }}</span>
+            <span class="text" v-else>?</span>
           </div>
         </div>
         <div class="team_r">
-          <img class="team_logo" src="@assets/images/card/2-kong.png" alt="" />
+           <img class="team_logo" :src="FinalsTeam.TeamBData.imgUrl" alt="" v-if="FinalsTeam.TeamBData" />
+          <img class="team_logo" src="@assets/images/card/2-kong.png" alt="" v-else/>
+
         </div>
       </div>
       <div class="team_2_block team_2_block_bottom">
         <div class="line_l"></div>
-        <div class="team_4_2">
+        <div class="team_4_2" @click="showPopup(thirdWestTeam)">
           <div class="team_item">
-            <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
+            <img class="team_logo" :src="thirdWestTeam.TeamAData.imgUrl" alt="" v-if="thirdWestTeam.TeamAData" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span class="text">?</span>
-              <!-- <span>4</span> -->
+              <span v-if="thirdWestTeam.TeamAData">{{ thirdWestTeam.TeamAData.Name }} {{ thirdWestTeam.ScoreA == null ? '?' : thirdWestTeam.ScoreA }}</span>
+              <span class="text" v-else>?</span>
             </div>
           </div>
           <div class="team_item">
-            <img class="team_logo" src="@assets/images/card/xi-kong.png" alt="" />
+            <img class="team_logo" :src="thirdWestTeam.TeamBData.imgUrl" alt="" v-if="thirdWestTeam.TeamBData" />
+            <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span class="text">?</span>
-              <!-- <span>4</span> -->
+              <span v-if="thirdWestTeam.TeamBData">{{ thirdWestTeam.TeamBData.Name }} {{ thirdWestTeam.ScoreB == null ? '?' : thirdWestTeam.ScoreB }}</span>
+              <span class="text" v-else>?</span>
             </div>
           </div>
         </div>
@@ -364,6 +371,11 @@ const popInfo = ref({})
 const secondEastTeam = ref([]) // 东部晋级第二轮队伍
 const secondWestTeam = ref([]) // 西部晋级第二轮队伍
 
+const thirdEastTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second' }) // 东部晋级第三轮队伍
+const thirdWestTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second' }) // 西部晋级第三轮队伍
+
+const FinalsTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'finals' }) // 总决赛队伍
+
 // 显示预测输入弹框
 const showPopup = (item) => {
   if (item.State == 2 || !item.TeamAData || !item.TeamBData) {
@@ -376,6 +388,19 @@ const showPopup = (item) => {
 // 关闭弹框 更新数据
 const close = (ScoreA, ScoreB) => {
   if (ScoreA !== undefined) {
+    // 第一轮
+    if (!popInfo.value.dataType) {
+      teamList.value.forEach((item) => {
+        if (item.ID == popInfo.value.ID) {
+          item.ScoreA = ScoreA
+          item.ScoreB = ScoreB
+          return item
+        }
+      })
+
+      calculationEast()
+    }
+    // 第二轮
     if (popInfo.value.dataType == 'second') {
       secondEastTeam.value.forEach((item) => {
         console.log(item)
@@ -393,16 +418,30 @@ const close = (ScoreA, ScoreB) => {
           return item
         }
       })
-    } else {
-      teamList.value.forEach((item) => {
-        if (item.ID == popInfo.value.ID) {
-          item.ScoreA = ScoreA
-          item.ScoreB = ScoreB
-          return item
-        }
-      })
 
-      calculationEast()
+      calculationthird()
+    }
+
+    // 第三轮
+    if (popInfo.value.dataType == 'third') {
+      if (thirdEastTeam.value.TeamAData && thirdEastTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
+        thirdEastTeam.value.ScoreA = ScoreA
+        thirdEastTeam.value.ScoreB = ScoreB
+      }
+      if (thirdWestTeam.value.TeamAData && thirdWestTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
+        thirdWestTeam.value.ScoreA = ScoreA
+        thirdWestTeam.value.ScoreB = ScoreB
+      }
+
+      calculationLast()
+    }
+
+    // 总决赛
+    if (popInfo.value.dataType == 'finals') {
+      if (FinalsTeam.value.TeamAData && FinalsTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
+        FinalsTeam.value.ScoreA = ScoreA
+        FinalsTeam.value.ScoreB = ScoreB
+      }
     }
   }
   popInfo.value = {}
@@ -451,6 +490,66 @@ const calculationEast = () => {
   console.log(secondWestTeam.value)
 }
 
+// 计算晋级第三轮队伍
+const calculationthird = () => {
+  thirdEastTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }
+  thirdWestTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }
+
+  for (let i = 0; i < secondEastTeam.value.length; i++) {
+    const item = secondEastTeam.value[i]
+    let data = null
+    if (Number(item.ScoreA) >= 4) {
+      data = item.TeamAData
+    }
+    if (Number(item.ScoreB) >= 4) {
+      data = item.TeamBData
+    }
+    if (i == 0) {
+      thirdEastTeam.value.TeamAData = data
+    } else {
+      thirdEastTeam.value.TeamBData = data
+    }
+  }
+
+  for (let i = 0; i < secondWestTeam.value.length; i++) {
+    const item = secondWestTeam.value[i]
+    let data = null
+    if (Number(item.ScoreA) >= 4) {
+      data = item.TeamAData
+    }
+    if (Number(item.ScoreB) >= 4) {
+      data = item.TeamBData
+    }
+    if (i == 0) {
+      thirdWestTeam.value.TeamAData = data
+    } else {
+      thirdWestTeam.value.TeamBData = data
+    }
+  }
+
+  console.log(thirdEastTeam.value)
+
+  console.log(thirdWestTeam.value)
+}
+
+// 计算总决赛队伍
+const calculationLast = () => {
+  console.log(thirdWestTeam.value)
+  FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'finals' }
+  if (Number(thirdEastTeam.value.ScoreA) >= 4) {
+    FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamAData
+  }
+  if (Number(thirdEastTeam.value.ScoreB) >= 4) {
+    FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamBData
+  }
+  if (Number(thirdWestTeam.value.ScoreA) >= 4) {
+    FinalsTeam.value.TeamBData = thirdWestTeam.value.TeamAData
+  }
+  if (Number(thirdWestTeam.value.ScoreB) >= 4) {
+    FinalsTeam.value.TeamBData = thirdWestTeam.value.TeamBData
+  }
+}
+
 onMounted(() => {
   getUserGuess().then(({ data }) => {
     if (data.Data.Games.length) {
@@ -467,6 +566,8 @@ onMounted(() => {
 
       // 计算第二轮晋级队伍
       calculationEast()
+
+      calculationthird()
     }
   })
 })
