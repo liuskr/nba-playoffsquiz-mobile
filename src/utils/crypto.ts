@@ -27,6 +27,6 @@ export const getSignData = (request: string): string => {
   const a = 'OigtUt',
     b = 'SkV4',
     c = 'hapDRd'
-  const encrypted = CryptoJS.MD5(`/api/guess${request}${a}${b}${c}${timestamp}`)
+  const encrypted = CryptoJS.MD5(`/api/guess{${request}}${a}${b}${c}${timestamp}`)
   return encrypted.toString()
 }
