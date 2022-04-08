@@ -374,7 +374,7 @@
 import { ref, onMounted } from 'vue'
 import { setUserGuess, getUserGuess } from '@apis'
 import { getSignData } from '@utils/crypto'
-
+import { Toast } from 'vant'
 import PopupView from '../popup/index.vue'
 
 const teamList = ref([]) // 战队
@@ -400,6 +400,7 @@ const showPopup = (item: {}) => {
 
 // 关闭弹框 更新数据
 const close = (ScoreA: null | undefined, ScoreB: null) => {
+  console.log(popInfo.value)
   if (ScoreA !== undefined) {
     // 第一轮
     if (!popInfo.value.dataType) {
@@ -416,8 +417,6 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
     // 第二轮
     if (popInfo.value.dataType == 'second') {
       secondEastTeam.value.forEach((item) => {
-        console.log(item)
-
         if (item.TeamAData && item.TeamAData.Name == popInfo.value.TeamAData.Name) {
           item.ScoreA = ScoreA
           item.ScoreB = ScoreB
@@ -440,10 +439,12 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
       if (thirdEastTeam.value.TeamAData && thirdEastTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
         thirdEastTeam.value.ScoreA = ScoreA
         thirdEastTeam.value.ScoreB = ScoreB
+        FinalsTeam.value.Type = popInfo.value.Type
       }
       if (thirdWestTeam.value.TeamAData && thirdWestTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
         thirdWestTeam.value.ScoreA = ScoreA
         thirdWestTeam.value.ScoreB = ScoreB
+        FinalsTeam.value.Type = popInfo.value.Type
       }
 
       calculationLast()
@@ -487,7 +488,7 @@ const calculationEast = () => {
         data.imgUrl = new URL(`../../../../assets/images/card/842/${data.Name}.png`, import.meta.url).href
         data.namelength = data.Name.length > 2
       }
-
+      obj.Type = item.Type
       if (key == 0) {
         obj.TeamAData = data
       } else {
@@ -523,7 +524,7 @@ const calculationthird = () => {
       data.imgUrl = new URL(`../../../../assets/images/card/842/${data.Name}.png`, import.meta.url).href
       data.nameAlength = data.Name.length > 2
     }
-
+    thirdEastTeam.value.Type = item.Type
     if (i == 0) {
       thirdEastTeam.value.TeamAData = data
     } else {
@@ -540,21 +541,18 @@ const calculationthird = () => {
     if (Number(item.ScoreB) >= 4) {
       data = item.TeamBData
     }
+    thirdWestTeam.value.Type = item.Type
     if (i == 0) {
       thirdWestTeam.value.TeamAData = data
     } else {
       thirdWestTeam.value.TeamBData = data
     }
   }
-
-  console.log(thirdEastTeam.value)
-
-  console.log(thirdWestTeam.value)
 }
 
 // 计算总决赛队伍
 const calculationLast = () => {
-  console.log(thirdWestTeam.value)
+  console.log(FinalsTeam.value)
   // FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'finals' }
   if (Number(thirdEastTeam.value.ScoreA) >= 4) {
     FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamAData
@@ -576,18 +574,19 @@ const calculationLast = () => {
     FinalsTeam.value.TeamBData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamBData.Name}.png`, import.meta.url).href
     FinalsTeam.value.TeamBData.namelength = FinalsTeam.value.TeamBData.Name.length > 2
   }
+  console.log(FinalsTeam.value)
 }
 
 defineExpose({
   // 提交比分
   submit() {
     const GuessData: Array<any> = []
-    console.log('东西部', teamList.value)
-    console.log('东部2', secondEastTeam.value)
-    console.log('西部2', secondWestTeam.value)
-    console.log('东部3', thirdEastTeam.value)
-    console.log('西部3', thirdWestTeam.value)
-    console.log('总决赛', FinalsTeam.value)
+    // console.log('东西部', teamList.value)
+    // console.log('东部2', secondEastTeam.value)
+    // console.log('西部2', secondWestTeam.value)
+    // console.log('东部3', thirdEastTeam.value)
+    // console.log('西部3', thirdWestTeam.value)
+    // console.log('总决赛', FinalsTeam.value)
 
     // 东西部 16强
     teamList.value.map((item) => {
@@ -597,8 +596,8 @@ defineExpose({
           TeamB: item.TeamBData.ID,
           ScoreA: item.ScoreA,
           ScoreB: item.ScoreB,
-          top: 16,
-          type: item.Type
+          Top: 16,
+          Type: item.Type
         })
       }
     })
@@ -610,8 +609,8 @@ defineExpose({
           TeamB: item.TeamBData.ID,
           ScoreA: item.ScoreA,
           ScoreB: item.ScoreB,
-          top: 8,
-          type: 1
+          Top: 8,
+          Type: item.Type
         })
       }
     })
@@ -623,8 +622,8 @@ defineExpose({
           TeamB: item.TeamBData.ID,
           ScoreA: item.ScoreA,
           ScoreB: item.ScoreB,
-          top: 8,
-          type: 2
+          Top: 8,
+          Type: item.Type
         })
       }
     })
@@ -635,8 +634,8 @@ defineExpose({
         TeamB: thirdEastTeam.value.TeamBData.ID,
         ScoreA: thirdEastTeam.value.ScoreA,
         ScoreB: thirdEastTeam.value.ScoreB,
-        top: 4,
-        type: 1
+        Top: 4,
+        Type: thirdEastTeam.value.Type
       })
     }
     // 西部 4强
@@ -646,8 +645,8 @@ defineExpose({
         TeamB: thirdWestTeam.value.TeamBData.ID,
         ScoreA: thirdWestTeam.value.ScoreA,
         ScoreB: thirdWestTeam.value.ScoreB,
-        top: 4,
-        type: 2
+        Top: 4,
+        Type: thirdWestTeam.value.Type
       })
     }
     // 决赛
@@ -657,17 +656,21 @@ defineExpose({
         TeamB: FinalsTeam.value.TeamBData.ID,
         ScoreA: FinalsTeam.value.ScoreA,
         ScoreB: FinalsTeam.value.ScoreB,
-        top: 2,
-        type: 2
+        Top: 2,
+        Type: FinalsTeam.value.Type
       })
     }
 
-    localStorage.setItem('sign', getSignData(JSON.stringify({ GuessData })))
+    if (GuessData.length > 16) {
+      Toast('请预测完成')
+      return
+    }
 
+    localStorage.setItem('sign', getSignData(JSON.stringify({ GuessData })))
     setUserGuess({
       GuessData
     }).then((res) => {
-      console.log(res)
+      Toast.success('提交成功')
     })
   }
 })

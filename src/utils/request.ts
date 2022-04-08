@@ -30,8 +30,7 @@ service.interceptors.request.use(
     const token = localStorageGet('token')
     config.headers = {
       'Content-Type': 'application/json;charset=utf-8',
-      Authorization: `Bearer ${token}`,
-      Origin: 'nba75th2.ihyx.net'
+      Authorization: `Bearer ${token}`
     }
     if (localStorageGet('sign')) {
       config.headers.sign = localStorageGet('sign')
