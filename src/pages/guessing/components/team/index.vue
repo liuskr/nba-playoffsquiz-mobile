@@ -466,11 +466,15 @@ const calculationEast = () => {
     element.map((item, key) => {
       let data = null
       if (Number(item.ScoreA) >= 4) {
-        data = item.TeamAData
+        data = JSON.parse(JSON.stringify(item.TeamAData))
       }
       if (Number(item.ScoreB) >= 4) {
-        data = item.TeamBData
+        data = JSON.parse(JSON.stringify(item.TeamBData))
       }
+      if (data && data.imgUrl) {
+        data.imgUrl = new URL(`../../../../assets/images/card/842/${data.Name}.png`, import.meta.url).href
+      }
+
       if (key == 0) {
         obj.TeamAData = data
       } else {
@@ -497,11 +501,15 @@ const calculationthird = () => {
     const item = secondEastTeam.value[i]
     let data = null
     if (Number(item.ScoreA) >= 4) {
-      data = item.TeamAData
+      data = JSON.parse(JSON.stringify(item.TeamAData))
     }
     if (Number(item.ScoreB) >= 4) {
-      data = item.TeamBData
+      data = JSON.parse(JSON.stringify(item.TeamBData))
     }
+    if (data && data.imgUrl) {
+      data.imgUrl = new URL(`../../../../assets/images/card/842/${data.Name}.png`, import.meta.url).href
+    }
+
     if (i == 0) {
       thirdEastTeam.value.TeamAData = data
     } else {
@@ -536,15 +544,19 @@ const calculationLast = () => {
   FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'finals' }
   if (Number(thirdEastTeam.value.ScoreA) >= 4) {
     FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamAData
+    FinalsTeam.value.TeamAData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamAData.Name}.png`, import.meta.url).href
   }
   if (Number(thirdEastTeam.value.ScoreB) >= 4) {
     FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamBData
+    FinalsTeam.value.TeamAData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamAData.Name}.png`, import.meta.url).href
   }
   if (Number(thirdWestTeam.value.ScoreA) >= 4) {
     FinalsTeam.value.TeamBData = thirdWestTeam.value.TeamAData
+    FinalsTeam.value.TeamBData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamBData.Name}.png`, import.meta.url).href
   }
   if (Number(thirdWestTeam.value.ScoreB) >= 4) {
     FinalsTeam.value.TeamBData = thirdWestTeam.value.TeamBData
+    FinalsTeam.value.TeamBData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamBData.Name}.png`, import.meta.url).href
   }
 }
 
