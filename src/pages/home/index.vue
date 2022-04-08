@@ -101,6 +101,7 @@ import { useRouter } from 'vue-router'
 import { localStorageGet } from '@utils/auth'
 import { getUserInfo } from '@apis'
 import Poster from '@components/Poster/index.vue'
+// import { getSignData } from '@utils/crypto'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
 const router = useRouter()
@@ -144,6 +145,7 @@ onMounted(async () => {
   getUserInfo()
     .then(({ data }) => {
       state.userInfo = data.User
+      // console.log(getSignData(''))
     })
     .catch(() => {
       state.userInfo = {
