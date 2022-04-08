@@ -551,17 +551,8 @@ const calculationLast = () => {
   }
 }
 
-// // 提交比分
-// const submit = () => {
-//   console.log('东西部', teamList.value)
-//   console.log('东部2', secondEastTeam.value)
-//   console.log('西部2', secondWestTeam.value)
-//   console.log('东部3', thirdEastTeam.value)
-//   console.log('西部3', thirdWestTeam.value)
-//   console.log('总决赛', FinalsTeam.value)
-// }
-
 defineExpose({
+  // 提交比分
   submit() {
     console.log('东西部', teamList.value)
     console.log('东部2', secondEastTeam.value)
@@ -572,8 +563,8 @@ defineExpose({
     setUserGuess({
       timestamp: new Date(),
       sign: getSignData(JSON.stringify(teamList.value)),
-      guess_data:teamList.value,
-    }).then(res => {
+      guess_data: teamList.value
+    }).then((res) => {
       console.log(res)
     })
   }
