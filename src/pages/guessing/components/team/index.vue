@@ -390,7 +390,7 @@ const thirdWestTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBDa
 const FinalsTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'finals' }) // 总决赛队伍
 
 // 显示预测输入弹框
-const showPopup = (item) => {
+const showPopup = (item: {}) => {
   if (item.State == 2 || !item.TeamAData || !item.TeamBData) {
     return
   }
@@ -399,7 +399,7 @@ const showPopup = (item) => {
 }
 
 // 关闭弹框 更新数据
-const close = (ScoreA, ScoreB) => {
+const close = (ScoreA: null | undefined, ScoreB: null) => {
   if (ScoreA !== undefined) {
     // 第一轮
     if (!popInfo.value.dataType) {
@@ -581,7 +581,7 @@ const calculationLast = () => {
 defineExpose({
   // 提交比分
   submit() {
-    const guess_data: Array<any> = []
+    const GuessData: Array<any> = []
     console.log('东西部', teamList.value)
     console.log('东部2', secondEastTeam.value)
     console.log('西部2', secondWestTeam.value)
@@ -592,13 +592,11 @@ defineExpose({
     // 东西部 16强
     teamList.value.map((item) => {
       if (item.TeamAData) {
-        guess_data.push({
-          name_a: item.TeamAData.Name,
-          name_b: item.TeamBData.Name,
-          team_a: item.TeamAData.ID,
-          team_b: item.TeamBData.ID,
-          score_a: item.ScoreA,
-          score_b: item.ScoreB,
+        GuessData.push({
+          TeamA: item.TeamAData.ID,
+          TeamB: item.TeamBData.ID,
+          ScoreA: item.ScoreA,
+          ScoreB: item.ScoreB,
           top: 16,
           type: item.Type
         })
@@ -607,13 +605,11 @@ defineExpose({
     // 东部 8强
     secondEastTeam.value.map((item) => {
       if (item.TeamAData) {
-        guess_data.push({
-          name_a: item.TeamAData.Name,
-          name_b: item.TeamBData.Name,
-          team_a: item.TeamAData.ID,
-          team_b: item.TeamBData.ID,
-          score_a: item.ScoreA,
-          score_b: item.ScoreB,
+        GuessData.push({
+          TeamA: item.TeamAData.ID,
+          TeamB: item.TeamBData.ID,
+          ScoreA: item.ScoreA,
+          ScoreB: item.ScoreB,
           top: 8,
           type: 1
         })
@@ -622,13 +618,11 @@ defineExpose({
     // 西部 8强
     secondWestTeam.value.map((item) => {
       if (item.TeamAData) {
-        guess_data.push({
-          name_a: item.TeamAData.Name,
-          name_b: item.TeamBData.Name,
-          team_a: item.TeamAData.ID,
-          team_b: item.TeamBData.ID,
-          score_a: item.ScoreA,
-          score_b: item.ScoreB,
+        GuessData.push({
+          TeamA: item.TeamAData.ID,
+          TeamB: item.TeamBData.ID,
+          ScoreA: item.ScoreA,
+          ScoreB: item.ScoreB,
           top: 8,
           type: 2
         })
@@ -636,75 +630,84 @@ defineExpose({
     })
     // 东部 4强
     if (thirdEastTeam.value.TeamAData) {
-      guess_data.push({
-        name_a: thirdEastTeam.value.TeamAData.Name,
-        name_b: thirdEastTeam.value.TeamBData.Name,
-        team_a: thirdEastTeam.value.TeamAData.ID,
-        team_b: thirdEastTeam.value.TeamBData.ID,
-        score_a: thirdEastTeam.value.ScoreA,
-        score_b: thirdEastTeam.value.ScoreB,
+      GuessData.push({
+        TeamA: thirdEastTeam.value.TeamAData.ID,
+        TeamB: thirdEastTeam.value.TeamBData.ID,
+        ScoreA: thirdEastTeam.value.ScoreA,
+        ScoreB: thirdEastTeam.value.ScoreB,
         top: 4,
         type: 1
       })
     }
     // 西部 4强
     if (thirdWestTeam.value.TeamAData) {
-      guess_data.push({
-        name_a: thirdWestTeam.value.TeamAData.Name,
-        name_b: thirdWestTeam.value.TeamBData.Name,
-        team_a: thirdWestTeam.value.TeamAData.ID,
-        team_b: thirdWestTeam.value.TeamBData.ID,
-        score_a: thirdWestTeam.value.ScoreA,
-        score_b: thirdWestTeam.value.ScoreB,
-        top: 8,
+      GuessData.push({
+        TeamA: thirdWestTeam.value.TeamAData.ID,
+        TeamB: thirdWestTeam.value.TeamBData.ID,
+        ScoreA: thirdWestTeam.value.ScoreA,
+        ScoreB: thirdWestTeam.value.ScoreB,
+        top: 4,
         type: 2
       })
     }
     // 决赛
     if (FinalsTeam.value.TeamAData) {
-      guess_data.push({
-        name_a: FinalsTeam.value.TeamAData.Name,
-        name_b: FinalsTeam.value.TeamBData.Name,
-        team_a: FinalsTeam.value.TeamAData.ID,
-        team_b: FinalsTeam.value.TeamBData.ID,
-        score_a: FinalsTeam.value.ScoreA,
-        score_b: FinalsTeam.value.ScoreB,
+      GuessData.push({
+        TeamA: FinalsTeam.value.TeamAData.ID,
+        TeamB: FinalsTeam.value.TeamBData.ID,
+        ScoreA: FinalsTeam.value.ScoreA,
+        ScoreB: FinalsTeam.value.ScoreB,
         top: 2,
         type: 2
       })
     }
 
-    localStorage.setItem('sign', getSignData(JSON.stringify({ guess_data })))
+    localStorage.setItem('sign', getSignData(JSON.stringify({ GuessData })))
 
     setUserGuess({
-      guess_data
+      GuessData
     }).then((res) => {
       console.log(res)
     })
   }
 })
 
+const setData = (data: { map: (arg0: (item: any) => any) => never[] }, initial) => {
+  teamList.value = data.map((item: any, index: number) => {
+    item.TeamAData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamAData.Name}.png`, import.meta.url).href
+    item.TeamBData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamBData.Name}.png`, import.meta.url).href
+    item.TeamAData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamAData.Name}.png`, import.meta.url).href
+    item.TeamBData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamBData.Name}.png`, import.meta.url).href
+    // 初始化未出结果比分为0
+    if (initial) {
+      item.ScoreA = item.State !== 1 ? item.ScoreA : 0
+      item.ScoreB = item.State !== 1 ? item.ScoreB : 0
+    } else {
+      item.ID = index + 1
+    }
+    item.nameAlength = item.TeamAData.Name.length > 2
+    item.nameBlength = item.TeamBData.Name.length > 2
+    return item
+  })
+}
+
+// 判断是是否对象
+const isObject = (obj: null) => {
+  return obj !== null && typeof obj === 'object'
+}
+
 onMounted(() => {
   getUserGuess().then(({ data }) => {
-    if (data.Data.Games.length) {
-      console.log(data.Data.Games)
-      teamList.value = data.Data.Games.map((item: any) => {
-        item.TeamAData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamAData.Name}.png`, import.meta.url).href
-        item.TeamBData.imgUrl = new URL(`../../../../assets/images/card/${item.TeamBData.Name}.png`, import.meta.url).href
-        item.TeamAData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamAData.Name}.png`, import.meta.url).href
-        item.TeamBData.popimgUrl = new URL(`../../../../assets/images/pop/${item.TeamBData.Name}.png`, import.meta.url).href
-        item.nameAlength = item.TeamAData.Name.length > 2
-        item.nameBlength = item.TeamBData.Name.length > 2
-        return item
-      })
-
-      // 计算晋级队伍
-      calculationEast()
-
-      calculationthird()
-
-      calculationLast()
+    if (isObject(data.Data.GuessRecord)) {
+      setData(data.Data.GuessRecord.GuessDetail, false)
+    } else {
+      setData(data.Data.Games, true)
     }
+    calculationEast()
+
+    calculationthird()
+
+    calculationLast()
   })
 })
 </script>

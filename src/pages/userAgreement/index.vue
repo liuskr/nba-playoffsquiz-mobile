@@ -6,15 +6,10 @@
 </template>
 <script lang="ts" setup>
 const text = `
-<p><strong><strong>《NBA</strong></strong><strong><strong>21-22</strong></strong><strong><strong>赛季季后赛比分竞猜》活动规则：</strong></strong></p>
-
-<p>&nbsp;</p>
 
 <p><strong><strong>1、活动主办方与活动平台</strong></strong></p>
 
 <p>1.1&nbsp;活动主办方：NBA体育文化发展（北京）有限责任公司(&ldquo;NBA中国&rdquo;)&nbsp;</p>
-
-<p>&nbsp;</p>
 
 <p>1.2&nbsp;活动平台:&nbsp;&ldquo;NBA会员&rdquo;微信小程序/&nbsp;NBA APP</p>
 
@@ -73,7 +68,7 @@ const text = `
 
 <p>&nbsp;</p>
 
-<p>一等奖（1名），奖金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10000元</p>
+<p>一等奖（1名），奖金10000元</p>
 
 <p>二等奖（1名），奖金5000元</p>
 

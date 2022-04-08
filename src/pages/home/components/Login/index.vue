@@ -93,7 +93,7 @@ export default defineComponent({
       if (state.showTimmer) return
       if (!getIsPhone()) return
       if (!state.checked) {
-        Toast({ message: '请勾选用户须知', duration: 1500 })
+        Toast({ message: '请勾选并阅读活动规则', duration: 1500 })
         return
       }
       await getVerificationCode({ phone: state.phone })
