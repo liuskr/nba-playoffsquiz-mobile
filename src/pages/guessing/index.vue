@@ -80,6 +80,6 @@ export default defineComponent({
 @import './index.scss';
 
 :deep(.van-overlay) {
-  height: 150%;
+  transform: scale(1.6);
 }
 </style>

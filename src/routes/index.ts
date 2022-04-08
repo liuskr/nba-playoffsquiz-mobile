@@ -35,7 +35,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to: _RouteLocationBase, from: unknown, next) => {
-  document.title = 'NBA2022季后赛竞猜'
+  document.title = '2021-2022赛季季后赛竞猜'
   const hasToken = localStorageGet('token')
   const whiteList: string[] = ['/', '/useragreement']
   if (whiteList.indexOf(to.path) !== -1) {

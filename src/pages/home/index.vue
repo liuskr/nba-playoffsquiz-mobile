@@ -12,11 +12,11 @@
         <div replace class="mainbody-item" :class="{ delayanimat: isLoading }" @click="onJump(1)">
           <img src="/images/home_2.png" alt="" />
         </div>
-        <div class="mainbody-item" :class="{ delayanimat: isLoading }" @click="status.guideShow = true">
-          <img src="/images/home_3.png" alt="" />
-        </div>
         <div class="mainbody-item" :class="{ delayanimat: isLoading }" @click="status.prizeShow = true">
           <img src="/images/home_4.png" alt="" />
+        </div>
+        <div class="mainbody-item" :class="{ delayanimat: isLoading }" @click="status.guideShow = true">
+          <img src="/images/home_3.png" alt="" />
         </div>
       </div>
     </main>
@@ -101,6 +101,7 @@ import { useRouter } from 'vue-router'
 import { localStorageGet } from '@utils/auth'
 import { getUserInfo } from '@apis'
 import Poster from '@components/Poster/index.vue'
+// import { getSignData } from '@utils/crypto'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
 const router = useRouter()
@@ -144,6 +145,7 @@ onMounted(async () => {
   getUserInfo()
     .then(({ data }) => {
       state.userInfo = data.User
+      // console.log(getSignData(''))
     })
     .catch(() => {
       state.userInfo = {
