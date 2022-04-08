@@ -439,12 +439,10 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
       if (thirdEastTeam.value.TeamAData && thirdEastTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
         thirdEastTeam.value.ScoreA = ScoreA
         thirdEastTeam.value.ScoreB = ScoreB
-        FinalsTeam.value.Type = popInfo.value.Type
       }
       if (thirdWestTeam.value.TeamAData && thirdWestTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
         thirdWestTeam.value.ScoreA = ScoreA
         thirdWestTeam.value.ScoreB = ScoreB
-        FinalsTeam.value.Type = popInfo.value.Type
       }
 
       calculationLast()
@@ -488,7 +486,7 @@ const calculationEast = () => {
         data.imgUrl = new URL(`../../../../assets/images/card/842/${data.Name}.png`, import.meta.url).href
         data.namelength = data.Name.length > 2
       }
-      obj.Type = item.Type
+
       if (key == 0) {
         obj.TeamAData = data
       } else {
@@ -524,7 +522,7 @@ const calculationthird = () => {
       data.imgUrl = new URL(`../../../../assets/images/card/842/${data.Name}.png`, import.meta.url).href
       data.nameAlength = data.Name.length > 2
     }
-    thirdEastTeam.value.Type = item.Type
+
     if (i == 0) {
       thirdEastTeam.value.TeamAData = data
     } else {
@@ -541,7 +539,7 @@ const calculationthird = () => {
     if (Number(item.ScoreB) >= 4) {
       data = item.TeamBData
     }
-    thirdWestTeam.value.Type = item.Type
+
     if (i == 0) {
       thirdWestTeam.value.TeamAData = data
     } else {
@@ -610,7 +608,7 @@ defineExpose({
           ScoreA: item.ScoreA,
           ScoreB: item.ScoreB,
           Top: 8,
-          Type: item.Type
+          Type: 1
         })
       }
     })
@@ -623,7 +621,7 @@ defineExpose({
           ScoreA: item.ScoreA,
           ScoreB: item.ScoreB,
           Top: 8,
-          Type: item.Type
+          Type: 2
         })
       }
     })
@@ -635,7 +633,7 @@ defineExpose({
         ScoreA: thirdEastTeam.value.ScoreA,
         ScoreB: thirdEastTeam.value.ScoreB,
         Top: 4,
-        Type: thirdEastTeam.value.Type
+        Type: 1
       })
     }
     // 西部 4强
@@ -646,7 +644,7 @@ defineExpose({
         ScoreA: thirdWestTeam.value.ScoreA,
         ScoreB: thirdWestTeam.value.ScoreB,
         Top: 4,
-        Type: thirdWestTeam.value.Type
+        Type: 2
       })
     }
     // 决赛
@@ -657,7 +655,7 @@ defineExpose({
         ScoreA: FinalsTeam.value.ScoreA,
         ScoreB: FinalsTeam.value.ScoreB,
         Top: 2,
-        Type: FinalsTeam.value.Type
+        Type: 2
       })
     }
 
