@@ -384,8 +384,8 @@ const popInfo = ref({})
 const secondEastTeam = ref([]) // 东部晋级第二轮队伍
 const secondWestTeam = ref([]) // 西部晋级第二轮队伍
 
-const thirdEastTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second' }) // 东部晋级第三轮队伍
-const thirdWestTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second' }) // 西部晋级第三轮队伍
+const thirdEastTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }) // 东部晋级第三轮队伍
+const thirdWestTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }) // 西部晋级第三轮队伍
 
 const FinalsTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'finals' }) // 总决赛队伍
 
@@ -507,8 +507,8 @@ const calculationEast = () => {
 
 // 计算晋级第三轮队伍
 const calculationthird = () => {
-  thirdEastTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }
-  thirdWestTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }
+  // thirdEastTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }
+  // thirdWestTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }
 
   for (let i = 0; i < secondEastTeam.value.length; i++) {
     const item = secondEastTeam.value[i]
@@ -555,7 +555,7 @@ const calculationthird = () => {
 // 计算总决赛队伍
 const calculationLast = () => {
   console.log(thirdWestTeam.value)
-  FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'finals' }
+  // FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'finals' }
   if (Number(thirdEastTeam.value.ScoreA) >= 4) {
     FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamAData
     FinalsTeam.value.TeamAData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamAData.Name}.png`, import.meta.url).href
