@@ -2,20 +2,19 @@
   position: relative;
   // padding: 50px 30px;
   background: url('/images/guessing_bg.jpg') no-repeat;
-  background-size: 100% 100%;
-  min-height: 100vh;
+  background-size: 100% ;
+  // min-height: 100vh;
   overflow: hidden;
+  // min-height: calc(100vh - 400px);
   // background-color: #000;
+  height:-webkit-fill-available;
   .header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
     width: 100%;
     height: 180px;
-
     color: #535355;
-
     background: url('/images/timi.png') no-repeat;
     background-size: 100% 100%;
 
@@ -27,12 +26,9 @@
       padding-top: 45px;
       padding-left: 16px;
       text-align: center;
-
       font-family: $font-zhengdao;
       font-size: 26px;
-
       box-sizing: border-box;
-
       img {
         width: 50px;
         height: 30px;
@@ -41,16 +37,12 @@
     .countdown {
       flex: 1;
       height: 140px;
-
       font-size: 46px;
       font-family: $font-nba;
-
       margin-top: 20px;
       padding: 0 20px;
       padding-top: 32px;
-
       box-sizing: border-box;
-
       .end_time {
         display: flex;
         justify-content: space-between;
@@ -94,12 +86,12 @@
 
   .result-wrap {
     padding: 0 15px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     .content {
       display: flex;
       width: 100%;
-      height: 113px;
-      line-height: 113px;
+      height: 80px;
+      align-items: center;
       box-sizing: border-box;
       padding-left: 23px;
       font-size: 40px;
@@ -111,13 +103,12 @@
 
       p {
         position: relative;
-        width: 144px;
+        width: 130px;
         margin: 0 22px;
-
         .logo {
           position: absolute;
-          top: -17px;
-          width: 144px;
+          top: -50px;
+          width: 90px;
           height: auto;
         }
       }
@@ -131,7 +122,7 @@
     margin-top: 10px;
     width: 880px;
     transform: scale(0.85);
-    transform-origin: 0 0;
+    transform-origin: 0 -120px;
     z-index: 2;
   }
 
@@ -160,29 +151,31 @@
   }
   .submit {
     position: absolute;
-    top: 1333px;
-    right: 32px;
-    z-index: 0;
-
-    &.edit {
-      top: 1475px;
-    }
-    .btn {
-      float: right;
+    
+    // top: 1300px;
+    // right: 32px;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    z-index: 20;
+    background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+    // &.edit {
+    //   top: 1475px;
+    // }
+    .btn { 
+      position: absolute;
+      top: 40px;
+      right: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-
       width: 160px;
       height: 80px;
       font-family: $font-ximai;
       font-size: 34px;
       color: #fff;
-      // margin-right: 56px;
-      // margin-bottom: 51px;
-
       background: url('../../assets/images/btn_bg.png');
-
       background-size: 100% 100%;
     }
   }
