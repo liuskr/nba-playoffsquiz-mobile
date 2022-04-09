@@ -616,7 +616,6 @@ defineExpose({
   // 提交比分
   submit() {
     const GuessData: Array<any> = []
-
     // 东西部 16强
     teamList.value.map((item) => {
       if (item.TeamAData && item.TeamBData && item.Top == 16) {
@@ -630,6 +629,8 @@ defineExpose({
         })
       }
     })
+
+
     // 东部 8强
     secondEastTeam.value.map((item) => {
       if (item.TeamAData && item.TeamBData) {
@@ -781,11 +782,6 @@ onMounted(() => {
     } else {
       setData(data.Data.Games, true)
     }
-    // calculationEast(null, true)
-
-    // calculationthird()
-
-    // calculationLast()
   })
 })
 </script>
