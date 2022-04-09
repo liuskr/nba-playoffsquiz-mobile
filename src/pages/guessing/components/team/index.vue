@@ -381,8 +381,14 @@ const teamList = ref([]) // 战队
 const showPop = ref(false)
 const popInfo = ref({})
 
-const secondEastTeam = ref([]) // 东部晋级第二轮队伍
-const secondWestTeam = ref([]) // 西部晋级第二轮队伍
+const secondEastTeam = ref([
+  { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second', nameAlength: false, nameBlength: false },
+  { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second', nameAlength: false, nameBlength: false }
+]) // 东部晋级第二轮队伍
+const secondWestTeam = ref([
+  { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second', nameAlength: false, nameBlength: false },
+  { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'second', nameAlength: false, nameBlength: false }
+]) // 西部晋级第二轮队伍
 
 const thirdEastTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }) // 东部晋级第三轮队伍
 const thirdWestTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, dataType: 'third' }) // 西部晋级第三轮队伍
@@ -400,7 +406,6 @@ const showPopup = (item: {}) => {
 
 // 关闭弹框 更新数据
 const close = (ScoreA: null | undefined, ScoreB: null) => {
-  console.log(popInfo.value)
   if (ScoreA !== undefined) {
     // 第一轮
     if (!popInfo.value.dataType) {
@@ -408,11 +413,12 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
         if (item.ID == popInfo.value.ID) {
           item.ScoreA = ScoreA
           item.ScoreB = ScoreB
+
           return item
         }
       })
 
-      calculationEast()
+      calculationEast(popInfo.value)
     }
     // 第二轮
     if (popInfo.value.dataType == 'second') {
@@ -461,15 +467,17 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
 }
 
 // 计算晋级第二轮队伍
-const calculationEast = () => {
-  secondEastTeam.value = []
-  secondWestTeam.value = []
+const calculationEast = (info = null) => {
+  // secondEastTeam.value = []
+  // secondWestTeam.value = []
 
   // 切割，两个为一组
   const list = []
   for (let i = 0; i < teamList.value.length; i += 2) {
     list.push(teamList.value.slice(i, i + 2))
   }
+
+  let changeKey = null
 
   for (let index = 0; index < list.length; index++) {
     const element = list[index]
@@ -487,6 +495,11 @@ const calculationEast = () => {
         data.namelength = data.Name.length > 2
       }
 
+      if (data && item.TeamAData.ID == info.TeamAData.ID) {
+        changeKey = index
+        console.log('test--', changeKey)
+      }
+
       if (key == 0) {
         obj.TeamAData = data
       } else {
@@ -494,12 +507,25 @@ const calculationEast = () => {
       }
     })
 
-    // 东部
-    if (index < 2) {
-      secondEastTeam.value.push(obj)
-    } else {
-      // 西部
-      secondWestTeam.value.push(obj)
+    if (changeKey !== null) {
+      console.log(changeKey)
+       // 东部
+      if (changeKey < 2) {
+        secondEastTeam.value[changeKey] = obj
+        changeKey = null
+      } else {
+        // 西部
+        secondWestTeam.value[changeKey - 2] = obj
+        changeKey = null
+      }
+    } else if(!info){
+      // 东部
+      if (index < 2) {
+        secondEastTeam.value[index] = obj
+      } else {
+        // 西部
+        secondWestTeam.value[index - 2] = obj
+      }
     }
   }
 }
