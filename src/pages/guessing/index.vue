@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <header class="header" @click="toImg">
+    <header class="header">
       <div class="go_back">
         <div @click="$router.replace('/')">返回</div>
       </div>
@@ -157,7 +157,7 @@ const synthesisImg = (width, height, url) => {
     let teamImg = new Image()
     teamImg.src = url
     teamImg.onload = () => {
-      context.drawImage(teamImg, 0, 30, width, height)
+      context.drawImage(teamImg, 30, 60, width - 60, height)
 
       let img = new Image()
       img.src = new URL(`../../assets/images/code.jpg`, import.meta.url).href // 二维码
