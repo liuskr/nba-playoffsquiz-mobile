@@ -215,8 +215,9 @@
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
               <span v-if="thirdWestTeam.TeamAData" :class="{ special: thirdWestTeam.TeamAData.namelength }"
-                >{{ thirdWestTeam.TeamAData.Name }} {{ Number(thirdWestTeam.ScoreA) }}</span
-              >
+                >{{ thirdWestTeam.TeamAData.Name }}
+                <span> {{ Number(thirdWestTeam.ScoreA) }}</span>
+              </span>
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -225,8 +226,9 @@
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
               <span v-if="thirdWestTeam.TeamBData" :class="{ special: thirdWestTeam.TeamBData.namelength }"
-                >{{ thirdWestTeam.TeamBData.Name }} {{ Number(thirdWestTeam.ScoreB) }}</span
-              >
+                >{{ thirdWestTeam.TeamBData.Name }}
+                <span>{{ Number(thirdWestTeam.ScoreB) }}</span>
+              </span>
               <span class="text" v-else>?</span>
             </div>
           </div>
