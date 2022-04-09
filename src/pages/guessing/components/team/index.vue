@@ -162,7 +162,7 @@
             <div class="team_name">
               <span v-if="thirdEastTeam.TeamAData" :class="{ special: thirdEastTeam.TeamAData.namelength }"
                 >{{ thirdEastTeam.TeamAData.Name }}
-                <span> {{ Number(TeamAData.ScoreA) }}</span>
+                <span> {{ Number(thirdEastTeam.ScoreA) }}</span>
               </span>
               <span class="text" v-else>?</span>
             </div>
@@ -172,7 +172,7 @@
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
               <span v-if="thirdEastTeam.TeamBData" :class="{ special: thirdEastTeam.TeamBData.namelength }"
-                >{{ thirdEastTeam.TeamBData.Name }} <span> {{ Number(TeamAData.ScoreB) }}</span></span
+                >{{ thirdEastTeam.TeamBData.Name }} <span> {{ Number(thirdEastTeam.ScoreB) }}</span></span
               >
               <span class="text" v-else>?</span>
             </div>
@@ -399,15 +399,15 @@ const showPop = ref(false)
 const popInfo = ref({})
 
 const secondEastTeam = ref([
-  { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
-  { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
-]) // 东部晋级第二轮队伍
+  // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
+  // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
+]) // 东部8强队伍
 const secondWestTeam = ref([
-  { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
-  { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
-]) // 西部晋级第二轮队伍
+  // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
+  // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
+]) // 西部8强队伍
 
-const thirdEastTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }) // 东部晋级第三轮队伍
+const thirdEastTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }) // 东部4强队伍
 const thirdWestTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }) // 西部晋级第三轮队伍
 
 const FinalsTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 2 }) // 总决赛队伍
@@ -484,10 +484,7 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
 }
 
 // 计算晋级第二轮队伍
-const calculationEast = (info = null) => {
-  // secondEastTeam.value = []
-  // secondWestTeam.value = []
-
+const calculationEast = (info = null, initialize = false) => {
   // 切割，两个为一组
   const list = []
   for (let i = 0; i < teamList.value.length; i += 2) {
@@ -514,7 +511,6 @@ const calculationEast = (info = null) => {
 
       if (data && item && info && item.TeamAData.ID == info.TeamAData.ID) {
         changeKey = index
-        console.log('test--', changeKey)
       }
 
       if (key == 0) {
@@ -524,8 +520,8 @@ const calculationEast = (info = null) => {
       }
     })
 
+    // 更改指定队伍数据
     if (changeKey !== null) {
-      console.log(changeKey)
       // 东部
       if (changeKey < 2) {
         secondEastTeam.value[changeKey] = obj
@@ -535,23 +531,21 @@ const calculationEast = (info = null) => {
         secondWestTeam.value[changeKey - 2] = obj
         changeKey = null
       }
-    } else if (!info) {
-      // 东部
-      if (index < 2) {
-        secondEastTeam.value[index] = obj
-      } else {
-        // 西部
-        secondWestTeam.value[index - 2] = obj
-      }
     }
+    //  else if (!info && initialize) {  // 初始化数据
+    //   // 东部
+    //   if (index < 2) {
+    //     secondEastTeam.value[index] = obj
+    //   } else {
+    //     // 西部
+    //     secondWestTeam.value[index - 2] = obj
+    //   }
+    // }
   }
 }
 
 // 计算晋级第三轮队伍
 const calculationthird = () => {
-  // thirdEastTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }
-  // thirdWestTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }
-
   for (let i = 0; i < secondEastTeam.value.length; i++) {
     const item = secondEastTeam.value[i]
     let data = null
@@ -622,12 +616,6 @@ defineExpose({
   // 提交比分
   submit() {
     const GuessData: Array<any> = []
-    // console.log('东西部', teamList.value)
-    // console.log('东部2', secondEastTeam.value)
-    // console.log('西部2', secondWestTeam.value)
-    // console.log('东部3', thirdEastTeam.value)
-    // console.log('西部3', thirdWestTeam.value)
-    // console.log('总决赛', FinalsTeam.value)
 
     // 东西部 16强
     teamList.value.map((item) => {
@@ -673,8 +661,8 @@ defineExpose({
       GuessData.push({
         TeamA: thirdEastTeam.value.TeamAData.ID,
         TeamB: thirdEastTeam.value.TeamBData.ID,
-        ScoreA: thirdEastTeam.value.ScoreA,
-        ScoreB: thirdEastTeam.value.ScoreB,
+        ScoreA: Number(thirdEastTeam.value.ScoreA),
+        ScoreB: Number(thirdEastTeam.value.ScoreB),
         Top: 4,
         Type: 1
       })
@@ -734,7 +722,50 @@ const setData = (data: { map: (arg0: (item: any) => any) => never[] }, initial) 
     return item
   })
 
-  console.log('aaa--', teamList.value)
+  for (let i = 0; i < teamList.value.length; i++) {
+    let item = teamList.value[i]
+
+    if (item.Top != 16) {
+      item.TeamAData.imgUrl = new URL(`../../../../assets/images/card/842/${item.TeamAData.Name}.png`, import.meta.url).href
+      item.TeamBData.imgUrl = new URL(`../../../../assets/images/card/842/${item.TeamBData.Name}.png`, import.meta.url).href
+    }
+    // 东部8强
+    if (item.Type == 1 && item.Top == 8) {
+      secondEastTeam.value.push(item)
+    }
+    // 西部8强
+    if (item.Type == 2 && item.Top == 8) {
+      secondWestTeam.value.push(item)
+    }
+    // 东部4强
+    if (item.Type == 1 && item.Top == 4) {
+      thirdEastTeam.value = item
+    }
+    // 西部4强
+    if (item.Type == 2 && item.Top == 8) {
+      thirdWestTeam.value = item
+    }
+    // 决赛
+    if (item.Top == 2) {
+      FinalsTeam.value = item
+    }
+  }
+
+  // 原始空数据
+  if (!secondEastTeam.value.length) {
+    secondEastTeam.value = [
+      { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
+      { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
+    ]
+  }
+  if (!secondWestTeam.value.length) {
+    secondWestTeam.value = [
+      { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
+      { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
+    ]
+  }
+
+  console.log('aaa--', thirdEastTeam.value)
 }
 
 // 判断是是否对象
@@ -749,11 +780,11 @@ onMounted(() => {
     } else {
       setData(data.Data.Games, true)
     }
-    calculationEast()
+    // calculationEast(null, true)
 
-    calculationthird()
+    // calculationthird()
 
-    calculationLast()
+    // calculationLast()
   })
 })
 </script>
