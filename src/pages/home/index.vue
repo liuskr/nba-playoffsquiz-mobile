@@ -145,7 +145,6 @@ onMounted(async () => {
   getUserInfo()
     .then(({ data }) => {
       state.userInfo = data.User
-      // console.log(getSignData(''))
     })
     .catch(() => {
       state.userInfo = {

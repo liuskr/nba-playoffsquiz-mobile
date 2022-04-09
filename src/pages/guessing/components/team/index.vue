@@ -131,7 +131,10 @@
             <img class="team_logo" :src="item.TeamAData.imgUrl" alt="" v-if="item.TeamAData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }">{{ item.TeamAData.Name }} {{ Number(item.ScoreA) }}</span>
+              <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }"
+                >{{ item.TeamAData.Name }}
+                <span> {{ Number(item.ScoreA) }}</span>
+              </span>
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -139,7 +142,12 @@
             <img class="team_logo" :src="item.TeamBData.imgUrl" alt="" v-if="item.TeamBData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamBData" :class="{ special: item.TeamBData.namelength }">{{ item.TeamBData.Name }} {{ Number(item.ScoreB) }}</span>
+              <span v-if="item.TeamBData" :class="{ special: item.TeamBData.namelength }">
+                {{ item.TeamBData.Name }}
+                <span>
+                  {{ Number(item.ScoreB) }}
+                </span></span
+              >
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -153,8 +161,9 @@
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
               <span v-if="thirdEastTeam.TeamAData" :class="{ special: thirdEastTeam.TeamAData.namelength }"
-                >{{ thirdEastTeam.TeamAData.Name }} {{ Number(thirdEastTeam.ScoreA) }}</span
-              >
+                >{{ thirdEastTeam.TeamAData.Name }}
+                <span> {{ Number(TeamAData.ScoreA) }}</span>
+              </span>
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -163,7 +172,7 @@
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
               <span v-if="thirdEastTeam.TeamBData" :class="{ special: thirdEastTeam.TeamBData.namelength }"
-                >{{ thirdEastTeam.TeamBData.Name }} {{ Number(thirdEastTeam.ScoreB) }}</span
+                >{{ thirdEastTeam.TeamBData.Name }} <span> {{ Number(TeamAData.ScoreB) }}</span></span
               >
               <span class="text" v-else>?</span>
             </div>
@@ -179,7 +188,7 @@
         <div class="team_2_content">
           <div class="team_2_content_item">
             <span v-if="FinalsTeam.TeamAData" :class="{ special: FinalsTeam.TeamAData.namelength }"
-              >{{ FinalsTeam.TeamAData.Name }} {{ Number(FinalsTeam.ScoreA) }}</span
+              >{{ FinalsTeam.TeamAData.Name }} <span>{{ Number(FinalsTeam.ScoreA) }}</span></span
             >
             <span class="text" v-else>?</span>
           </div>
@@ -188,7 +197,7 @@
           </div>
           <div class="team_2_content_item">
             <span v-if="FinalsTeam.TeamBData" :class="{ special: FinalsTeam.TeamBData.namelength }"
-              >{{ FinalsTeam.TeamBData.Name }} {{ Number(FinalsTeam.ScoreB) }}</span
+              >{{ FinalsTeam.TeamBData.Name }}<span> {{ Number(FinalsTeam.ScoreB) }}</span></span
             >
             <span class="text" v-else>?</span>
           </div>
@@ -230,7 +239,10 @@
             <img class="team_logo" :src="item.TeamAData.imgUrl" alt="" v-if="item.TeamAData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }">{{ item.TeamAData.Name }} {{ Number(item.ScoreA) }}</span>
+              <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }"
+                >{{ item.TeamAData.Name }}
+                <span>{{ Number(item.ScoreA) }}</span>
+              </span>
               <span class="text" v-else>?</span>
             </div>
           </div>
@@ -238,7 +250,10 @@
             <img class="team_logo" :src="item.TeamBData.imgUrl" alt="" v-if="item.TeamBData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
-              <span v-if="item.TeamBData" :class="{ special: item.TeamBData.namelength }">{{ item.TeamBData.Name }} {{ Number(item.ScoreB) }}</span>
+              <span v-if="item.TeamBData" :class="{ special: item.TeamBData.namelength }"
+                >{{ item.TeamBData.Name }}
+                <span>{{ Number(item.ScoreB) }}</span>
+              </span>
               <span class="text" v-else>?</span>
             </div>
           </div>

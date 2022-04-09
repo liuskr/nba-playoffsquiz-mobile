@@ -70,12 +70,12 @@
               justify-content: space-between;
             }
             .special{
-             
               padding-left: 4px;
-              // padding-bottom: 12px;
-               line-height: 22px;
+              line-height: 22px;
               font-size: 26px;
-             
+              span{
+                font-size: 30px !important;
+              }
             }
 
             .vs {
@@ -179,9 +179,12 @@
 
             .special {
               padding-left: 4px;
-              // padding-bottom: 12px;
+              margin-right: 10px;
               line-height: 22px;
               font-size: 24px;
+              span{
+                font-size: 30px;
+              }
             }
           }
         }
