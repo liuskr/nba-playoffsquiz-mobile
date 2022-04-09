@@ -151,7 +151,6 @@ const synthesisImg = (width, height, url) => {
     img.onload = () => {
       context.drawImage(img, width - 200, height - 170, 150, 150)
       let base64 = canvas.toDataURL('image/png')
-      console.log(base64) // 这个就是合成后的图片链接，如果需要上传请查看我另外的文章
       let a = document.createElement('a')
       a.setAttribute('href', base64)
       //这块是保存图片操作  可以设置保存的图片的信息

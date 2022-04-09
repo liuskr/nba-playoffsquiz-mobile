@@ -18,6 +18,9 @@
     height: 50px;
   }
   .list {
+    img {
+      width: 100%;
+    }
     &-group {
       min-height: 80vh;
       width: 650px;
