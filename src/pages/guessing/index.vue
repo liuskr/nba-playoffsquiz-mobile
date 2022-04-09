@@ -37,15 +37,13 @@
     </div>
     <!-- <div class="logo_bg"></div> -->
     <div class="race"></div>
-    <div class="submit edit" v-if="resultInfo && resultInfo.Name">
-      <div class="btn">
-        <span @click="edit">修改</span>
+    <div class="submit">
+      <div class="logo">
+        <img src="/images/guess_logo.png" alt="" />
       </div>
-    </div>
-
-    <div class="submit" v-else>
       <div class="btn">
-        <span @click="submit">提交</span>
+        <span @click="submit" v-if="resultInfo && resultInfo.Name">提交</span>
+        <span @click="edit" v-else>修改</span>
       </div>
     </div>
   </div>
