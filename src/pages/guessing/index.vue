@@ -39,8 +39,12 @@
 
 <script lang="ts" setup>
 import TeamView from './components/team/index.vue'
-import { ref } from 'vue'
-const time = ref(30 * 60 * 60 * 1000)
+import { ref, onMounted } from 'vue'
+import { Toast } from 'vant'
+
+import { getGuessIndex } from '@apis'
+const time = ref()
+
 // 年月日
 const getDate = () => {
   const date = new Date()
@@ -56,16 +60,32 @@ const getTime = () => {
   const minute = date.getMinutes()
   return `${hour}:${minute < 10 ? `0${minute}` : minute}`
 }
-// 倒计时
-// const getTimeDiff = (endTime: number) => {
-//   const now = new Date().getTime()
-//   const diff = endTime - now
-//   return diff
-// }
+
+const isEdit = ref(true)
+onMounted(() => {
+  try {
+    getGuessIndex().then(({ data }) => {
+      const array = data.Data
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index]
+        if (element.State === 2) {
+          time.value = new Date(element.EndTime).getTime() - Date.now()
+          isEdit.value = new Date(element.AllowChangeTime).getTime() < Date.now()
+        }
+      }
+    })
+  } catch {
+    time.value = 0
+  }
+})
 
 const teamView = ref(null)
 
 const submit = () => {
+  if (isEdit.value) {
+    Toast('当前最后修改时间已截止')
+    return
+  }
   teamView.value.submit() // 获取子组件对外暴露的属性
 }
 </script>
@@ -84,7 +104,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import './index.scss';
-
+.champion {
+  width: 750px;
+  height: 120px;
+}
 :deep(.van-overlay) {
   transform: scale(1.6);
 }

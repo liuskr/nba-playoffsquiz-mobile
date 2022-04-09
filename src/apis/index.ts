@@ -51,3 +51,10 @@ export const setUserGuess = async (params: { GuessData: Array<any> }): Promise<H
     data: params
   })
 }
+
+// 获取当前轮次
+export const getGuessIndex = async (): Promise<HttpResponse> => {
+  return request('api/guess/index', {
+    method: 'get'
+  })
+}
