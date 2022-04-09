@@ -435,7 +435,7 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
         }
       })
 
-      calculationEast(popInfo.value)
+      calculationEast(JSON.parse(JSON.stringify(popInfo.value)))
     }
     // 第二轮
     if (popInfo.value.Top == 8) {
@@ -473,6 +473,7 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
 
     // 总决赛
     if (popInfo.value.Top == 2) {
+
       if (FinalsTeam.value.TeamAData && FinalsTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
         FinalsTeam.value.ScoreA = ScoreA
         FinalsTeam.value.ScoreB = ScoreB
@@ -546,8 +547,9 @@ const calculationEast = (info = null, initialize = false) => {
 
 // 计算晋级第三轮队伍
 const calculationthird = () => {
+  console.log('计算晋级第三轮队伍')
   for (let i = 0; i < secondEastTeam.value.length; i++) {
-    const item = secondEastTeam.value[i]
+    const item = JSON.parse(JSON.stringify(secondEastTeam.value[i]))
     let data = null
     if (Number(item.ScoreA) >= 4) {
       data = JSON.parse(JSON.stringify(item.TeamAData))
@@ -568,7 +570,7 @@ const calculationthird = () => {
   }
 
   for (let i = 0; i < secondWestTeam.value.length; i++) {
-    const item = secondWestTeam.value[i]
+    const item = JSON.parse(JSON.stringify(secondWestTeam.value[i]))
     let data = null
     if (Number(item.ScoreA) >= 4) {
       data = item.TeamAData
@@ -583,11 +585,11 @@ const calculationthird = () => {
       thirdWestTeam.value.TeamBData = data
     }
   }
+  console.log(secondWestTeam.value)
 }
 
 // 计算总决赛队伍
 const calculationLast = () => {
-  console.log(FinalsTeam.value)
   // FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 2 }
   if (Number(thirdEastTeam.value.ScoreA) >= 4) {
     FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamAData
@@ -609,7 +611,6 @@ const calculationLast = () => {
     FinalsTeam.value.TeamBData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamBData.Name}.png`, import.meta.url).href
     FinalsTeam.value.TeamBData.namelength = FinalsTeam.value.TeamBData.Name.length > 2
   }
-  console.log(FinalsTeam.value)
 }
 
 defineExpose({
@@ -629,7 +630,6 @@ defineExpose({
         })
       }
     })
-
 
     // 东部 8强
     secondEastTeam.value.map((item) => {
@@ -744,7 +744,7 @@ const setData = (data: { map: (arg0: (item: any) => any) => never[] }, initial) 
       thirdEastTeam.value = item
     }
     // 西部4强
-    if (item.Type == 2 && item.Top == 8) {
+    if (item.Type == 2 && item.Top == 4) {
       thirdWestTeam.value = item
     }
     // 决赛
@@ -766,8 +766,6 @@ const setData = (data: { map: (arg0: (item: any) => any) => never[] }, initial) 
       { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
     ]
   }
-
-  console.log('aaa--', thirdEastTeam.value)
 }
 
 // 判断是是否对象
