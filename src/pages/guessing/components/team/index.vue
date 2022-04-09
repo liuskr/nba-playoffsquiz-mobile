@@ -187,7 +187,7 @@
         </div>
         <div class="team_2_content">
           <div class="team_2_content_item">
-            <span v-if="FinalsTeam.TeamAData" :class="{ special: FinalsTeam.TeamAData.namelength }"
+            <span v-if="FinalsTeam.TeamAData"
               >{{ FinalsTeam.TeamAData.Name }} <span>{{ Number(FinalsTeam.ScoreA) }}</span></span
             >
             <span class="text" v-else>?</span>
@@ -196,7 +196,7 @@
             <img src="@assets/images/jiangbei.png" alt="" />
           </div>
           <div class="team_2_content_item">
-            <span v-if="FinalsTeam.TeamBData" :class="{ special: FinalsTeam.TeamBData.namelength }"
+            <span v-if="FinalsTeam.TeamBData" class="two-right"
               >{{ FinalsTeam.TeamBData.Name }}<span> {{ Number(FinalsTeam.ScoreB) }}</span></span
             >
             <span class="text" v-else>?</span>
@@ -384,7 +384,6 @@
     </div>
 
     <PopupView :show="showPop" :info="popInfo" @click="close" v-if="showPop" />
-    
   </div>
 </template>
 
@@ -824,8 +823,6 @@ const setData = (data: { map: (arg0: (item: any) => any) => never[] }, initial) 
 const isObject = (obj: null) => {
   return obj !== null && typeof obj === 'object'
 }
-
-
 
 onMounted(() => {
   feactUserGuess()
