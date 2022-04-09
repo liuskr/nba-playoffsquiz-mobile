@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <Poster v-model:isShowPoster="posterShow" :url="posterUrl" />
+    <Poster style="tr" v-model:isShowPoster="posterShow" :url="posterUrl" />
   </div>
 </template>
 
@@ -106,7 +106,7 @@ const teamView = ref(null)
 // 提交
 const submit = () => {
   if (isEdit.value) {
-    Toast('当前轮次最后提交时间已截止')
+    Toast('当前轮次提交已截止')
     return
   }
   // @ts-ignore
@@ -137,6 +137,7 @@ const toImg = () => {
     let blob = dataURLToBlob(dom.toDataURL('image/png'))
     // 合成二维码
     synthesisImg(canvas.width, canvas.height, URL.createObjectURL(blob))
+    Toast.clear()
   })
 }
 
@@ -181,7 +182,7 @@ const synthesisImg = (width, height, url) => {
 // 修改
 const edit = () => {
   if (isEdit.value) {
-    Toast('当前轮次最后修改时间已截止')
+    Toast('当前轮次修改已截止')
     return
   }
   resultInfo.value = {}
@@ -196,7 +197,7 @@ const last = (info, isNew) => {
   console.log('获胜', resultInfo.value)
 
   if (isNew) {
-    Toast('海报生成中')
+    Toast.loading('正在生成分享海报')
     setTimeout(() => {
       toImg()
     }, 2000)

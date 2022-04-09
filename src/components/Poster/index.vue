@@ -1,7 +1,7 @@
 <template>
   <!-- 海报 -->
   <van-overlay :show="isShowPoster">
-    <div class="wrapper">
+    <div class="wrapper" :class="{ poster: url !== '/images/prizesPoster.jpg' }">
       <div class="wrapper_content">
         <van-icon class="wrapper_content_close" name="cross" color="#fff" size="24" @click.stop="onClose" />
         <img :src="url" alt="" />
@@ -49,7 +49,9 @@ export default defineComponent({
   width: 750px;
   background: #79231a;
 }
-
+.poster {
+  transform: scale(0.7) !important;
+}
 .wrapper {
   display: flex;
   align-items: center;
@@ -63,6 +65,7 @@ export default defineComponent({
       width: 100%;
       height: 100%;
     }
+
     &_close {
       position: absolute;
       top: -60px;

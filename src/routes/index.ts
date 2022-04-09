@@ -18,7 +18,7 @@ const routes: RouteRecordRaw[] = [
     path: '/guessing',
     name: 'Guessing',
     component: (): Promise<typeof import('*.vue')> => import('@pages/guessing/index.vue'),
-    meta: { title: '竞猜', keepAlive: true }
+    meta: { title: '竞猜', keepAlive: false }
   },
   {
     path: '/useragreement',
