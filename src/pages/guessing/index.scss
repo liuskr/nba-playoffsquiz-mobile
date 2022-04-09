@@ -2,7 +2,7 @@
   position: relative;
   // padding: 50px 30px;
   background: url('/images/guessing_bg.jpg') no-repeat;
-  background-size: 100%;
+  background-size: 100% 100%;
   min-height: 100vh;
   overflow: hidden;
   // background-color: #000;
@@ -92,11 +92,47 @@
     }
   }
 
+  .result-wrap {
+    padding: 0 15px;
+    margin-bottom: 40px;
+    .content {
+      display: flex;
+      width: 100%;
+      height: 113px;
+      line-height: 113px;
+      box-sizing: border-box;
+      padding-left: 23px;
+      font-size: 40px;
+      font-family: ZhengDaoTi;
+      font-weight: 400;
+      color: #FFFFFF;
+      background: url('/images/result.png') no-repeat;
+      background-size: 100% 100%;
+
+      p {
+        position: relative;
+        width: 144px;
+        margin: 0 22px;
+
+        .logo {
+          position: absolute;
+          top: -17px;
+          width: 144px;
+          height: auto;
+        }
+      }
+
+      
+    }
+  }
+
   .team {
+    position: relative;
     margin-top: 10px;
     width: 880px;
     transform: scale(0.85);
     transform-origin: 0 0;
+    z-index: 2;
   }
 
   .logo_bg {
@@ -124,9 +160,15 @@
   }
   .submit {
     position: absolute;
-    top: 1344px;
+    top: 1333px;
     right: 32px;
+    z-index: 0;
+
+    &.edit {
+      top: 1475px;
+    }
     .btn {
+      float: right;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -136,6 +178,8 @@
       font-family: $font-ximai;
       font-size: 34px;
       color: #fff;
+      // margin-right: 56px;
+      // margin-bottom: 51px;
 
       background: url('../../assets/images/btn_bg.png');
 

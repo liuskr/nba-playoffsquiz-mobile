@@ -24,12 +24,26 @@
         <div class="time">{{ getTime() }}</div>
       </div>
     </header>
+    <div class="result-wrap" v-if="resultInfo && resultInfo.Name">
+      <div class="content">
+        我预测的总冠军球队:
+        <p> <img class="logo" :src="resultInfo.popimgUrl" alt="" /></p>
+        
+        {{ resultInfo.Name }}
+        </div>
+    </div>
     <div class="team">
-      <TeamView ref="teamView" />
+      <TeamView ref="teamView" @send="last" />
     </div>
     <!-- <div class="logo_bg"></div> -->
     <div class="race"></div>
-    <div class="submit">
+    <div class="submit edit" v-if="resultInfo && resultInfo.Name">
+      <div class="btn">
+        <span @click="edit">修改</span>
+      </div>
+    </div>
+
+    <div class="submit" v-else>
       <div class="btn">
         <span @click="submit">提交</span>
       </div>
@@ -43,7 +57,7 @@ import { ref, onMounted } from 'vue'
 import { Toast } from 'vant'
 
 import { getGuessIndex } from '@apis'
-const time = ref()
+const time = ref(30 * 60 * 60 * 1000)
 
 // 年月日
 const getDate = () => {
@@ -82,6 +96,7 @@ onMounted(() => {
 
 const teamView = ref(null)
 
+// 提交
 const submit = () => {
   if (isEdit.value) {
     Toast('当前最后修改时间已截止')
@@ -89,6 +104,20 @@ const submit = () => {
   }
   // @ts-ignore
   teamView.value.submit() // 获取子组件对外暴露的属性
+}
+
+// 修改
+const edit = () => {
+  resultInfo.value = {}
+  teamView.value.edit() // 获取子组件对外暴露的属性
+}
+
+const resultInfo = ref({})
+
+// 获得是否预测最后获胜
+const last = (info) => {
+  resultInfo.value = info
+  console.log('获胜', resultInfo.value)
 }
 </script>
 

@@ -397,6 +397,7 @@ import PopupView from '../popup/index.vue'
 const teamList = ref([]) // 战队
 const showPop = ref(false)
 const popInfo = ref({})
+const haveResult = ref(false)
 
 const secondEastTeam = ref([
   // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
@@ -414,7 +415,7 @@ const FinalsTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData:
 
 // 显示预测输入弹框
 const showPopup = (item: {}) => {
-  if (item.State == 2 || !item.TeamAData || !item.TeamBData) {
+  if (item.State == 2 || !item.TeamAData || !item.TeamBData || haveResult.value) {
     return
   }
   popInfo.value = item
@@ -612,6 +613,36 @@ const calculationLast = () => {
   }
 }
 
+// 获取预测数据
+const feactUserGuess = () => {
+  secondEastTeam.value = []
+  secondWestTeam.value = []
+  thirdEastTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }
+  thirdWestTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }
+  FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 2 }
+
+  getUserGuess().then(({ data }) => {
+    if (isObject(data.Data.GuessRecord)) {
+      setData(data.Data.GuessRecord.GuessDetail, false)
+      // 是否有预测最后获胜
+      data.Data.GuessRecord.GuessDetail.map((item) => {
+        if (item.Top == 2) {
+          if (item.ScoreA == 4) {
+            haveResult.value = true
+            emit('send', item.TeamAData)
+          }
+          if (item.ScoreB == 4) {
+            haveResult.value = true
+            emit('send', item.TeamBData)
+          }
+        }
+      })
+    } else {
+      setData(data.Data.Games, true)
+    }
+  })
+}
+
 defineExpose({
   // 提交比分
   submit() {
@@ -700,7 +731,13 @@ defineExpose({
       GuessData
     }).then((res) => {
       Toast.success('提交成功')
+      feactUserGuess()
     })
+  },
+
+  // 修改提交结果
+  edit() {
+    haveResult.value = false
   }
 })
 
@@ -774,14 +811,12 @@ const isObject = (obj: null) => {
   return obj !== null && typeof obj === 'object'
 }
 
+const emit = defineEmits<{
+  (e: 'send'): void
+}>()
+
 onMounted(() => {
-  getUserGuess().then(({ data }) => {
-    if (isObject(data.Data.GuessRecord)) {
-      setData(data.Data.GuessRecord.GuessDetail, false)
-    } else {
-      setData(data.Data.Games, true)
-    }
-  })
+  feactUserGuess()
 })
 </script>
 
