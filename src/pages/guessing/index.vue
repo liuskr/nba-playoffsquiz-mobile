@@ -164,7 +164,7 @@ const synthesisImg = (width, height, url) => {
       img.src = new URL(`../../assets/images/code.jpg`, import.meta.url).href // 二维码
       img.crossOrigin = 'Anonymous'
       img.onload = () => {
-        context.drawImage(img, 0, height - 170, width, 160)
+        context.drawImage(img, 0, height - 220, width, 252)
         let base64 = canvas.toDataURL('image/png')
         posterUrl.value = base64
         posterShow.value = true
