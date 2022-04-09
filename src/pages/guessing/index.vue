@@ -11,8 +11,8 @@
               <span class="day_1">{{ timeData.days }}</span>
               <div class="time_1">
                 <span>{{ timeData.hours }}</span>
-                <span>{{ timeData.minutes }}</span>
-                <span>{{ timeData.seconds }}</span>
+                <span>{{ timeData.minutes < 10 ? `0${timeData.minutes}` : timeData.minutes }}</span>
+                <span>{{ timeData.seconds < 10 ? `0${timeData.seconds}` : timeData.seconds }} </span>
               </div>
             </template>
           </van-count-down>
