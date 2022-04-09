@@ -473,7 +473,6 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
 
     // 总决赛
     if (popInfo.value.Top == 2) {
-
       if (FinalsTeam.value.TeamAData && FinalsTeam.value.TeamAData.Name == popInfo.value.TeamAData.Name) {
         FinalsTeam.value.ScoreA = ScoreA
         FinalsTeam.value.ScoreB = ScoreB
@@ -728,6 +727,8 @@ const setData = (data: { map: (arg0: (item: any) => any) => never[] }, initial) 
     let item = teamList.value[i]
 
     if (item.Top != 16) {
+      item.TeamAData.namelength = item.TeamAData.Name.length > 2
+      item.TeamBData.namelength = item.TeamBData.Name.length > 2
       item.TeamAData.imgUrl = new URL(`../../../../assets/images/card/842/${item.TeamAData.Name}.png`, import.meta.url).href
       item.TeamBData.imgUrl = new URL(`../../../../assets/images/card/842/${item.TeamBData.Name}.png`, import.meta.url).href
     }
