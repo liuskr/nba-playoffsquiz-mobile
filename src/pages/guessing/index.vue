@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="container">
+  <div class="container">
     <header class="header" @click="toImg">
       <div class="go_back">
         <div @click="$router.replace('/')">返回</div>
@@ -24,17 +24,20 @@
         <div class="time">{{ getTime() }}</div>
       </div>
     </header>
-    <div class="result-wrap" v-if="resultInfo && resultInfo.Name">
-      <div class="content">
-        我预测的总冠军球队:
-        <p><img class="logo" :src="resultInfo.popimgUrl" alt="" /></p>
+    <div id="container">
+      <div class="result-wrap" v-if="resultInfo && resultInfo.Name">
+        <div class="content">
+          我预测的总冠军球队:
+          <p><img class="logo" :src="resultInfo.popimgUrl" alt="" /></p>
 
-        {{ resultInfo.Name }}
+          {{ resultInfo.Name }}
+        </div>
+      </div>
+      <div class="team">
+        <TeamView ref="teamView" @send="last" />
       </div>
     </div>
-    <div class="team">
-      <TeamView ref="teamView" @send="last" />
-    </div>
+
     <!-- <div class="logo_bg"></div> -->
     <div class="race"></div>
     <div class="submit">
@@ -47,6 +50,8 @@
         <span @click="submit" v-else>提交</span>
       </div>
     </div>
+
+    <!-- <Poster v-model:isShowPoster="status.posterShow" /> -->
   </div>
 </template>
 
@@ -56,6 +61,8 @@ import { ref, onMounted } from 'vue'
 import { Toast } from 'vant'
 import html2canvas from 'html2canvas'
 import { getGuessIndex } from '@apis'
+import Poster from '@components/Poster/index.vue'
+
 const time = ref(30 * 60 * 60 * 1000)
 
 // 年月日
@@ -121,7 +128,7 @@ const dataURLToBlob = (dataurl) => {
 // 生成图片
 const toImg = () => {
   html2canvas(document.getElementById('container'), {
-    // backgroundColor: null
+    backgroundColor: null
   }).then((canvas) => {
     let dom = document.body.appendChild(canvas)
     dom.style.display = 'none'
@@ -140,22 +147,30 @@ const synthesisImg = (width, height, url) => {
   let context = canvas.getContext('2d')
   context.rect(0, 0, canvas.width, canvas.height)
   let bgImg = new Image()
-  bgImg.src = url // 背景图的url
+  bgImg.src = new URL(`../../assets/images/codebg.jpg`, import.meta.url).href // 背景图
   bgImg.crossOrigin = 'Anonymous'
   bgImg.onload = () => {
     context.drawImage(bgImg, 0, 0, width, height)
-    let img = new Image()
-    img.src = 'https://img1.baidu.com/it/u=968330940,4261052314&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=498' // 需要合进去的图片url
-    img.crossOrigin = 'Anonymous'
-    img.onload = () => {
-      context.drawImage(img, width - 200, height - 170, 150, 150)
-      let base64 = canvas.toDataURL('image/png')
-      let a = document.createElement('a')
-      a.setAttribute('href', base64)
-      //这块是保存图片操作  可以设置保存的图片的信息
-      a.setAttribute('download', 'test.png')
-      document.body.appendChild(a)
-      a.click()
+
+    // 队伍图
+    let teamImg = new Image()
+    teamImg.src = url
+    teamImg.onload = () => {
+      context.drawImage(teamImg, 0, 30, width, height)
+
+      let img = new Image()
+      img.src =  new URL(`../../assets/images/code.jpg`, import.meta.url).href // 二维码
+      img.crossOrigin = 'Anonymous'
+      img.onload = () => {
+        context.drawImage(img, 0, height - 170, width, 160)
+        let base64 = canvas.toDataURL('image/png')
+        let a = document.createElement('a')
+        a.setAttribute('href', base64)
+        //这块是保存图片操作  可以设置保存的图片的信息
+        a.setAttribute('download', 'test.png')
+        document.body.appendChild(a)
+        a.click()
+      }
     }
   }
 }
