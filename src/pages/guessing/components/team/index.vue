@@ -619,7 +619,7 @@ defineExpose({
 
     // 东西部 16强
     teamList.value.map((item) => {
-      if (item.TeamAData && item.TeamBData) {
+      if (item.TeamAData && item.TeamBData && item.Top == 16) {
         GuessData.push({
           TeamA: item.TeamAData.ID,
           TeamB: item.TeamBData.ID,
@@ -690,10 +690,10 @@ defineExpose({
       })
     }
 
-    if (GuessData.length > 16) {
-      Toast('请预测完成')
-      return
-    }
+    // if (GuessData.length > 16) {
+    //   Toast('请预测完成')
+    //   return
+    // }
 
     localStorage.setItem('sign', getSignData(JSON.stringify({ GuessData })))
     setUserGuess({
@@ -722,6 +722,7 @@ const setData = (data: { map: (arg0: (item: any) => any) => never[] }, initial) 
     return item
   })
 
+  // 回显数据
   for (let i = 0; i < teamList.value.length; i++) {
     let item = teamList.value[i]
 
