@@ -384,6 +384,7 @@
     </div>
 
     <PopupView :show="showPop" :info="popInfo" @click="close" v-if="showPop" />
+    
   </div>
 </template>
 
@@ -613,8 +614,15 @@ const calculationLast = () => {
   }
 }
 
+// const poster = defineEmits<{
+//   (e: 'getposter'): void
+// }>()
+const emit = defineEmits<{
+  (e: 'send'): void
+}>()
+
 // 获取预测数据
-const feactUserGuess = () => {
+const feactUserGuess = (isNew = false) => {
   secondEastTeam.value = []
   secondWestTeam.value = []
   thirdEastTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }
@@ -629,11 +637,17 @@ const feactUserGuess = () => {
         if (item.Top == 2) {
           if (item.ScoreA == 4) {
             haveResult.value = true
-            emit('send', item.TeamAData)
+            emit('send', item.TeamAData, isNew)
+            // if (isNew) {
+            //   console.log('出现海报')
+            // }
           }
           if (item.ScoreB == 4) {
             haveResult.value = true
-            emit('send', item.TeamBData)
+            emit('send', item.TeamBData, isNew)
+            // if (isNew) {
+            //   console.log('出现海报')
+            // }
           }
         }
       })
@@ -731,7 +745,7 @@ defineExpose({
       GuessData
     }).then((res) => {
       Toast.success('提交成功')
-      feactUserGuess()
+      feactUserGuess(true)
     })
   },
 
@@ -811,9 +825,7 @@ const isObject = (obj: null) => {
   return obj !== null && typeof obj === 'object'
 }
 
-const emit = defineEmits<{
-  (e: 'send'): void
-}>()
+
 
 onMounted(() => {
   feactUserGuess()

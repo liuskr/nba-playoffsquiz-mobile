@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <!-- <Poster v-model:isShowPoster="status.posterShow" /> -->
+    <Poster v-model:isShowPoster="posterShow" :url="posterUrl" />
   </div>
 </template>
 
@@ -64,7 +64,8 @@ import { getGuessIndex } from '@apis'
 import Poster from '@components/Poster/index.vue'
 
 const time = ref(30 * 60 * 60 * 1000)
-
+const posterShow = ref(false)
+const posterUrl = ref('')
 // 年月日
 const getDate = () => {
   const date = new Date()
@@ -159,17 +160,19 @@ const synthesisImg = (width, height, url) => {
       context.drawImage(teamImg, 0, 30, width, height)
 
       let img = new Image()
-      img.src =  new URL(`../../assets/images/code.jpg`, import.meta.url).href // 二维码
+      img.src = new URL(`../../assets/images/code.jpg`, import.meta.url).href // 二维码
       img.crossOrigin = 'Anonymous'
       img.onload = () => {
         context.drawImage(img, 0, height - 170, width, 160)
         let base64 = canvas.toDataURL('image/png')
-        let a = document.createElement('a')
-        a.setAttribute('href', base64)
-        //这块是保存图片操作  可以设置保存的图片的信息
-        a.setAttribute('download', 'test.png')
-        document.body.appendChild(a)
-        a.click()
+        posterUrl.value = base64
+        posterShow.value = true
+        // let a = document.createElement('a')
+        // a.setAttribute('href', base64)
+        // //这块是保存图片操作  可以设置保存的图片的信息
+        // a.setAttribute('download', 'test.png')
+        // document.body.appendChild(a)
+        // a.click()
       }
     }
   }
@@ -188,9 +191,16 @@ const edit = () => {
 const resultInfo = ref({})
 
 // 获得是否预测最后获胜
-const last = (info) => {
+const last = (info, isNew) => {
   resultInfo.value = info
   console.log('获胜', resultInfo.value)
+
+  if (isNew) {
+    Toast('海报生成中')
+    setTimeout(() => {
+      toImg()
+    }, 2000)
+  }
 }
 </script>
 
@@ -214,5 +224,6 @@ export default defineComponent({
 }
 :deep(.van-overlay) {
   transform: scale(1.6);
+  z-index: 1000;
 }
 </style>
