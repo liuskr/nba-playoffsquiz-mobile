@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <header class="header">
+  <div class="container" id="container">
+    <header class="header" @click="toImg">
       <div class="go_back">
         <div @click="$router.replace('/')">返回</div>
       </div>
@@ -27,10 +27,10 @@
     <div class="result-wrap" v-if="resultInfo && resultInfo.Name">
       <div class="content">
         我预测的总冠军球队:
-        <p> <img class="logo" :src="resultInfo.popimgUrl" alt="" /></p>
-        
+        <p><img class="logo" :src="resultInfo.popimgUrl" alt="" /></p>
+
         {{ resultInfo.Name }}
-        </div>
+      </div>
     </div>
     <div class="team">
       <TeamView ref="teamView" @send="last" />
@@ -55,7 +55,7 @@
 import TeamView from './components/team/index.vue'
 import { ref, onMounted } from 'vue'
 import { Toast } from 'vant'
-
+import html2canvas from 'html2canvas'
 import { getGuessIndex } from '@apis'
 const time = ref(30 * 60 * 60 * 1000)
 
@@ -104,6 +104,40 @@ const submit = () => {
   }
   // @ts-ignore
   teamView.value.submit() // 获取子组件对外暴露的属性
+}
+
+//图片格式转换方法
+const dataURLToBlob = (dataurl) => {
+  let arr = dataurl.split(',')
+  let mime = arr[0].match(/:(.*?);/)[1]
+  let bstr = atob(arr[1])
+  let n = bstr.length
+  let u8arr = new Uint8Array(n)
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new Blob([u8arr], { type: mime })
+}
+
+// 生成图片
+const toImg = () => {
+  html2canvas(document.getElementById('container'), {
+    // backgroundColor: null
+  }).then((canvas) => {
+    let a = document.createElement('a')
+    let dom = document.body.appendChild(canvas)
+    dom.style.display = 'none'
+    a.style.display = 'none'
+    document.body.removeChild(dom)
+    let blob = dataURLToBlob(dom.toDataURL('image/png'))
+    a.setAttribute('href', URL.createObjectURL(blob))
+    //这块是保存图片操作  可以设置保存的图片的信息
+    a.setAttribute('download', 'test.png')
+    document.body.appendChild(a)
+    a.click()
+    URL.revokeObjectURL(blob)
+    document.body.removeChild(a)
+  })
 }
 
 // 修改
