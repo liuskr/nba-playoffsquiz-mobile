@@ -41,9 +41,10 @@
       <div class="logo">
         <img src="/images/guess_logo.png" alt="" />
       </div>
+
       <div class="btn">
-        <span @click="submit" v-if="resultInfo && resultInfo.Name">提交</span>
-        <span @click="edit" v-else>修改</span>
+        <span @click="edit" v-if="resultInfo && resultInfo.Name">修改</span>
+        <span @click="submit" v-else>提交</span>
       </div>
     </div>
   </div>
@@ -122,20 +123,43 @@ const toImg = () => {
   html2canvas(document.getElementById('container'), {
     // backgroundColor: null
   }).then((canvas) => {
-    let a = document.createElement('a')
     let dom = document.body.appendChild(canvas)
     dom.style.display = 'none'
-    a.style.display = 'none'
     document.body.removeChild(dom)
     let blob = dataURLToBlob(dom.toDataURL('image/png'))
-    a.setAttribute('href', URL.createObjectURL(blob))
-    //这块是保存图片操作  可以设置保存的图片的信息
-    a.setAttribute('download', 'test.png')
-    document.body.appendChild(a)
-    a.click()
-    URL.revokeObjectURL(blob)
-    document.body.removeChild(a)
+
+    // 合成二维码
+    synthesisImg(canvas.width, canvas.height, URL.createObjectURL(blob))
   })
+}
+
+// 合成图片 加上二维码
+const synthesisImg = (width, height, url) => {
+  let canvas = document.createElement('canvas')
+  canvas.width = width
+  canvas.height = height
+  let context = canvas.getContext('2d')
+  context.rect(0, 0, canvas.width, canvas.height)
+  let bgImg = new Image()
+  bgImg.src = url // 背景图的url
+  bgImg.crossOrigin = 'Anonymous'
+  bgImg.onload = () => {
+    context.drawImage(bgImg, 0, 0, width, height)
+    let img = new Image()
+    img.src = 'https://img1.baidu.com/it/u=968330940,4261052314&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=498' // 需要合进去的图片url
+    img.crossOrigin = 'Anonymous'
+    img.onload = () => {
+      context.drawImage(img, width - 200, height - 170, 150, 150)
+      let base64 = canvas.toDataURL('image/png')
+      console.log(base64) // 这个就是合成后的图片链接，如果需要上传请查看我另外的文章
+      let a = document.createElement('a')
+      a.setAttribute('href', base64)
+      //这块是保存图片操作  可以设置保存的图片的信息
+      a.setAttribute('download', 'test.png')
+      document.body.appendChild(a)
+      a.click()
+    }
+  }
 }
 
 // 修改

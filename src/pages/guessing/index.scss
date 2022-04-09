@@ -166,6 +166,10 @@
     .logo{
       width: 480px;
       height: 70px;
+
+      img {
+        width: 100%;
+      }
     }
     .btn { 
       display: flex;
