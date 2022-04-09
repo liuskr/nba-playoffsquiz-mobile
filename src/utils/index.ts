@@ -96,6 +96,7 @@ export const preloadAllImg = (): void => {
     '/images/fiexd.png',
     '/images/guessing_bg.jpg',
     '/images/guess_logo.png',
+    '/images/prizesPoster.jpg',
     '/images/guide_1.png',
     '/images/guide_2.png',
     '/images/guide_3.png',

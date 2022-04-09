@@ -59,6 +59,10 @@ export default defineComponent({
     width: 500px;
     height: 860px;
     position: relative;
+    img {
+      width: 100%;
+      height: 100%;
+    }
     &_close {
       position: absolute;
       top: -60px;
