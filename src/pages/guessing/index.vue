@@ -87,6 +87,7 @@ const submit = () => {
     Toast('当前最后修改时间已截止')
     return
   }
+  // @ts-ignore
   teamView.value.submit() // 获取子组件对外暴露的属性
 }
 </script>
