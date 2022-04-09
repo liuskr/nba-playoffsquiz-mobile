@@ -10,7 +10,7 @@
             <template #default="timeData">
               <span class="day_1">{{ timeData.days }}</span>
               <div class="time_1">
-                <span>{{ timeData.hours }}</span>
+                <span>{{ timeData.hours < 10 ? `0${timeData.hours}` : timeData.hours }}</span>
                 <span>{{ timeData.minutes < 10 ? `0${timeData.minutes}` : timeData.minutes }}</span>
                 <span>{{ timeData.seconds < 10 ? `0${timeData.seconds}` : timeData.seconds }} </span>
               </div>
@@ -98,7 +98,7 @@ const teamView = ref(null)
 // 提交
 const submit = () => {
   if (isEdit.value) {
-    Toast('当前最后修改时间已截止')
+    Toast('当前轮次最后提交时间已截止')
     return
   }
   // @ts-ignore
@@ -127,7 +127,6 @@ const toImg = () => {
     dom.style.display = 'none'
     document.body.removeChild(dom)
     let blob = dataURLToBlob(dom.toDataURL('image/png'))
-
     // 合成二维码
     synthesisImg(canvas.width, canvas.height, URL.createObjectURL(blob))
   })
@@ -163,6 +162,10 @@ const synthesisImg = (width, height, url) => {
 
 // 修改
 const edit = () => {
+  if (isEdit.value) {
+    Toast('当前轮次最后修改时间已截止')
+    return
+  }
   resultInfo.value = {}
   teamView.value.edit() // 获取子组件对外暴露的属性
 }

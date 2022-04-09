@@ -4,7 +4,7 @@
     <div class="wrapper">
       <div class="wrapper_content">
         <van-icon class="wrapper_content_close" name="cross" color="#fff" size="24" @click.stop="onClose" />
-        <img src="@assets/images/prizesPoster.jpg" alt="" />
+        <img :src="url" alt="" />
         <div class="wrapper_content_btn">长按保存海报</div>
       </div>
     </div>
@@ -24,6 +24,10 @@ export default defineComponent({
     isShowPoster: {
       type: Boolean,
       default: false
+    },
+    url: {
+      type: String,
+      default: '/images/prizesPoster.jpg'
     }
   },
   emits: ['update:isShowPoster'],
