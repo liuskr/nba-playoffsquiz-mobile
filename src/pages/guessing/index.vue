@@ -40,7 +40,7 @@
 
     <!-- <div class="logo_bg"></div> -->
     <div class="race"></div>
-    <div class="submit">
+    <div class="submit" :class="{ hierarchy: resultInfo && resultInfo.Name }">
       <div class="logo">
         <img src="/images/guess_logo.png" alt="" />
       </div>

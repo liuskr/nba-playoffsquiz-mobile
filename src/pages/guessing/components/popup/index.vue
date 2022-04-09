@@ -4,7 +4,7 @@
       v-model:show="props.show"
       :close-on-click-overlay="false"
       :style="{
-        width: '64%',
+        width: '66%',
         'background-color': '#e0e0e0s',
         padding: 0
       }"

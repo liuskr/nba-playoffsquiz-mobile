@@ -83,6 +83,7 @@
       }
     }
   }
+  
 
   .result-wrap {
     padding: 0 15px;
@@ -142,6 +143,10 @@
     background-size: 100% 100%;
   }
 
+  .hierarchy{
+    z-index:20;
+  }
+
   .race {
     position: absolute;
     top: 48%;
@@ -162,8 +167,7 @@
     justify-content: space-between;
     padding: 0 40px;
     box-sizing: border-box;
-    z-index: 20;
-    background: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+    background: linear-gradient( rgba(0,0,0,0.2), rgba(0,0,0,0.8));
     .logo{
       width: 480px;
       height: 70px;
