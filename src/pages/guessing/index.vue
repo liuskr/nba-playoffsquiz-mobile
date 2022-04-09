@@ -128,8 +128,10 @@ const dataURLToBlob = (dataurl) => {
 
 // 生成图片
 const toImg = () => {
+  let scale = window.devicePixelRatio
   html2canvas(document.getElementById('container'), {
-    backgroundColor: null
+    backgroundColor: null,
+    scale: scale
   }).then((canvas) => {
     let dom = document.body.appendChild(canvas)
     dom.style.display = 'none'
@@ -197,7 +199,11 @@ const last = (info, isNew) => {
   console.log('获胜', resultInfo.value)
 
   if (isNew) {
-    Toast.loading('正在生成分享海报')
+    Toast.loading({
+      duration: 4000,
+      forbidClick: true,
+      message: '正在生成分享海报'
+    })
     setTimeout(() => {
       toImg()
     }, 2000)
