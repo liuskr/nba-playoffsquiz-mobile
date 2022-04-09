@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="name">{{ state.userInfo.Nickname || '未登录' }}</div>
-      <div class="ranking">{{ state.userInfo.ranking || '???' }}</div>
+      <div class="ranking">{{ state.userInfo.Ranking || '???' }}</div>
       <div class="points">{{ state.userInfo.Nickname ? state.userInfo.Score : '???' }}</div>
     </footer>
     <!-- 规则 -->
@@ -130,7 +130,7 @@ const onJump = (idx: number) => {
 const state = reactive({
   userInfo: {
     Nickname: null,
-    ranking: null,
+    Ranking: null,
     Score: 0
   }
 })
@@ -149,7 +149,7 @@ onMounted(async () => {
     .catch(() => {
       state.userInfo = {
         Nickname: null,
-        ranking: null,
+        Ranking: null,
         Score: 0
       }
     })

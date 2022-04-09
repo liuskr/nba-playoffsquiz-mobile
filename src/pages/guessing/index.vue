@@ -53,6 +53,7 @@ const getDate = () => {
   const day = date.getDate()
   return `${year}.${month}.${day}`
 }
+
 // 时分秒
 const getTime = () => {
   const date = new Date()

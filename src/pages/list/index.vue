@@ -55,8 +55,8 @@
     </main>
     <footer class="footer-fixed">
       <div class="footer-fixed-info">
-        <div class="footer-fixed-info-points">???</div>
-        <div class="footer-fixed-info-ranking">???</div>
+        <div class="footer-fixed-info-points">{{ state.userInfo.Nickname ? state.userInfo.Score : '???' }}</div>
+        <div class="footer-fixed-info-ranking">{{ state.userInfo.Ranking || '???' }}</div>
         <div class="footer-fixed-info-btn" @click="addressShow = true">去领奖</div>
       </div>
     </footer>
@@ -80,14 +80,19 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 import { areaList } from '@vant/area-data'
 import Poster from '@components/Poster/index.vue'
+import { getUserInfo } from '@apis'
 
 const addressShow = ref(false)
 const showArea = ref(false)
 const show = ref(false)
 const result = ref('')
+
+const state = reactive({
+  userInfo: {}
+})
 
 const onConfirm = (areaValues: any[]) => {
   showArea.value = false
@@ -96,6 +101,21 @@ const onConfirm = (areaValues: any[]) => {
     .map((item: { name: any }) => item.name)
     .join('/')
 }
+
+onMounted(() => {
+  // 获取用户信息
+  getUserInfo()
+    .then(({ data }) => {
+      state.userInfo = data.User
+    })
+    .catch(() => {
+      state.userInfo = {
+        Nickname: null,
+        Ranking: null,
+        Score: 0
+      }
+    })
+})
 </script>
 
 <script lang="ts">
