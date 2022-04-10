@@ -29,14 +29,14 @@
         </div>
         <div class="team_score">
           <div class="num">
-            <div @click="showListCount = true">{{ ScoreA }}</div>
+            <div @click="showListCount = true">{{ ScoreA || 0 }}</div>
             <ul v-if="showListCount" class="num_list">
               <li v-for="n in list" :key="n" @click="selectScore(n, 'ScoreA')">{{ n }}</li>
             </ul>
           </div>
           <div class="line">-</div>
           <div class="num">
-            <div @click="showListCount = true">{{ ScoreB }}</div>
+            <div @click="showListCount = true">{{ ScoreB || 0 }}</div>
             <ul v-if="showListCount" class="num_list">
               <li v-for="n in list" :key="n" @click="selectScore(n, 'ScoreB')">{{ n }}</li>
             </ul>

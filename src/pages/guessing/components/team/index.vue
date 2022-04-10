@@ -408,10 +408,10 @@ const secondWestTeam = ref([
   // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
 ]) // 西部8强队伍
 
-const thirdEastTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }) // 东部4强队伍
-const thirdWestTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }) // 西部晋级第三轮队伍
+const thirdEastTeam = ref({ ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 4 }) // 东部4强队伍
+const thirdWestTeam = ref({ ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 4 }) // 西部晋级第三轮队伍
 
-const FinalsTeam = ref({ ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 2 }) // 总决赛队伍
+const FinalsTeam = ref({ ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 2 }) // 总决赛队伍
 
 // 显示预测输入弹框
 const showPopup = (item: {}) => {
