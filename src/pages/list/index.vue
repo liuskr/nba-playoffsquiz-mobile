@@ -14,50 +14,35 @@
         </div>
         <div class="list-group-item">
           <!-- 前三 -->
-          <!-- <div class="list-group-item-firstthree">
-            <div class="firstthree-item">
-              <div class="firstthree-item-ranking">1</div>
-              <div class="firstthree-item-name">18823345405</div>
-              <div class="firstthree-item-score">积分19999</div>
+          <div class="list-group-item-firstthree" v-show="forwardList.length">
+            <div class="firstthree-item" v-for="item in forwardList" :key="item.Index">
+              <div class="firstthree-item-ranking">{{ item.Index }}</div>
+              <div class="firstthree-item-name">{{ item.Name }}</div>
+              <div class="firstthree-item-score">积分{{ item.Score }}</div>
             </div>
-            <div class="firstthree-item">
-              <div class="firstthree-item-ranking">2</div>
-              <div class="firstthree-item-name">18823345405</div>
-              <div class="firstthree-item-score">积分19999</div>
-            </div>
-            <div class="firstthree-item">
-              <div class="firstthree-item-ranking">3</div>
-              <div class="firstthree-item-name">18823345405</div>
-              <div class="firstthree-item-score">积分19999</div>
-            </div>
-          </div> -->
+          </div>
           <!-- 后面的排名 -->
-          <!-- <div class="list-group-item-row">
-            <div class="row-item">
-              <div class="row-item-ranking">4</div>
-              <div class="row-item-name">18823345405</div>
-              <div class="row-item-score">积分19999</div>
+          <div class="list-group-item-row" v-show="forwardList.length">
+            <div class="row-item" v-for="item in list" :key="item.Index">
+              <div class="row-item-ranking">{{ item.Index }}</div>
+              <div class="row-item-name">{{ item.Name }}</div>
+              <div class="row-item-score">积分{{ item.Score }}</div>
             </div>
-            <div class="row-item">
-              <div class="row-item-ranking">5</div>
-              <div class="row-item-name">18823345405</div>
-              <div class="row-item-score">积分19999</div>
-            </div>
-            <div class="row-item">
-              <div class="row-item-ranking">6</div>
-              <div class="row-item-name">18823345405</div>
-              <div class="row-item-score">积分19999</div>
-            </div> -->
-          <!-- </div> -->
-          <van-empty class="custom-image" image="https://cdn.jsdelivr.net/npm/@vant/assets/custom-empty-image.png" description="暂无排名" />
+          </div>
+          <van-empty
+            v-show="!forwardList.length"
+            class="custom-image"
+            image="https://cdn.jsdelivr.net/npm/@vant/assets/custom-empty-image.png"
+            description="暂无排名"
+          />
         </div>
       </div>
     </main>
     <footer class="footer-fixed">
       <div class="footer-fixed-info">
         <div class="footer-fixed-info-points">{{ state.userInfo.Nickname ? state.userInfo.Score : '???' }}</div>
-        <div class="footer-fixed-info-ranking">{{ state.userInfo.Ranking || '???' }}</div>
-        <div class="footer-fixed-info-btn" @click="addressShow = true">去领奖</div>
+        <div class="footer-fixed-info-ranking">{{ state.userInfo.Rank || '???' }}</div>
+        <div class="footer-fixed-info-btn" @click="onReceive">去领奖</div>
       </div>
     </footer>
     <Poster v-model:is-show-poster="show" />
@@ -80,10 +65,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, toRefs } from 'vue'
 import { areaList } from '@vant/area-data'
 import Poster from '@components/Poster/index.vue'
-import { getUserInfo } from '@apis'
+import { Toast } from 'vant'
+import { getUserInfo, getRankingList } from '@apis'
 
 const addressShow = ref(false)
 const showArea = ref(false)
@@ -91,7 +77,9 @@ const show = ref(false)
 const result = ref('')
 
 const state = reactive({
-  userInfo: {}
+  userInfo: {},
+  list: [],
+  forwardList: []
 })
 
 const onConfirm = (areaValues: any[]) => {
@@ -102,20 +90,38 @@ const onConfirm = (areaValues: any[]) => {
     .join('/')
 }
 
+const onReceive = () => {
+  // if () {
+  Toast('开奖尚未开始，请等待全部比赛完成')
+  // }
+  // if (state.Rank > 50) {
+  //   Toast('开机')
+  // }
+  // addressShow.value = true
+}
+
 onMounted(() => {
+  // 获取排行榜
+  getRankingList().then(({ data }) => {
+    state.forwardList = data.Data.slice(0, 3)
+    state.list = data.Data.slice(3)
+  })
   // 获取用户信息
   getUserInfo()
     .then(({ data }) => {
       state.userInfo = data.User
+      state.Rank = data.Rank
     })
     .catch(() => {
       state.userInfo = {
         Nickname: null,
-        Ranking: null,
+        Rank: null,
         Score: 0
       }
     })
 })
+
+const { list, forwardList } = toRefs(state)
 </script>
 
 <script lang="ts">

@@ -65,3 +65,10 @@ export const getGameInfo = async (): Promise<HttpResponse> => {
     method: 'get'
   })
 }
+
+// 获取排行榜
+export const getRankingList = async (): Promise<HttpResponse> => {
+  return request('api/rank/index', {
+    method: 'get'
+  })
+}
