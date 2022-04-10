@@ -205,8 +205,6 @@ const resultInfo = ref({})
 // 获得是否预测最后获胜
 const last = (info, isNew) => {
   resultInfo.value = info
-  console.log('获胜', resultInfo.value)
-
   if (isNew) {
     Toast.loading({
       duration: 4000,
