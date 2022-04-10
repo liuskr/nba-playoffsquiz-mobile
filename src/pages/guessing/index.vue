@@ -91,7 +91,7 @@ onMounted(() => {
       for (let index = 0; index < array.length; index++) {
         const element = array[index]
         if (element.State === 2) {
-          time.value = new Date(element.EndTime).getTime() - Date.now()
+          time.value = new Date(element.AllowChangeTime).getTime() - Date.now()
           isEdit.value = new Date(element.AllowChangeTime).getTime() < Date.now()
         }
       }
