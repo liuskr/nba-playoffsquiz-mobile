@@ -399,14 +399,8 @@ const showPop = ref(false)
 const popInfo = ref({})
 const haveResult = ref(false)
 
-const secondEastTeam = ref([
-  // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
-  // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
-]) // 东部8强队伍
-const secondWestTeam = ref([
-  // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false },
-  // { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 8, nameAlength: false, nameBlength: false }
-]) // 西部8强队伍
+const secondEastTeam = ref([]) // 东部8强队伍
+const secondWestTeam = ref([]) // 西部8强队伍
 
 const thirdEastTeam = ref({ ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 4 }) // 东部4强队伍
 const thirdWestTeam = ref({ ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 4 }) // 西部晋级第三轮队伍
@@ -533,21 +527,11 @@ const calculationEast = (info = null, initialize = false) => {
         changeKey = null
       }
     }
-    //  else if (!info && initialize) {  // 初始化数据
-    //   // 东部
-    //   if (index < 2) {
-    //     secondEastTeam.value[index] = obj
-    //   } else {
-    //     // 西部
-    //     secondWestTeam.value[index - 2] = obj
-    //   }
-    // }
   }
 }
 
 // 计算晋级第三轮队伍
 const calculationthird = () => {
-  console.log('计算晋级第三轮队伍')
   for (let i = 0; i < secondEastTeam.value.length; i++) {
     const item = JSON.parse(JSON.stringify(secondEastTeam.value[i]))
     let data = null
@@ -590,7 +574,6 @@ const calculationthird = () => {
 
 // 计算总决赛队伍
 const calculationLast = () => {
-  // FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 2 }
   if (Number(thirdEastTeam.value.ScoreA) >= 4) {
     FinalsTeam.value.TeamAData = thirdEastTeam.value.TeamAData
     FinalsTeam.value.TeamAData.imgUrl = new URL(`../../../../assets/images/card/842/${FinalsTeam.value.TeamAData.Name}.png`, import.meta.url).href
@@ -613,9 +596,6 @@ const calculationLast = () => {
   }
 }
 
-// const poster = defineEmits<{
-//   (e: 'getposter'): void
-// }>()
 const emit = defineEmits<{
   (e: 'send'): void
 }>()
@@ -637,16 +617,10 @@ const feactUserGuess = (isNew = false) => {
           if (item.ScoreA == 4) {
             haveResult.value = true
             emit('send', item.TeamAData, isNew)
-            // if (isNew) {
-            //   console.log('出现海报')
-            // }
           }
           if (item.ScoreB == 4) {
             haveResult.value = true
             emit('send', item.TeamBData, isNew)
-            // if (isNew) {
-            //   console.log('出现海报')
-            // }
           }
         }
       })
