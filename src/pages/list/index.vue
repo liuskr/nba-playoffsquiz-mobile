@@ -110,7 +110,7 @@ onMounted(() => {
   getUserInfo()
     .then(({ data }) => {
       state.userInfo = data.User
-      state.Rank = data.Rank
+      state.userInfo.Rank = data.Rank
     })
     .catch(() => {
       state.userInfo = {
