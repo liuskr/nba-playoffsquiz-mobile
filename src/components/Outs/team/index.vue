@@ -387,7 +387,7 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { getUserGuess } from '@apis'
+import { getGameInfo } from '@apis'
 
 const teamList = ref([]) // 战队
 
@@ -407,8 +407,8 @@ const feactUserGuess = (isNew = false) => {
   thirdWestTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 4 }
   FinalsTeam.value = { ScoreA: null, ScoreB: null, TeamAData: null, TeamBData: null, Top: 2 }
 
-  getUserGuess().then(({ data }) => {
-    setData(data.Data.Games, true)
+  getGameInfo().then(({ data }) => {
+    setData(data.Data, true)
 
   })
 }

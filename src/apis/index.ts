@@ -58,3 +58,10 @@ export const getGuessIndex = async (): Promise<HttpResponse> => {
     method: 'get'
   })
 }
+
+// 获取赛况
+export const getGameInfo = async (): Promise<HttpResponse> => {
+  return request('api/game', {
+    method: 'get'
+  })
+}
