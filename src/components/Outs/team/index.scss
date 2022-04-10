@@ -1,0 +1,305 @@
+@mixin logo_style {
+  width: 84px;
+  height: 62px;
+}
+.team_container {
+  padding: 0 30px;
+  width: 115%;
+  font-size: 26px;
+  .ranking_count {
+    font-size: 28px !important;
+  }
+
+  .team_8 {
+    display: flex;
+    justify-content: space-between;
+    &:last-child {
+      margin-top: -20px;
+    }
+    .team_8_4 {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .team_8_4_left,
+      .team_8_4_right {
+        min-width: 47%;
+        .ranking_t {
+          background: url('@assets/images/ranking_top_right.png') no-repeat;
+        }
+        .ranking_b {
+          background: url('@assets/images/ranking_bottom_right.png') no-repeat;
+        }
+        .ranking_t,
+        .ranking_b {
+          width: 50px;
+          margin-left: 18px;
+          font-family: $font-zhengdao;
+          text-align: center;
+          background-size: 100% 100%;
+        }
+
+        .team_list {
+          display: flex;
+          .team_logo {
+            display: flex;
+            flex-direction: column;
+            .top_logo {
+              @include logo_style();
+              margin-bottom: 10px;
+            }
+            .bottom_logo {
+              @include logo_style();
+            }
+          }
+
+          .team_content {
+            height: 136px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: $font-zhengdao;
+            font-size: 30px;
+            padding: 10px 10px;
+            background: url('../../../assets/images/vs.png');
+            background-size: 100% 100%;
+            margin-left: -8px;
+            box-sizing: border-box;
+            .ranks {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+            .special{
+              padding-left: 4px;
+              line-height: 22px;
+              font-size: 26px;
+              span{
+                font-size: 30px !important;
+              }
+            }
+
+            .vs {
+              color: #b8b7ba;
+              font-size: 30px;
+              text-align: center;
+            }
+          }
+        }
+      }
+
+      .team_8_4_right {
+        .f_r {
+          display: flex;
+          justify-content: flex-end;
+
+          padding: 0 20px;
+        }
+        .ranking_t {
+          background: url('../../../assets/images/ranking_bottom_right.png');
+          background-size: 100% 100%;
+        }
+
+        .ranking_b {
+          background: url('../../../assets/images/ranking_top_right.png');
+          background-size: 100% 100%;
+        }
+        .team_content {
+          margin: 0 !important;
+        }
+
+        .team_logo {
+          margin-left: -8px !important;
+        }
+      }
+    }
+  }
+
+  .section {
+    padding: 0 17%;
+    .line {
+      display: flex;
+      justify-content: space-between;
+      margin-top: -10px;
+      padding-bottom: 10px;
+      .line_l,
+      .line_r {
+        width: 105px;
+        .line_t {
+          height: 40px;
+          border: 4px solid #fff;
+          border-top: none;
+        }
+        .line_b {
+          display: flex;
+          justify-content: flex-end;
+          padding: 0 20px;
+          .v {
+            width: 10px;
+            height: 25px;
+            border-left: 4px solid #fff;
+          }
+        }
+      }
+      .line_r {
+        .line_b {
+          justify-content: flex-start !important;
+          .v {
+            border-left: none;
+            border-right: 4px solid #fff;
+          }
+        }
+      }
+    }
+
+    .team_4,
+    .team_2_block {
+      display: flex;
+      justify-content: space-between;
+      .team_4_2 {
+        .team_item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          .team_logo {
+            @include logo_style();
+          }
+          .team_name {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 160px;
+            height: 62px;
+            font-family: $font-zhengdao;
+            font-size: 30px;
+            margin-left: -8px;
+            padding: 0 10px;
+            background: url('../../../assets/images/bg.png');
+            background-size: 100% 100%;
+            box-sizing: border-box;
+
+            .special {
+              padding-left: 4px;
+              margin-right: 10px;
+              line-height: 22px;
+              font-size: 26px;
+              span{
+                font-size: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .team_2_block {
+      position: relative;
+      padding: 0 18%;
+      &::after {
+        display: block;
+        clear: both;
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -45px;
+        width: 2px;
+        height: 45px;
+        border-left: 4px solid #fff;
+      }
+
+      .team_4_2 {
+        margin: 15px 15px 0;
+      }
+      .line_l {
+        flex: 1;
+        height: 80px;
+        border-left: 4px solid #fff;
+        border-bottom: 4px solid #fff;
+      }
+      .line_r {
+        flex: 1;
+        height: 80px;
+        border-right: 4px solid #fff;
+        border-bottom: 4px solid #fff;
+      }
+    }
+
+    .team_2_inline {
+      position: relative;
+      display: flex;
+      font-family: $font-zhengdao;
+      height: 64px;
+      margin: 50px 0;
+      .team_2_content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 30px;
+        padding: 0 10px;
+        background: url('@assets/images/bg2.png');
+        background-size: 100% 100%;
+        position: relative;
+        .two-right{
+          margin-right: 10px;
+          span{
+            margin-left: 16px;
+          }
+        }
+        .team_2_content_item {
+          .name {
+            margin-right: 5px;
+          }
+        }
+        .trophy {
+          position: absolute;
+          top: -44px;
+          left: 118px;
+          width: 140px;
+          height: 140px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+      .team_l,
+      .team_r {
+        margin-right: -5px;
+        img {
+          @include logo_style();
+        }
+      }
+      .team_r {
+        margin-left: -5px;
+      }
+    }
+
+    .team_2_block_bottom {
+      margin-bottom: 10px;
+      &::after {
+        top: -45px !important;
+      }
+      .line_l {
+        margin-top: 82px;
+        border-top: 4px solid #fff;
+        border-bottom: none;
+      }
+      .line_r {
+        margin-top: 82px;
+        border-top: 4px solid #fff;
+        border-bottom: none;
+      }
+    }
+
+    .line_bottom {
+      margin-top: 5px;
+      .line_t {
+        border-top: 4px solid #fff !important;
+        border-bottom: none !important;
+      }
+    }
+  }
+}

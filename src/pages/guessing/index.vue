@@ -39,7 +39,7 @@
     </div>
 
     <!-- <div class="logo_bg"></div> -->
-    <div class="race"></div>
+    <div class="race" @click="outsModel"></div>
     <div class="submit" :class="{ hierarchy: resultInfo && resultInfo.Name }">
       <div class="logo">
         <img src="/images/guess_logo.png" alt="" />
@@ -52,6 +52,8 @@
     </div>
 
     <Poster style="tr" v-model:isShowPoster="posterShow" :url="posterUrl" />
+
+    <Outs v-model:isShow="showOuts" />
   </div>
 </template>
 
@@ -62,10 +64,12 @@ import { Toast } from 'vant'
 import html2canvas from 'html2canvas'
 import { getGuessIndex } from '@apis'
 import Poster from '@components/Poster/index.vue'
+import Outs from '@components/Outs/index.vue'
 
 const time = ref(30 * 60 * 60 * 1000)
 const posterShow = ref(false)
 const posterUrl = ref('')
+const showOuts = ref(false)
 // 年月日
 const getDate = () => {
   const date = new Date()
@@ -81,6 +85,11 @@ const getTime = () => {
   const hour = date.getHours()
   const minute = date.getMinutes()
   return `${hour}:${minute < 10 ? `0${minute}` : minute}`
+}
+
+const outsModel = () => {
+  console.log('sadsad')
+  showOuts.value = true
 }
 
 const isEdit = ref(true)
