@@ -5,7 +5,7 @@
       <div class="wrapper_content">
         <van-icon class="wrapper_content_close" name="cross" color="#fff" size="24" @click.stop="onClose" />
         <img :src="url" alt="" />
-        <div class="wrapper_content_btn" :class="{ poster_text: url !== '/images/prizesPoster.jpg' }">长按保存海报</div>
+        <div class="wrapper_content_btn">长按保存海报</div>
       </div>
     </div>
   </van-overlay>
@@ -52,9 +52,7 @@ export default defineComponent({
 .poster {
   transform: scale(0.7) !important;
 }
-.poster_text {
-  margin-left: 40px;
-}
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -85,6 +83,7 @@ export default defineComponent({
       border-radius: 45px 45px 45px 45px;
       color: #ebcd9a;
       margin-top: 10px;
+      margin-left: 40px;
     }
   }
 }
