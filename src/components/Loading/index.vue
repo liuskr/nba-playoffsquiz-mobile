@@ -95,7 +95,7 @@ export default defineComponent({
       font-weight: bold;
       color: #45d400;
       text-align: center;
-      margin: 10px 0;
+      margin: 30px 0 10px 0;
     }
   }
   // background: rgba(255, 255, 255, 0.1);
