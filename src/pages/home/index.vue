@@ -173,7 +173,7 @@ onMounted(async () => {
   }
 
   // 获取用户信息
-  getUserInfo()
+  await getUserInfo()
     .then(({ data }) => {
       state.userInfo = data.User
       state.userInfo.Rank = data.Rank
