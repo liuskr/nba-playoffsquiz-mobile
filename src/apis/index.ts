@@ -72,3 +72,11 @@ export const getRankingList = async (): Promise<HttpResponse> => {
     method: 'get'
   })
 }
+
+// 微信登录
+export const getWeChatLogin = async (params: { code: string }): Promise<HttpResponse> => {
+  return request('api/miniprogram', {
+    method: 'post',
+    data: params
+  })
+}

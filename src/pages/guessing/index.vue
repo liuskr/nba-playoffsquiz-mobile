@@ -46,8 +46,8 @@
       </div>
 
       <div class="btn">
-        <span @click="edit" v-if="resultInfo && resultInfo.Name">修改</span>
-        <span @click="submit" v-else>提交</span>
+        <span class="submit_btn" @click="edit" v-if="resultInfo && resultInfo.Name"></span>
+        <span class="edit" @click="submit" v-else></span>
       </div>
     </div>
 

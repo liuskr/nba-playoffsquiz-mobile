@@ -13,10 +13,10 @@
           <img src="/images/home_2.png" alt="" />
         </div>
         <div class="mainbody-item" :class="{ delayanimat: isLoading }" @click="status.prizeShow = true">
-          <img src="/images/home_4.png" alt="" />
+          <img src="/images/home_3.png" alt="" />
         </div>
         <div class="mainbody-item" :class="{ delayanimat: isLoading }" @click="status.guideShow = true">
-          <img src="/images/home_3.png" alt="" />
+          <img src="/images/home_4.png" alt="" />
         </div>
       </div>
     </main>
@@ -57,11 +57,14 @@
       </div>
     </van-overlay>
     <!-- 奖品 -->
-    <van-overlay :show="status.prizeShow" @click="status.show = false">
+    <van-overlay :show="status.prizeShow" :lock-scroll="false" @click="status.show = false">
       <div class="wrapper" @click.stop>
         <div class="wrapper-prize">
           <img class="wrapper-prize-share" src="@assets/images/share.png" alt="" @click="status.posterShow = true" />
-          <img src="/images/prize.png" alt="" />
+          <div class="wrapper-prize-center">
+            <img src="/images/prize2.png" alt="" />
+            <img src="/images/prize1.png" alt="" />
+          </div>
           <div class="close prize-close" @click="status.prizeShow = false"></div>
         </div>
       </div>
@@ -71,6 +74,9 @@
       <div class="wrapper" @click.stop>
         <div class="wrapper-guide">
           <h3 class="guide-title">竞猜指南</h3>
+          <div class="wrapper-guide-more">
+            <span>向下滑动继续阅读</span>
+          </div>
           <div class="guide-center">
             <img src="/images/guide_1.png" alt="" />
             <img src="/images/guide_2.png" alt="" />
@@ -97,15 +103,16 @@ import Login from './components/Login/index.vue'
 import Guide from '@components/Guide/index.vue'
 import Loading from '@components/Loading/index.vue'
 import useMusicControl from './music'
-import { useRouter } from 'vue-router'
-import { localStorageGet } from '@utils/auth'
-import { getUserInfo } from '@apis'
+import { useRouter, useRoute } from 'vue-router'
+import { localStorageGet, localStorageSet } from '@utils/auth'
+import { getUserInfo, getWeChatLogin } from '@apis'
+
 import Poster from '@components/Poster/index.vue'
 // import { getSignData } from '@utils/crypto'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
 const router = useRouter()
-
+const route = useRoute()
 const status = reactive({
   show: false,
   prizeShow: false,
@@ -139,6 +146,12 @@ onMounted(async () => {
   // 是否第一次进入
   if (!sessionStorage.getItem('loading')) {
     isLoading.value = true
+  }
+
+  // 小程序登录
+  if (route.query.code) {
+    const { data } = await getWeChatLogin({ code: route.query.code as string })
+    localStorageSet('token', data.Data.Token)
   }
 
   // 获取用户信息

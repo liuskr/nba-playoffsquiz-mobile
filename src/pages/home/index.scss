@@ -180,12 +180,33 @@
     &-prize {
       width: 608px;
       height: 980px;
+      background: url('/images/prize.png') no-repeat;
+      background-size: 100%;
       position: relative;
-      img {
-        width: 100%;
+      &-center{
+        width: 600px;
+        height: 880px;
+        margin-top: 80px;
+        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        img{
+          display: block;
+          margin-left:  56px;
+          padding-top:20px ;
+          width: 84%;
+          height: 84%;
+        }
+        img:last-child{
+          padding-bottom: 140px;
+        }
       }
+      
       .prize-close {
         margin-top: 40px;
+        position: relative;
+        top: 0;
+        left: 0;
       }
       &-share{
         position: absolute;
@@ -194,10 +215,7 @@
          width: 40px !important;
          height: 40px !important;
       }
-      img{
-        width: 100%;
-        height: 100%;
-      }
+      
     }
     &-guide {
       width: 650px;
@@ -205,6 +223,7 @@
       background-image: url('/images/rules.png');
       background-repeat: no-repeat;
       background-size: 99%;
+      position: relative;
       .guide-title {
         font-size: 46px;
         font-family: $font-ximai;
@@ -213,14 +232,40 @@
         color: #ffffff;
         margin: 16px 20px 18px 0;
       }
-      .guide-center {
+      &-more{
+        position: absolute;
+        bottom: 130px;
+        right: 40px;
+        span{
+          display: block;
+          width: 20px;
+          font-size: 20px;
+          font-family: $font-zhengdao;
+          color: #fff;
+        }
+        &::after{
+          content: '';
+          position: absolute;
+          bottom: -60px;
+          right: -4px;
+          width: 26px;
+          height: 26px;
+          background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAiCAMAAADmrkDzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyVpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAzIDc5LjE2NDUyNywgMjAyMC8xMC8xNS0xNzo0ODozMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIyLjEgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzExMTBFMUNCMUMyMTFFQ0I3NkZGOTRFQjBCNDc2MTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzExMTBFMURCMUMyMTFFQ0I3NkZGOTRFQjBCNDc2MTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3MTBCOThGRkIxQzIxMUVDQjc2RkY5NEVCMEI0NzYxNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3MTBCOTkwMEIxQzIxMUVDQjc2RkY5NEVCMEI0NzYxNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PvJof0AAAAAGUExURf///////1V89WwAAAACdFJOU/8A5bcwSgAAAI5JREFUeNqMlFESxCAIQ1/uf+nuuNN2kWCWP/ENIjEiQEOsLVaMwGeLGaFGBDoCAYGA/GSRQyiEQUph1JF6MmrI1hr93K0k8XKr03FA306fhQOKch54+9oRU7XPgRMy3O5NjxO6u9+1deIm5ZSU01k5w/+jXHjaRHsQLcZgETlC3jveR5oI+xM4u9bUJcAALloB7ZiFArgAAAAASUVORK5CYII=') no-repeat;
+          background-size:cover;
+          -webkit-animation: bouncedown 1.6s linear infinite;
+         animation: bouncedown 1.6s linear infinite;
+        }
+      }
+      .guide-center {   
         width: 600px;
         height: 1040px;
         margin: 0 auto;
         // overflow: hidden;
-        overflow-x: scroll;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        
         img {
-          width: 84%;
+          width: 86%;
           height: 86%;
           margin: 80px 0 0 48px;
         }
@@ -333,5 +378,21 @@
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
+  }
+}
+
+
+@keyframes bouncedown {
+  25% {
+       -webkit-transform: translateY(4px);
+       transform: translateY(-4px);
+  }
+  50%, 100% {
+       -webkit-transform: translateY(4px);
+       transform: translateY(0);
+  }
+  75% {
+       -webkit-transform: translateY(4px);
+       transform: translateY(4px);
   }
 }

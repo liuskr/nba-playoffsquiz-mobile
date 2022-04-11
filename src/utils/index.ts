@@ -13,6 +13,7 @@ export const isWeiXin = (): boolean => {
   }
   return false
 }
+
 /**
  *  是否在webview打开
  * @returns Boolean
