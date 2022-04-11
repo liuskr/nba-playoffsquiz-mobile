@@ -1,15 +1,17 @@
 <template>
   <!-- 赛况 -->
-  <van-overlay :show="isShow" class="outs-overlay">
-    <div class="outs-wrapper">
-      <div class="content">
-        <div class="list">
-          <TeamView />
+  <van-config-provider :theme-vars="{ overlayBackgroundColor: 'rgba(0, 0, 0, 0.4)' }">
+    <van-overlay :show="isShow" class="outs-overlay">
+      <div class="outs-wrapper">
+        <div class="content">
+          <div class="list">
+            <TeamView />
+          </div>
+          <div class="close" @click.stop="onClose" />
         </div>
-        <div class="close" @click.stop="onClose" />
       </div>
-    </div>
-  </van-overlay>
+    </van-overlay>
+  </van-config-provider>
 </template>
 
 <script lang="ts" setup>
@@ -25,14 +27,14 @@ const onClose = (): void => {
 </script>
 
 <script lang="ts">
-import { Overlay, Icon } from 'vant'
+import { Overlay, ConfigProvider } from 'vant'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'PosterPopup',
   components: {
     [Overlay.name]: Overlay,
-    [Icon.name]: Icon
+    [ConfigProvider.name]: ConfigProvider
   },
   props: {
     isShow: {
@@ -66,7 +68,7 @@ export default defineComponent({
     position: relative;
     width: 600px;
     height: 1200px;
-    background: url('@assets/images/outs.jpg') no-repeat;
+    background: url('@assets/images/outs.png') no-repeat;
     background-size: 100% 86%;
     .list {
       box-sizing: border-box;
@@ -74,11 +76,9 @@ export default defineComponent({
       .team_container {
         transform: scale(0.66) !important;
         transform-origin: 32px 0;
-        margin-top: 110px;
+        margin-top: 90px;
         // margin-left: -80px;
       }
-    }
-    .close {
     }
 
     .close {
