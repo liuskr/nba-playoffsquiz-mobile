@@ -102,13 +102,14 @@ import { ref, reactive, onMounted } from 'vue'
 import Login from './components/Login/index.vue'
 import Guide from '@components/Guide/index.vue'
 import Loading from '@components/Loading/index.vue'
+import Poster from '@components/Poster/index.vue'
 import useMusicControl from './music'
 import { useRouter, useRoute } from 'vue-router'
-import { localStorageGet, localStorageSet } from '@utils/auth'
-import { getUserInfo, getWeChatLogin } from '@apis'
+import { localStorageGet, localStorageSet, setupWebViewJavascriptBridge } from '@utils/auth'
+import { getAppLogin, getUserInfo, getWeChatLogin } from '@apis'
 
-import Poster from '@components/Poster/index.vue'
-// import { getSignData } from '@utils/crypto'
+import { openInWebview } from '@utils'
+import { encryptApp } from '@utils/crypto'
 
 const { isPlayMusic, onSwitch } = useMusicControl()
 const router = useRouter()
@@ -146,6 +147,22 @@ onMounted(async () => {
   // 是否第一次进入
   if (!sessionStorage.getItem('loading')) {
     isLoading.value = true
+  }
+
+  // app登录
+  if (openInWebview()) {
+    console.log('webview open')
+    // @ts-ignore
+    setupWebViewJavascriptBridge(function (bridge: any) {
+      bridge.callHandler('getUserInfo', {}, async function responseCallback(responseData: any) {
+        const data = JSON.parse(responseData)
+        await getAppLogin({
+          data: encryptApp(JSON.stringify({ vendor_id: Number(data.CustomID) }))
+        })
+      })
+    })
+  } else {
+    console.log('no webview')
   }
 
   // 小程序登录

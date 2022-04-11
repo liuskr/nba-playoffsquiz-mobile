@@ -80,3 +80,11 @@ export const getWeChatLogin = async (params: { code: string }): Promise<HttpResp
     data: params
   })
 }
+
+// app登录
+export const getAppLogin = async (params: { data: string | number }): Promise<HttpResponse> => {
+  return request('api/login/app', {
+    method: 'post',
+    data: params
+  })
+}

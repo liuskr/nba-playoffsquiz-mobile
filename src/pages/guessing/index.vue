@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <Poster style="tr" v-model:isShowPoster="posterShow" :url="posterUrl" />
+    <Poster v-model:isShowPoster="posterShow" :url="posterUrl" />
 
     <Outs v-model:isShow="showOuts" />
   </div>
