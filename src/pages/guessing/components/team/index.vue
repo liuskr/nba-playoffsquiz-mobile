@@ -521,10 +521,12 @@ const calculationEast = (info = null, initialize = false) => {
       if (changeKey < 2) {
         secondEastTeam.value[changeKey] = obj
         changeKey = null
+        thirdEastTeam.value = { ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 4 } // 东部4强队伍
       } else {
         // 西部
         secondWestTeam.value[changeKey - 2] = obj
         changeKey = null
+        thirdWestTeam.value = { ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 4 } // 西部晋级第三轮队伍
       }
     }
   }
@@ -547,9 +549,11 @@ const calculationthird = () => {
     }
 
     if (i == 0) {
-      thirdEastTeam.value.TeamAData = data
+      thirdEastTeam.value.ScoreA = 0
+      thirdEastTeam.value.TeamAData = { ...data }
     } else {
-      thirdEastTeam.value.TeamBData = data
+      thirdEastTeam.value.ScoreB = 0
+      thirdEastTeam.value.TeamBData = { ...data }
     }
   }
 
@@ -564,11 +568,16 @@ const calculationthird = () => {
     }
 
     if (i == 0) {
-      thirdWestTeam.value.TeamAData = data
+      thirdWestTeam.value.ScoreA = 0
+      thirdWestTeam.value.TeamAData = { ...data }
     } else {
-      thirdWestTeam.value.TeamBData = data
+      thirdWestTeam.value.ScoreB = 0
+      thirdWestTeam.value.TeamBData = { ...data }
     }
   }
+
+  FinalsTeam.value = { ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 2 } // 总决赛队伍
+
   console.log(secondWestTeam.value)
 }
 
