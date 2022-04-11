@@ -155,10 +155,11 @@ onMounted(async () => {
     // @ts-ignore
     setupWebViewJavascriptBridge(function (bridge: any) {
       bridge.callHandler('getUserInfo', {}, async function responseCallback(responseData: any) {
-        const data = JSON.parse(responseData)
-        await getAppLogin({
-          data: encryptApp(JSON.stringify({ vendor_id: Number(data.CustomID) }))
+        const info = JSON.parse(responseData)
+        const { data } = await getAppLogin({
+          data: encryptApp(JSON.stringify({ vendor_id: Number(info.CustomID) }))
         })
+        localStorageSet('token', data.Data.Token)
       })
     })
   } else {
