@@ -151,17 +151,20 @@ onMounted(async () => {
 
   // app登录
   if (openInWebview()) {
-    console.log('webview open')
-    // @ts-ignore
-    setupWebViewJavascriptBridge(function (bridge: any) {
-      bridge.callHandler('getUserInfo', {}, async function responseCallback(responseData: any) {
-        const info = JSON.parse(responseData)
-        const { data } = await getAppLogin({
-          data: encryptApp(JSON.stringify({ vendor_id: Number(info.CustomID) }))
+    try {
+      // @ts-ignore
+      setupWebViewJavascriptBridge(function (bridge: any) {
+        bridge.callHandler('getUserInfo', {}, async function responseCallback(responseData: any) {
+          const info = JSON.parse(responseData)
+          const { data } = await getAppLogin({
+            data: encryptApp(JSON.stringify({ vendor_id: Number(info.CustomID) }))
+          })
+          localStorageSet('token', data.Data.Token)
         })
-        localStorageSet('token', data.Data.Token)
       })
-    })
+    } catch {
+      console.log('登录失败')
+    }
   } else {
     console.log('no webview')
   }
