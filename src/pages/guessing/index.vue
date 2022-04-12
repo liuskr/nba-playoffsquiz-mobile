@@ -40,14 +40,14 @@
 
     <!-- <div class="logo_bg"></div> -->
     <div class="race" @click="outsModel"></div>
-    <div class="submit" :class="{ hierarchy: resultInfo && resultInfo.Name }">
+    <div class="submit" :class="{ hierarchy: !(resultInfo && resultInfo.Name) }">
       <div class="logo">
         <img src="/images/guess_logo.png" alt="" />
       </div>
 
       <div class="btn">
-        <span class="submit_btn" @click="edit" v-if="resultInfo && resultInfo.Name"></span>
-        <span class="edit" @click="submit" v-else></span>
+        <span class="edit" @click="edit" v-if="resultInfo && resultInfo.Name"></span>
+        <span class="submit_btn" @click="submit" v-else></span>
       </div>
     </div>
 
