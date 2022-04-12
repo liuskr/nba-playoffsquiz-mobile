@@ -238,7 +238,7 @@
       <div class="team_4">
         <div class="team_4_2" v-for="(item, key) in secondWestTeam" :key="key" @click="showPopup(item)">
           <div class="team_item">
-            <img class="team_logo" :src="item.TeamAData.imgUrl" alt="" v-if="item.TeamAData" />
+            <img class="team_logo" :src="item.TeamAData.imgUrl" alt="" v-if="item && item.TeamAData" />
             <img class="team_logo" src="@assets/images/card/doong-kong.png" alt="" v-else />
             <div class="team_name">
               <span v-if="item.TeamAData" :class="{ special: item.TeamAData.namelength }"
@@ -481,12 +481,15 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
 // 计算晋级第二轮队伍
 const calculationEast = (info = null, initialize = false) => {
   // 切割，两个为一组
+  const arr = teamList.value.filter(item => item.Top == 16)
   const list = []
-  for (let i = 0; i < teamList.value.length; i += 2) {
-    list.push(teamList.value.slice(i, i + 2))
+  for (let i = 0; i < arr.length; i += 2) {
+    list.push(arr.slice(i, i + 2))
   }
 
   let changeKey = null
+
+  
 
   for (let index = 0; index < list.length; index++) {
     const element = list[index]
@@ -515,6 +518,7 @@ const calculationEast = (info = null, initialize = false) => {
       }
     })
 
+
     // 更改指定队伍数据
     if (changeKey !== null) {
       // 东部
@@ -524,6 +528,7 @@ const calculationEast = (info = null, initialize = false) => {
         thirdEastTeam.value = { ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 4 } // 东部4强队伍
       } else {
         // 西部
+
         secondWestTeam.value[changeKey - 2] = obj
         changeKey = null
         thirdWestTeam.value = { ScoreA: 0, ScoreB: 0, TeamAData: null, TeamBData: null, Top: 4 } // 西部晋级第三轮队伍
@@ -717,10 +722,11 @@ defineExpose({
       })
     }
 
-    // if (GuessData.length > 16) {
-    //   Toast('请预测完成')
-    //   return
-    // }
+    const [lastItem] = GuessData.filter(item => item.Top == 2 )
+    if (GuessData.length < 15 || (lastItem.ScoreA == 0 && lastItem.ScoreB == 0)) {
+      Toast('请预测完成')
+      return
+    }
 
     localStorage.setItem('sign', getSignData(JSON.stringify({ GuessData })))
     setUserGuess({
