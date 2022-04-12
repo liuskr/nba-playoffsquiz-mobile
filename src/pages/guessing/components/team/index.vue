@@ -481,15 +481,13 @@ const close = (ScoreA: null | undefined, ScoreB: null) => {
 // 计算晋级第二轮队伍
 const calculationEast = (info = null, initialize = false) => {
   // 切割，两个为一组
-  const arr = teamList.value.filter(item => item.Top == 16)
+  const arr = teamList.value.filter((item) => item.Top == 16)
   const list = []
   for (let i = 0; i < arr.length; i += 2) {
     list.push(arr.slice(i, i + 2))
   }
 
   let changeKey = null
-
-  
 
   for (let index = 0; index < list.length; index++) {
     const element = list[index]
@@ -517,7 +515,6 @@ const calculationEast = (info = null, initialize = false) => {
         obj.TeamBData = data
       }
     })
-
 
     // 更改指定队伍数据
     if (changeKey !== null) {
@@ -722,7 +719,7 @@ defineExpose({
       })
     }
 
-    const [lastItem] = GuessData.filter(item => item.Top == 2 )
+    const [lastItem] = GuessData.filter((item) => item.Top == 2)
     if (GuessData.length < 15 || (lastItem.ScoreA == 0 && lastItem.ScoreB == 0)) {
       Toast('请预测完成')
       return
@@ -733,7 +730,16 @@ defineExpose({
       GuessData
     }).then((res) => {
       Toast.success('提交成功')
-      feactUserGuess(true)
+      haveResult.value = true
+
+      // 是否有预测最后获胜
+      if (FinalsTeam.value.ScoreA == 4) {
+        emit('send', FinalsTeam.value.TeamAData, true)
+      }
+      if (FinalsTeam.value.ScoreB == 4) {
+        haveResult.value = true
+        emit('send', FinalsTeam.value.TeamBData, true)
+      }
     })
   },
 
